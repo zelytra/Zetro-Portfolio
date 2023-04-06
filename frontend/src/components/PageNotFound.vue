@@ -10,7 +10,7 @@
 </script>
 
 <style scoped lang="scss">
-.not-found{
+.not-found {
   width: 100%;
   height: calc(100vh - 255px);
   display: flex;
@@ -18,9 +18,11 @@
   justify-content: center;
   align-items: center;
 
-  h1{
+  h1 {
+    font-family: JetBrains-Mono, sans-serif;
     color: var(--main);
     font-size: 120px;
+    font-weight: 800;
   }
 }
 </style>

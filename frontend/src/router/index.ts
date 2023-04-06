@@ -14,6 +14,21 @@ export const routes = [
         component: () => import('@components/Home.vue'),
     },
     {
+        path: "/projects",
+        name: "Projets",
+        component: () => import('@components/Projects.vue'),
+    },
+    {
+        path: "/blog",
+        name: "Blog",
+        component: () => import('@components/Blog.vue'),
+    },
+    {
+        path: "/templates",
+        name: "Maquettes",
+        component: () => import('@components/Templates.vue'),
+    },
+    {
         path: "/:pathMatch(.*)*",
         component: () => import('@components/PageNotFound.vue'),
     },
