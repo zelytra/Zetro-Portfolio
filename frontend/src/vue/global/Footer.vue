@@ -24,11 +24,11 @@
       </div>
       <div class="content">
         <h3>LIENS</h3>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
+        <a href="">Figma</a>
+        <a href="">Adobe</a>
+        <a href="">Dribbble</a>
+        <a href="">Behance</a>
+        <a href="">Themeforest</a>
       </div>
       <div class="content">
         <div class="badge facebook">
@@ -82,6 +82,7 @@ footer {
     width: 100%;
     color: var(--main);
     margin: 30px 0;
+    opacity: 50%;
   }
 
   section.upper-side {

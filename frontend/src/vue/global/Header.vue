@@ -2,7 +2,7 @@
   <header>
     <img src="@assets/icons/full_logo.svg"/>
     <nav>
-      <router-link v-for="route in routes.routes"
+      <router-link v-for="route in routes.routes.filter((x,index)=>{return index !== routes.routes.length})"
                    :key="route.name"
                    :to="route.path">
         {{ route.name }}
@@ -31,8 +31,13 @@ header {
   margin: auto;
   padding: 24px 0;
   justify-content: space-between;
+  position: relative;
 
   nav {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     gap: 40px;
