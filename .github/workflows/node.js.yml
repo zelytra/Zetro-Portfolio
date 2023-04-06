@@ -6,12 +6,6 @@ name: Frontend CI/CD Deployment
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - ready_for_review
 
 jobs:
   build:
