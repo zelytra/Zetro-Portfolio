@@ -9,6 +9,9 @@
   font-family: Inter, sans-serif;
   font-weight: 400;
   color: var(--secondary-text);
+
+  scrollbar-color: #FFE8D1 #101010;
+  scrollbar-width: thin;
 }
 
 body {
@@ -16,23 +19,13 @@ body {
   --primary-text: #ffffff;
   --secondary-text: #BDBDBD;
   --revert-text: #101010;
-  --primary-background: #1E1E1E;
+  --primary-background: #101010;
   --secondary-background: #FFE8D1;
-}
-
-#app {
-  height: inherit;
-  scrollbar-color: var(--main) var(--secondary-background);
-  scrollbar-width: thin;
-  background-color: var(--primary-background);
 }
 
 html, body {
   background-color: var(--primary-background);
-  scrollbar-color: var(--main) var(--secondary-background);
-  scrollbar-width: thin;
   height: 100%;
-
 }
 
 ::-webkit-scrollbar {

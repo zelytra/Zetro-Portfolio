@@ -66,7 +66,7 @@ footer {
   overflow: hidden;
   position: sticky;
   top: 100vh;
-  margin: auto auto 62px;
+  margin: 120px auto 62px auto;
 
   p {
     font-weight: 300;

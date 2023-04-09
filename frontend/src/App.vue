@@ -14,7 +14,7 @@ import Footer from "@vues/global/Footer.vue"
 </script>
 
 <style scoped lang="scss">
-v-leave-active {
+.v-leave-active, .v-enter-active {
   transition: 0.2s ease;
 }
 
