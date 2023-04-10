@@ -29,7 +29,7 @@
 section.user-title {
   display: flex;
   justify-content: space-between;
-  width: 75%;
+  width: inherit;
   margin: 120px auto;
 
   .content {

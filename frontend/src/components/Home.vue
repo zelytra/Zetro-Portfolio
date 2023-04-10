@@ -14,6 +14,7 @@
                  :icon="web"/>
     </section>
     <ProfessionalStory class="professional-wrapper"/>
+    <SchoolStory/>
   </section>
 </template>
 
@@ -25,11 +26,12 @@ import crown from "@assets/icons/crown.svg"
 import stack from "@assets/icons/stack.svg"
 import web from "@assets/icons/web.svg"
 import ProfessionalStory from "@/vue/user/ProfessionalStory.vue";
+import SchoolStory from "@/vue/user/SchoolStory.vue";
 </script>
 
 <style scoped lang="scss">
 section.home-wrapper {
-
+  padding: 60px 10%;
   .title {
     margin: 120px auto;
   }

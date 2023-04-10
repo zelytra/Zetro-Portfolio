@@ -5,7 +5,11 @@
       <div class="company-selector">
         <p v-for="story of stories"
            @click="updateStory(story)"
-           :class="{selected:selectedStory.company===story.company}">{{ story.company }} <span>{{ ">" }}</span></p>
+           :class="{selected:selectedStory.company===story.company}">{{ story.company }}
+          <span
+              v-if="selectedStory.company===story.company">{{ ">" }}
+          </span>
+        </p>
       </div>
     </div>
     <div class="job-animation-container">
@@ -83,13 +87,19 @@ async function updateStory(story: ProfessionalStory) {
   width: inherit;
   min-height: 500px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items: start;
   gap: 40px;
+  flex-wrap: wrap;
+
+  .job-animation-container {
+    position: relative;
+    flex-grow: 1;
+  }
 
   .content {
 
     .company-selector {
+      width: fit-content;
       margin-top: 60px;
       display: flex;
       flex-direction: column;
@@ -98,8 +108,8 @@ async function updateStory(story: ProfessionalStory) {
       p {
         width: 250px;
         padding: 16px 32px;
-        border: solid 1px var(--main);
-        color: var(--main);
+        //border: solid 1px var(--main);
+        color: white;
         border-radius: 4px;
         cursor: pointer;
         position: relative;
@@ -110,27 +120,25 @@ async function updateStory(story: ProfessionalStory) {
           right: 15px;
           transform: translate(0, -50%);
           position: absolute;
+          color: var(--main);
+        }
+
+        &:hover {
+          background: rgba(255, 232, 209, 0.1);
         }
 
         &.selected {
-          color: var(--revert-text);
-          background-color: var(--main);
-
-          span {
-            color: var(--revert-text);
-          }
+          color: var(--main);
+          background: rgba(255, 232, 209, 0.1);
         }
       }
-    }
-
-    .job-animation-container {
-      position: relative;
     }
 
     &.story {
       display: flex;
       flex-direction: column;
       gap: 16px;
+      width: inherit;
 
       h4 {
         font-family: PlusJakartaSans, sans-serif;

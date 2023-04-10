@@ -6,3 +6,14 @@ export interface ProfessionalStory {
     tags: string[]
     content: string[]
 }
+
+export interface SchoolStory {
+    location: string
+    name: string
+    date: string
+}
+
+export interface Skill {
+    name: string
+    level: number
+}

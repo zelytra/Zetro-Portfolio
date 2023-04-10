@@ -50,7 +50,7 @@
       </div>
     </section>
     <hr>
-    <h5>© 2023 - ZeTro - <a href="https://zelytra.fr" target="_blank">Zelytra</a></h5>
+    <h5>Copyright © ZeTro - Developpé par <a href="https://zelytra.fr" target="_blank">Zelytra</a></h5>
   </footer>
 </template>
 
@@ -110,6 +110,10 @@ footer {
       a {
         font-weight: 400;
         font-size: 16px;
+
+        &:hover {
+          color: var(--main);
+        }
       }
 
       .badge {
@@ -157,5 +161,12 @@ footer {
       }
     }
   }
+
+  h5 {
+    a:hover {
+      color: var(--main);
+    }
+  }
+
 }
 </style>
