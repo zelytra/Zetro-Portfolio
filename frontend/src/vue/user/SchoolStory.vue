@@ -24,39 +24,21 @@
 <script setup lang="ts">
 import Title from "@/vue/global/Title.vue";
 import {SchoolStory, Skill} from "@/object/UserProfile";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import SkillValue from "@/vue/user/SkillValue.vue";
+import {HTTPAxios} from "@/object/HTTPAxios";
 
-const schools = ref<SchoolStory[]>([
-  {
-    name: "Liscence Marketing",
-    date: "2026 - 2029",
-    location: "Bordeaux, France",
-  },
-  {
-    name: "Liscence Marketing",
-    date: "2026 - 2029",
-    location: "Bordeaux, France",
-  }, {
-    name: "Liscence Marketing",
-    date: "2026 - 2029",
-    location: "Bordeaux, France",
-  },
-])
-const skills = ref<Skill[]>([
-  {
-    name: "Figma",
-    level: 100
-  },
-  {
-    name: "Illustrator",
-    level: 80
-  },
-  {
-    name: "Spline",
-    level: 20
-  },
-])
+const schools = ref<SchoolStory[]>([])
+const skills = ref<Skill[]>([])
+
+onMounted(() => {
+  new HTTPAxios("user/shool-stories.json").get().then((data) => {
+    schools.value = data.data
+  })
+  new HTTPAxios("user/skills.json").get().then((data) => {
+    skills.value = data.data
+  })
+})
 </script>
 
 <style scoped lang="scss">
