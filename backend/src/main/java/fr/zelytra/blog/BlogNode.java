@@ -51,9 +51,9 @@ public class BlogNode extends PanacheEntityBase {
     private String formatName() {
         String formatName;
         if (type.equalsIgnoreCase("tree")) {
-            formatName = path.split("/")[0];
+            formatName = path.split("/")[path.split("/").length <= 0 ? 0 : path.split("/").length - 1];
         } else {
-            formatName = path.split("/")[1];
+            formatName = path.split("/")[path.split("/").length - 1];
         }
 
         if (formatName.split("-").length >= 2) {

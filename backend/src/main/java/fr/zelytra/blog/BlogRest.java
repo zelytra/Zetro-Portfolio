@@ -2,6 +2,7 @@ package fr.zelytra.blog;
 
 import fr.zelytra.utils.HTTPRequest;
 import io.quarkus.logging.Log;
+import io.quarkus.scheduler.Scheduled;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -42,7 +43,11 @@ public class BlogRest {
     @Path("refresh")
     public Response refreshTree() {
         Log.info("[GET] blog/refresh");
+        return Response.ok(refreshWikiTask()).build();
+    }
 
+
+    public List<BlogNode> refreshWikiTask(){
         JSONArray nodes = retrieveTree();
         List<BlogNode> nodesList = new ArrayList<>();
         for (int i = 0; i < nodes.length(); i++) {
@@ -53,6 +58,27 @@ public class BlogRest {
                 continue;
             }
 
+            nodesList.add(new BlogNode(selectedNode.getString("type")
+                    , selectedNode.getString("path")
+                    , "https://raw.githubusercontent.com/" + wikiRepositoryUrl + "/main/" + selectedNode.getString("path")));
+        }
+        BlogNode.deleteAll();
+        nodesList.forEach((node) -> node.persist());
+        return nodesList;
+    }
+
+    @Scheduled(every="120s")
+    @Transactional
+    public void refreshScheduleWikiTask(){
+        JSONArray nodes = retrieveTree();
+        List<BlogNode> nodesList = new ArrayList<>();
+        for (int i = 0; i < nodes.length(); i++) {
+            JSONObject selectedNode = nodes.getJSONObject(i);
+            if (selectedNode.getString("path").startsWith(".")
+                    || selectedNode.getString("path").equalsIgnoreCase("LICENSE")
+                    || selectedNode.getString("path").equalsIgnoreCase("README.md")) {
+                continue;
+            }
 
             nodesList.add(new BlogNode(selectedNode.getString("type")
                     , selectedNode.getString("path")
@@ -60,7 +86,6 @@ public class BlogRest {
         }
         BlogNode.deleteAll();
         nodesList.forEach((node) -> node.persist());
-        return Response.ok(nodesList).build();
     }
 
     private JSONArray retrieveTree() {
