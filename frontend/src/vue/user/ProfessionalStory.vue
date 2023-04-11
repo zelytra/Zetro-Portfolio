@@ -14,7 +14,7 @@
     </div>
     <div class="job-animation-container">
       <Transition name="job">
-        <div class="content story" :key="selectedStory">
+        <div class="content story" :key="selectedStory.company">
           <h4>{{ selectedStory.title }}</h4>
           <p class="location">{{ selectedStory.location }}</p>
           <p class="date">{{ selectedStory.date }}</p>
@@ -75,7 +75,7 @@ const stories = ref<ProfessionalStory[]>([
     tags: ["Charte Graphique", "Logo"]
   }
 ])
-const selectedStory = ref<ProfessionalStory | undefined>(stories.value[0]);
+const selectedStory = ref<ProfessionalStory>(stories.value[0]);
 
 async function updateStory(story: ProfessionalStory) {
   selectedStory.value = story
