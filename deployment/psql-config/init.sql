@@ -3,7 +3,7 @@ CREATE SCHEMA IF NOT EXISTS zetro_portfolio;
 create sequence zetro_portfolio.hibernate_sequence
     as integer;
 
-create table zetro_portfolio.wiki_nodes
+create table zetro_portfolio.blog_nodes
 (
     path text not null
         primary key,
