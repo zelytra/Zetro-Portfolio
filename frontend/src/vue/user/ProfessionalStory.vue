@@ -36,6 +36,7 @@ import Title from "@/vue/global/Title.vue";
 import {ProfessionalStory} from "@/object/UserProfile";
 import {onMounted, ref} from "vue";
 import {HTTPAxios} from "@/object/HTTPAxios";
+import {BasicText} from "@/object/Project";
 
 const stories = ref<ProfessionalStory[]>([])
 const selectedStory = ref();
