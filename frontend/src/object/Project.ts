@@ -3,10 +3,6 @@ export interface Project {
     name: string
     link: string
     tags: string[]
-
-    title: string
-    description: string
-    icon: string
     contents: Object[]
 }
 
@@ -22,4 +18,15 @@ export interface BasicText extends Content {
 export interface ImageText extends Content {
     text: string
     image: string
+}
+
+export interface BigImageText extends Content {
+    text: string
+    image: string
+}
+
+export interface Title extends Content {
+    description: string
+    icon: string
+    tags: []
 }
