@@ -15,6 +15,7 @@ import ProjectTitle from "@/vue/project/content/ProjectTitle.vue";
 import ProjectBasicText from "@/vue/project/content/ProjectBasicText.vue";
 import ProjectImageText from "@/vue/project/content/ProjectImageText.vue";
 import ProjectBigImageText from "@/vue/project/content/ProjectBigImageText.vue";
+import ProjectSkills from "@/vue/project/content/ProjectSkills.vue";
 
 defineProps({
   project: {
@@ -33,6 +34,8 @@ function getComponent(content: Object): any {
       return ProjectImageText
     case 'BigImageText':
       return ProjectBigImageText
+    case 'ProjectSkill':
+      return ProjectSkills
     default:
       return PageNotFound
   }

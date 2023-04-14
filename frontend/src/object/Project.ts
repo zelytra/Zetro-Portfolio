@@ -1,3 +1,5 @@
+import {Skill} from "@/object/UserProfile";
+
 export interface Project {
     banner: string
     name: string
@@ -29,4 +31,9 @@ export interface Title extends Content {
     description: string
     icon: string
     tags: []
+}
+
+export interface ProjectSkill extends Content {
+    text: string
+    skills: Skill[]
 }
