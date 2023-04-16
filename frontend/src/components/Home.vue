@@ -31,7 +31,7 @@ import SchoolStory from "@/vue/user/SchoolStory.vue";
 
 <style scoped lang="scss">
 section.home-wrapper {
-  padding: 60px 10%;
+  padding: 60px 20%;
   .title {
     margin: 120px auto;
   }

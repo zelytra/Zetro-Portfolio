@@ -37,3 +37,11 @@ export interface ProjectSkill extends Content {
     text: string
     skills: Skill[]
 }
+
+export interface Contributor extends Content {
+    contributors: [{
+        icon: string
+        name: string
+        tags: string[]
+    }]
+}

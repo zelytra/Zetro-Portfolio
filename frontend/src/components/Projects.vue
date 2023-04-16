@@ -49,6 +49,27 @@ const projects: Project[] = [
           {name: "Figma", level: 50}
         ]
       },
+      {
+        type: "Contributor",
+        title: "Blabla",
+        contributors: [
+          {
+            icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/2048px-LEGO_logo.svg.png",
+            name: "Zetro",
+            tags: ["Designer", "Graphiste"]
+          },
+          {
+            icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/2048px-LEGO_logo.svg.png",
+            name: "Zetro",
+            tags: ["Designer", "Graphiste"]
+          },
+          {
+            icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/2048px-LEGO_logo.svg.png",
+            name: "Zetro",
+            tags: ["Designer", "Graphiste"]
+          },
+        ]
+      },
     ]
   }
 ]
@@ -57,7 +78,7 @@ const projects: Project[] = [
 
 <style scoped lang="scss">
 section.project {
-  margin: 10%;
+  margin: 80px 20%;
   overflow: hidden;
 }
 </style>
