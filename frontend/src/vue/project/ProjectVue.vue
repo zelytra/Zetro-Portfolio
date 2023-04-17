@@ -17,6 +17,10 @@ import ProjectImageText from "@/vue/project/content/ProjectImageText.vue";
 import ProjectBigImageText from "@/vue/project/content/ProjectBigImageText.vue";
 import ProjectSkills from "@/vue/project/content/ProjectSkills.vue";
 import ProjectContributor from "@/vue/project/content/ProjectContributor.vue";
+import WarningContent from "@/vue/project/content/WarningContent.vue";
+import ErrorContent from "@/vue/project/content/ErrorContent.vue";
+import InformationContent from "@/vue/project/content/InformationContent.vue";
+import ExternalLinksVue from "@/vue/project/content/ExternalLinksVue.vue";
 
 defineProps({
   project: {
@@ -39,6 +43,14 @@ function getComponent(content: Object): any {
       return ProjectSkills
     case 'Contributor':
       return ProjectContributor
+    case 'Warning':
+      return WarningContent
+    case 'Error':
+      return ErrorContent
+    case 'Information':
+      return InformationContent
+    case 'ExternalLinks':
+      return ExternalLinksVue
     default:
       return PageNotFound
   }

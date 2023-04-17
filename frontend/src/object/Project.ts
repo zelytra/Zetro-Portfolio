@@ -45,3 +45,13 @@ export interface Contributor extends Content {
         tags: string[]
     }]
 }
+
+export interface ExternalLinks extends Content {
+    links: [
+        {
+            icon: string
+            name: string
+            link: string
+        }
+    ]
+}
