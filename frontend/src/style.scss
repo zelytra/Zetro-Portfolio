@@ -25,7 +25,8 @@ body {
 
 html, body {
   background-color: var(--primary-background);
-  height: 100%;
+  height: fit-content;
+  width: auto;
 }
 
 ::-webkit-scrollbar {

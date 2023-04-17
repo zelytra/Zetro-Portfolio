@@ -68,6 +68,11 @@ const projects: Project[] = [
             name: "Zetro",
             tags: ["Designer", "Graphiste"]
           },
+          {
+            icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/2048px-LEGO_logo.svg.png",
+            name: "Zetro",
+            tags: ["Designer", "Graphiste"]
+          },
         ]
       },
     ]
@@ -78,7 +83,6 @@ const projects: Project[] = [
 
 <style scoped lang="scss">
 section.project {
-  margin: 80px 20%;
-  overflow: hidden;
+  margin: 80px 10%;
 }
 </style>
