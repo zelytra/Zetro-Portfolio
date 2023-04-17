@@ -29,7 +29,7 @@ public abstract class HTTPRequest {
             //Log.info( new JSONObject(content.toString()).toString());
             return new JSONObject(content.toString());
         } catch (Exception e) {
-            Log.error(e);
+            Log.error("Failed to request " + e.getLocalizedMessage());
         }
 
         return null;

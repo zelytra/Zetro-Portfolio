@@ -3,7 +3,6 @@ import {Skill} from "@/object/UserProfile";
 export interface Project {
     banner: string
     name: string
-    link: string
     tags: string[]
     contents: Object[]
 }

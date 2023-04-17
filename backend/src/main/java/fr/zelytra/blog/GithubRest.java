@@ -1,6 +1,7 @@
 package fr.zelytra.blog;
 
 import fr.zelytra.utils.HTTPRequest;
+import io.quarkus.arc.Lock;
 import io.quarkus.logging.Log;
 import io.quarkus.scheduler.Scheduled;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -16,24 +17,34 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-@Path("blog/")
-public class BlogRest {
+@Path("git/")
+public class GithubRest {
 
     @ConfigProperty(name = "wiki.repo.url")
     String wikiRepositoryUrl;
 
     @GET
+    @Path("blog")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll() {
-        Log.info("[GET] blog/");
+    public Response getAllBlog() {
+        Log.info("[GET] git/blog");
         return Response.ok(BlogNode.listAll()).build();
     }
+
+    @GET
+    @Path("project")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllProject() {
+        Log.info("[GET] git/project");
+        return Response.ok(ProjectNode.listAll()).build();
+    }
+
 
     @GET
     @Path("rate")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getRateLimit() {
-        Log.info("[GET] blog/rate");
+        Log.info("[GET] git/rate");
         return Response.ok(retrieveRateLimit().toString()).build();
     }
 
@@ -42,36 +53,20 @@ public class BlogRest {
     @Transactional
     @Path("refresh")
     public Response refreshTree() {
-        Log.info("[GET] blog/refresh");
-        return Response.ok(refreshWikiTask()).build();
+        Log.info("[GET] git/refresh");
+        refreshScheduleWikiTask();
+        return Response.ok().build();
     }
 
-
-    public List<BlogNode> refreshWikiTask(){
-        JSONArray nodes = retrieveTree();
-        List<BlogNode> nodesList = new ArrayList<>();
-        for (int i = 0; i < nodes.length(); i++) {
-            JSONObject selectedNode = nodes.getJSONObject(i);
-            if (selectedNode.getString("path").startsWith(".")
-                    || selectedNode.getString("path").equalsIgnoreCase("LICENSE")
-                    || selectedNode.getString("path").equalsIgnoreCase("README.md")) {
-                continue;
-            }
-
-            nodesList.add(new BlogNode(selectedNode.getString("type")
-                    , selectedNode.getString("path")
-                    , "https://raw.githubusercontent.com/" + wikiRepositoryUrl + "/main/" + selectedNode.getString("path")));
-        }
-        BlogNode.deleteAll();
-        nodesList.forEach((node) -> node.persist());
-        return nodesList;
-    }
-
-    @Scheduled(every="120s")
+    @Scheduled(every = "120s")
     @Transactional
-    public void refreshScheduleWikiTask(){
+    @Lock
+    public void refreshScheduleWikiTask() {
+
         JSONArray nodes = retrieveTree();
         List<BlogNode> nodesList = new ArrayList<>();
+        List<ProjectNode> projectList = new ArrayList<>();
+
         for (int i = 0; i < nodes.length(); i++) {
             JSONObject selectedNode = nodes.getJSONObject(i);
             if (selectedNode.getString("path").startsWith(".")
@@ -80,12 +75,24 @@ public class BlogRest {
                 continue;
             }
 
-            nodesList.add(new BlogNode(selectedNode.getString("type")
-                    , selectedNode.getString("path")
-                    , "https://raw.githubusercontent.com/" + wikiRepositoryUrl + "/main/" + selectedNode.getString("path")));
+            // Check if project
+            if (selectedNode.getString("path").contains("/projects/")) {
+                projectList.add(new ProjectNode(selectedNode.getString("type")
+                        , selectedNode.getString("path")
+                        , "https://raw.githubusercontent.com/" + wikiRepositoryUrl + "/main/" + selectedNode.getString("path")));
+            } else {
+                nodesList.add(new BlogNode(selectedNode.getString("type")
+                        , selectedNode.getString("path")
+                        , "https://raw.githubusercontent.com/" + wikiRepositoryUrl + "/main/" + selectedNode.getString("path")));
+            }
         }
+
         BlogNode.deleteAll();
         nodesList.forEach((node) -> node.persist());
+
+        ProjectNode.deleteAll();
+        projectList.forEach((node) -> node.persist());
+
     }
 
     private JSONArray retrieveTree() {

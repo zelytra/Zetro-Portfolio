@@ -42,7 +42,7 @@ const stories = ref<ProfessionalStory[]>([])
 const selectedStory = ref();
 
 onMounted(() => {
-  new HTTPAxios("user/professional-stories.json").get().then((data) => {
+  new HTTPAxios("user/professional-stories.json", null, true).get().then((data) => {
     stories.value = data.data as ProfessionalStory[]
     selectedStory.value = stories.value[0]
   })

@@ -32,10 +32,10 @@ const schools = ref<SchoolStory[]>([])
 const skills = ref<Skill[]>([])
 
 onMounted(() => {
-  new HTTPAxios("user/shool-stories.json").get().then((data) => {
+  new HTTPAxios("user/shool-stories.json", null, true).get().then((data) => {
     schools.value = data.data
   })
-  new HTTPAxios("user/skills.json").get().then((data) => {
+  new HTTPAxios("user/skills.json", null, true).get().then((data) => {
     skills.value = data.data
   })
 })

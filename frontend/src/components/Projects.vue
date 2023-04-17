@@ -1,124 +1,46 @@
 <template>
-  <section class="projects">
-    <ProjectVue :project="projects[0]"/>
+  <section class="projects" v-if="!selectedProject">
+    <Title title="Mes projets" sub-title="Mes oeuvres"/>
+    <div class="card-wrapper">
+      <ProjectCard :project="project" v-for="project of projects" @click="selectedProject=project"/>
+    </div>
+  </section>
+  <section class="projects" v-else>
+    <ProjectVue v-if="selectedProject" :project="selectedProject"/>
   </section>
 </template>
 
 <script setup lang="ts">
 import type {Project} from "@/object/Project";
 import ProjectVue from "@/vue/project/ProjectVue.vue"
+import {onMounted, ref} from "vue";
+import {GitNode} from "@/object/GitNode";
+import {HTTPAxios} from "@/object/HTTPAxios";
+import Title from "@/vue/global/Title.vue";
+import ProjectCard from "@/vue/project/ProjectCard.vue";
 
-const projects: Project[] = [
-  {
-    banner: "",
-    link: "",
-    name: "",
-    tags: ["tag1", "tag2", "tag1", "tag2", "tag3"],
-    contents: [
-      {
-        type: "Title",
-        title: "Blabla",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec urna nibh, pulvinar eget porttitor id, faucibus eget quam. Morbi sit amet est vitae tellus auctor tempus. Curabitur sed odio nulla. Proin quis aliquet nunc.",
-        tags: ["tag1", "tag2", "tag1", "tag2", "tag3"],
-        icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/2048px-LEGO_logo.svg.png"
-      },
-      {
-        type: "BasicText",
-        title: "Blabla",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec urna nibh, pulvinar eget porttitor id, faucibus eget quam. Morbi sit amet est vitae tellus auctor tempus. Curabitur sed odio nulla. Proin quis aliquet nunc. Nullam tincidunt augue nec neque ultrices, eu fermentum metus volutpat. Praesent lobortis sed libero non volutpat. Donec varius mi fermentum, laoreet sapien at, varius augue. Sed euismod commodo interdum. Suspendisse a turpis vitae risus ultrices varius. Aliquam eleifend tristique ultricies. In finibus laoreet neque eu facilisis. Pellentesque vel metus arcu. Ut at pulvinar urna. Aenean sed lacinia nisi. Nam nec felis faucibus, iaculis odio ut, vestibulum leo. Nullam a dui gravida, vehicula elit at, viverra odio. "
-      },
-      {
-        type: "ImageText",
-        title: "Blabla",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec urna nibh, pulvinar eget porttitor id, faucibus eget quam. Morbi sit amet est vitae tellus auctor tempus. Curabitur sed odio nulla. Proin quis aliquet nunc. Nullam tincidunt augue nec neque ultrices, eu fermentum metus volutpat. Praesent lobortis sed libero non volutpat. Donec varius mi fermentum, laoreet sapien at, varius augue. Sed euismod commodo interdum. Suspendisse a turpis vitae risus ultrices varius. Aliquam eleifend tristique ultricies. In finibus laoreet neque eu facilisis. Pellentesque vel metus arcu. Ut at pulvinar urna. Aenean sed lacinia nisi. Nam nec felis faucibus, iaculis odio ut, vestibulum leo. Nullam a dui gravida, vehicula elit at, viverra odio. ",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/2048px-LEGO_logo.svg.png"
-      },
-      {
-        type: "BigImageText",
-        title: "Blabla",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec urna nibh, pulvinar eget porttitor id, faucibus eget quam. Morbi sit amet est vitae tellus auctor tempus. Curabitur sed odio nulla. Proin quis aliquet nunc. Nullam tincidunt augue nec neque ultrices, eu fermentum metus volutpat. Praesent lobortis sed libero non volutpat. Donec varius mi fermentum, laoreet sapien at, varius augue. Sed euismod commodo interdum. Suspendisse a turpis vitae risus ultrices varius. Aliquam eleifend tristique ultricies. In finibus laoreet neque eu facilisis. Pellentesque vel metus arcu. Ut at pulvinar urna. Aenean sed lacinia nisi. Nam nec felis faucibus, iaculis odio ut, vestibulum leo. Nullam a dui gravida, vehicula elit at, viverra odio. ",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/2048px-LEGO_logo.svg.png"
-      },
-      {
-        type: "ProjectSkill",
-        title: "Blabla",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec urna nibh, pulvinar eget porttitor id, faucibus eget quam. Morbi sit amet est vitae tellus auctor tempus. Curabitur sed odio nulla. Proin quis aliquet nunc. Nullam tincidunt augue nec neque ultrices, eu fermentum metus volutpat. Praesent lobortis sed libero non volutpat. Donec varius mi fermentum, laoreet sapien at, varius augue. Sed euismod commodo interdum. Suspendisse a turpis vitae risus ultrices varius.",
-        skills: [
-          {name: "Figma", level: 50},
-          {name: "Figma", level: 50},
-          {name: "Figma", level: 50}
-        ]
-      },
-      {
-        type: "Contributor",
-        title: "Blabla",
-        contributors: [
-          {
-            icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/2048px-LEGO_logo.svg.png",
-            name: "Zetro",
-            tags: ["Designer", "Graphiste"]
-          },
-          {
-            icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/2048px-LEGO_logo.svg.png",
-            name: "Zetro",
-            tags: ["Designer", "Graphiste"]
-          },
-          {
-            icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/2048px-LEGO_logo.svg.png",
-            name: "Zetro",
-            tags: ["Designer", "Graphiste"]
-          },
-          {
-            icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/2048px-LEGO_logo.svg.png",
-            name: "Zetro",
-            tags: ["Designer", "Graphiste"]
-          },
-        ]
-      },
-      {
-        type: "Warning",
-        title: "Blabla",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec urna nibh, pulvinar eget porttitor id, faucibus eget quam. Morbi sit amet est vitae tellus auctor tempus. Curabitur sed odio nulla. Proin quis aliquet nunc. Nullam tincidunt augue nec neque ultrices, eu fermentum metus volutpat. Praesent lobortis sed libero non volutpat. Donec varius mi fermentum, laoreet sapien at, varius augue. Sed euismod commodo interdum. Suspendisse a turpis vitae risus ultrices varius. Aliquam eleifend tristique ultricies. In finibus laoreet neque eu facilisis. Pellentesque vel metus arcu. Ut at pulvinar urna. Aenean sed lacinia nisi. Nam nec felis faucibus, iaculis odio ut, vestibulum leo. Nullam a dui gravida, vehicula elit at, viverra odio. "
-      },
-      {
-        type: "Error",
-        title: "Blabla",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec urna nibh, pulvinar eget porttitor id, faucibus eget quam. Morbi sit amet est vitae tellus auctor tempus. Curabitur sed odio nulla. Proin quis aliquet nunc. Nullam tincidunt augue nec neque ultrices, eu fermentum metus volutpat. Praesent lobortis sed libero non volutpat. Donec varius mi fermentum, laoreet sapien at, varius augue. Sed euismod commodo interdum. Suspendisse a turpis vitae risus ultrices varius. Aliquam eleifend tristique ultricies. In finibus laoreet neque eu facilisis. Pellentesque vel metus arcu. Ut at pulvinar urna. Aenean sed lacinia nisi. Nam nec felis faucibus, iaculis odio ut, vestibulum leo. Nullam a dui gravida, vehicula elit at, viverra odio. "
-      },
-      {
-        type: "Information",
-        title: "Blabla",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec urna nibh, pulvinar eget porttitor id, faucibus eget quam. Morbi sit amet est vitae tellus auctor tempus. Curabitur sed odio nulla. Proin quis aliquet nunc. Nullam tincidunt augue nec neque ultrices, eu fermentum metus volutpat. Praesent lobortis sed libero non volutpat. Donec varius mi fermentum, laoreet sapien at, varius augue. Sed euismod commodo interdum. Suspendisse a turpis vitae risus ultrices varius. Aliquam eleifend tristique ultricies. In finibus laoreet neque eu facilisis. Pellentesque vel metus arcu. Ut at pulvinar urna. Aenean sed lacinia nisi. Nam nec felis faucibus, iaculis odio ut, vestibulum leo. Nullam a dui gravida, vehicula elit at, viverra odio. "
-      },
-      {
-        type: "ExternalLinks",
-        title: "Découvrez leurs réseaux ci-dessous",
-        links: [
-          {
-            icon: "https://fr.wikipedia.org/static/images/icons/wikipedia.png",
-            name: "Site Web",
-            link: "https://google.com"
-          },
-          {
-            icon: "https://fr.wikipedia.org/static/images/icons/wikipedia.png",
-            name: "Discord",
-            link: "https://google.com"
-          },
-          {
-            icon: "https://fr.wikipedia.org/static/images/icons/wikipedia.png",
-            name: "Behance",
-            link: "https://google.com"
-          },
-        ]
-      },
-    ]
-  }
-]
-//const selectedProjects = ref<Project>()
+const projects = ref<Project[]>([])
+const selectedProject = ref<Project>()
+const nodes = ref<GitNode[]>([])
+
+onMounted(() => {
+  new HTTPAxios("git/project", null, false).get().then(async (response) => {
+    nodes.value = response.data
+    for (const node of nodes.value) {
+      await loadProject(node.url)
+    }
+  })
+})
+
+async function loadProject(url: string) {
+  new HTTPAxios(url.split("fr/")[1], null, true).get().then((response) => {
+    projects.value.push(response.data)
+  })
+}
 </script>
 
 <style scoped lang="scss">
-section.project {
-  margin: 80px 10%;
+section.projects {
+  margin: 60px 10%;
 }
 </style>

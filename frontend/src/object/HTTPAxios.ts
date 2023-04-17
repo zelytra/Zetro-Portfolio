@@ -6,18 +6,19 @@ export class HTTPAxios {
     private readonly json: any;
     private readonly path: string;
 
-    private readonly header = {
-
-    }
+    private readonly header = {}
 
     //TODO Dynamic lang request within store
     private readonly url = import.meta.env.VITE_GITHUB_HOST + "fr/";
-    public isAuth = false;
 
-    constructor(path: string, json?: any, isAuth?: boolean) {
+    constructor(path: string, json?: any, isGithub?: boolean) {
         this.path = path;
         this.json = json;
-        if (isAuth) this.isAuth = isAuth;
+        if (isGithub) {
+            this.url = import.meta.env.VITE_GITHUB_HOST + "fr/";
+        } else {
+            this.url = import.meta.env.VITE_BACKEND_HOST + "/"
+        }
 
         this.axios = axios.create({
             baseURL: this.url,
