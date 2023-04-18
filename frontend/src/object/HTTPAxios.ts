@@ -17,7 +17,7 @@ export class HTTPAxios {
         if (isGithub) {
             this.url = "https://raw.githubusercontent.com/" + import.meta.env.VITE_GITHUB_HOST + "/main/fr/";
         } else {
-            this.url = import.meta.env.VITE_BACKEND_HOST
+            this.url = import.meta.env.VITE_BACKEND_HOST + "/"
         }
 
         this.axios = axios.create({
