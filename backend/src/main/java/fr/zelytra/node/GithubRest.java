@@ -1,4 +1,4 @@
-package fr.zelytra.blog;
+package fr.zelytra.node;
 
 import fr.zelytra.utils.HTTPRequest;
 import io.quarkus.arc.Lock;
@@ -62,6 +62,11 @@ public class GithubRest {
     @Transactional
     @Lock
     public void refreshScheduleWikiTask() {
+
+        if (retrieveRateLimit().getInt("remaining") <= 0) {
+            Log.warn("[Node Auto Refresh] Failed to refresh, rate limit reach.");
+            return;
+        }
 
         JSONArray nodes = retrieveTree();
         List<BlogNode> nodesList = new ArrayList<>();

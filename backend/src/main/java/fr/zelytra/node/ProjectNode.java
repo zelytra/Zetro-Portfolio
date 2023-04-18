@@ -1,22 +1,16 @@
-package fr.zelytra.blog;
+package fr.zelytra.node;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import io.quarkus.logging.Log;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 
 @Entity
-@Table(name = "blog_nodes", schema = "zetro_portfolio")
-public class BlogNode extends PanacheEntityBase {
+@Table(name = "project_nodes", schema = "zetro_portfolio")
+public class ProjectNode extends PanacheEntityBase {
 
     @Column(name = "type", columnDefinition = "text")
     private String type;
@@ -31,21 +25,15 @@ public class BlogNode extends PanacheEntityBase {
     @Column(name = "name", columnDefinition = "text")
     private String name;
 
-    @Column(name = "icon", columnDefinition = "text")
-    private String icon;
-
-    public BlogNode() {
+    public ProjectNode() {
         // Empty constructor for hibernate
     }
 
-    public BlogNode(String type, String path, String url) {
+    public ProjectNode(String type, String path, String url) {
         this.type = type;
         this.path = path;
         this.url = url;
         this.name = formatName();
-
-        // Read icon if it's a file
-        if (type.equalsIgnoreCase("blob")) readDocumentIcon();
     }
 
     private String formatName() {
@@ -88,47 +76,6 @@ public class BlogNode extends PanacheEntityBase {
         }
     }
 
-    private void readDocumentIcon() {
-        try {
-            URL url = new URL(this.url);
-            URLConnection conn = url.openConnection();
-
-            // Télécharger le fichier
-            InputStream inStream = conn.getInputStream();
-
-            // Lire la première ligne du fichier
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
-            String line = reader.readLine();
-
-            while (line != null) {
-                if (!line.startsWith("%%") || !line.endsWith("%%")) break;
-
-                String variable = line.split("%%")[0].split("=")[0];
-                String value = line.split("%%")[0].split("=")[1];
-
-                Log.info("Variable: " + variable);
-
-                switch (variable) {
-                    case "icon":
-                        setIcon(value);
-                        break;
-                    default:
-                        Log.info("nothing");
-                }
-
-                line = reader.readLine();
-            }
-
-            // Fermer les connexions et les flux de données
-            reader.close();
-            inStream.close();
-
-
-        } catch (Exception e) {
-            Log.info(e);
-        }
-    }
-
     public String getType() {
         return type;
     }
@@ -159,13 +106,5 @@ public class BlogNode extends PanacheEntityBase {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
     }
 }

@@ -19,7 +19,7 @@ services:
     restart: unless-stopped
 
 #  backend:
-#    image: zelytra/zetro-backend:latest
+#    image: zelytra/zetro-portfolio-backend:latest
 #    container_name: histeria-web-backend
 #    depends_on:
 #      - postgres-frontend
@@ -34,7 +34,7 @@ services:
 #    restart: unless-stopped
 #
 #  frontend:
-#    image: zelytra/zetro-frontend:latest
+#    image: zelytra/zetro-portfolio-frontend:latest
 #    container_name: zetro-web-frontend
 #    depends_on:
 #      - postgres-frontend
