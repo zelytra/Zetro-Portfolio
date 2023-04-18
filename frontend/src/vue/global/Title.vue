@@ -26,6 +26,7 @@ defineProps({
     line-height: 24px;
     letter-spacing: 7.5px;
     color: var(--primary-text);
+    text-transform: uppercase;
   }
 
   h1 {

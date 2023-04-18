@@ -4,7 +4,7 @@
     <nav>
       <router-link v-for="route in routes.routes.filter((x,index)=>{return index !== routes.routes.length})"
                    :key="route.name"
-                   :to="route.path">
+                   :to="route.path.includes('projects')?'/projects':route.path">
         {{ route.name }}
       </router-link>
     </nav>

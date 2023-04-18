@@ -1,5 +1,5 @@
 <template>
-  <section class="professional-story-wrapper">
+  <section class="professional-story-wrapper" v-if="stories">
     <div class="content">
       <Title title="Expériences de travail" sub-title="PARCROUS PROFESSIONNEL"/>
       <div class="company-selector">
@@ -14,7 +14,7 @@
     </div>
     <div class="job-animation-container">
       <Transition name="job">
-        <div class="content story" :key="selectedStory.company">
+        <div class="content story" v-if="selectedStory" :key="selectedStory.company">
           <h4>{{ selectedStory.title }}</h4>
           <p class="location">{{ selectedStory.location }}</p>
           <p class="date">{{ selectedStory.date }}</p>
@@ -34,48 +34,19 @@
 <script setup lang="ts">
 import Title from "@/vue/global/Title.vue";
 import {ProfessionalStory} from "@/object/UserProfile";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
+import {HTTPAxios} from "@/object/HTTPAxios";
+import {BasicText} from "@/object/Project";
 
-const stories = ref<ProfessionalStory[]>([
-  {
-    company: "UmboFrance",
-    date: "Nov 2022 - Janv 2023 · Temps partiel",
-    location: "Paris, France",
-    title: "Graphiste",
-    content: ["Conception de A à  Z de la charte graphique de la marque.",
-      "Élaboration d’une Direction artistiques atractive pour le domaine.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    ],
-    tags: ["Charte Graphique", "Logo"]
-  },
-  {
-    company: "company2",
-    date: "Nov 2022 - Janv 2023 · Temps partiel",
-    location: "Paris, France",
-    title: "Graphiste2",
-    content: ["Conception de A à  Z de la charte graphique de la marque.",
-      "Élaboration d’une Direction artistiques atractive pour le domaine.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    ],
-    tags: ["Charte Graphique", "Logo"]
-  },
-  {
-    company: "company3",
-    date: "Nov 2022 - Janv 2023 · Temps partiel",
-    location: "Paris, France",
-    title: "Graphiste3",
-    content: ["Conception de A à  Z de la charte graphique de la marque.",
-      "Élaboration d’une Direction artistiques atractive pour le domaine.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    ],
-    tags: ["Charte Graphique", "Logo"]
-  }
-])
-const selectedStory = ref<ProfessionalStory>(stories.value[0]);
+const stories = ref<ProfessionalStory[]>([])
+const selectedStory = ref();
+
+onMounted(() => {
+  new HTTPAxios("user/professional-stories.json", null, true).get().then((data) => {
+    stories.value = data.data as ProfessionalStory[]
+    selectedStory.value = stories.value[0]
+  })
+})
 
 async function updateStory(story: ProfessionalStory) {
   selectedStory.value = story

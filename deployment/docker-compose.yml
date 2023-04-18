@@ -1,0 +1,46 @@
+version: '3.5'
+
+services:
+
+  postgres-frontend:
+    image: postgres:14.2-alpine
+    container_name: zetro-web-postgres
+    ports:
+      - "5600:5432"
+    volumes:
+      - ./psql-config/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      TZ: 'Europe/Paris'
+      PGTZ: 'Europe/Paris'
+      POSTGRES_DB: ZetroPortfolio
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    restart: unless-stopped
+
+#  backend:
+#    image: zelytra/zetro-portfolio-backend:latest
+#    container_name: histeria-web-backend
+#    depends_on:
+#      - postgres-frontend
+#    ports:
+#      - "5601:5601"
+#    environment:
+#      WIKI_REPO_URL: ${WIKI_REPO_URL}
+#      DB_HOST: postgres-frontend
+#      DB_DATABASE: ZetroPortfolio
+#      DB_USER: ${POSTGRES_USER}
+#      DB_PASSWORD: ${POSTGRES_PASSWORD}
+#    restart: unless-stopped
+#
+#  frontend:
+#    image: zelytra/zetro-portfolio-frontend:latest
+#    container_name: zetro-web-frontend
+#    depends_on:
+#      - postgres-frontend
+#      - backend
+#    ports:
+#      - "5602:80"
+#    environment:
+#      VITE_GITHUB_HOST: ${WIKI_REPO_URL}
+#    restart: unless-stopped
