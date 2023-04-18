@@ -27,7 +27,8 @@ import * as routes from '@/router'
 header {
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 90%;
+  max-width: 1600px;
   margin: auto;
   padding: 24px 0;
   justify-content: space-between;

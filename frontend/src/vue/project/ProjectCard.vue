@@ -25,8 +25,8 @@ const props = defineProps({
 
 <style scoped lang="scss">
 .project-card {
-  width: 300px;
-  height: 400px;
+  width: 270px;
+  height: fit-content;
   background: rgba(255, 232, 209, 0.1);
   border-radius: 8px;
   overflow: hidden;
@@ -37,8 +37,9 @@ const props = defineProps({
   .content {
 
     &.banner {
-      width: 100%;
-      height: 70%;
+      width: 270px;
+      height: 221px;
+      aspect-ratio: auto;
       border: none;
       background-position: center;
       background-size: cover;
@@ -50,6 +51,7 @@ const props = defineProps({
       display: flex;
       flex-direction: column;
       gap: 22px;
+      min-height: 120px;
 
       h4 {
         font-family: PlusJakartaSans, sans-serif;

@@ -12,6 +12,8 @@
 <style scoped lang="scss">
 .not-found {
   width: 100%;
+  max-width: 1600px;
+  margin: auto;
   height: calc(100vh - 255px);
   display: flex;
   flex-direction: column;

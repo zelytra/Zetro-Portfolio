@@ -62,13 +62,16 @@ async function loadProject(url: string) {
 
 <style scoped lang="scss">
 section.projects {
-  margin: 60px 10%;
+  padding: 60px 10%;
+  max-width: 1600px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
 
   .card-wrapper {
     display: flex;
+    flex-wrap: wrap;
     gap: 18px;
   }
 }
