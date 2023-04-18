@@ -8,7 +8,7 @@ for file in $ROOT_DIR/assets/index-*.js* $ROOT_DIR/index.html; do
   echo "Processing $file ..."
 
   sed -i 's|VITE_GITHUB_HOST_PLACEHOLDER|'${VITE_GITHUB_HOST}'|g' $file
-  sed -i 's|VITE_BACKEND_HOST_PLACEHOLDER|'${VITE_GITHUB_HOST}'|g' $file
+  sed -i 's|VITE_BACKEND_HOST_PLACEHOLDER|'${VITE_BACKEND_HOST}'|g' $file
 
 done
 
