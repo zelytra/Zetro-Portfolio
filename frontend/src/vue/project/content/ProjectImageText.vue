@@ -16,7 +16,8 @@ import {ImageText} from "@/object/Project";
 
 defineProps({
   content: {
-    type: Object as PropType<ImageText>
+    type: Object as PropType<ImageText>,
+    required:true
   }
 })
 </script>

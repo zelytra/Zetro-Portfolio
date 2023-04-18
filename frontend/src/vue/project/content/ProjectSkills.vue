@@ -17,7 +17,8 @@ import SkillValue from "@/vue/user/SkillValue.vue";
 
 defineProps({
   content: {
-    type: Object as PropType<ProjectSkill>
+    type: Object as PropType<ProjectSkill>,
+    required: true
   }
 })
 </script>

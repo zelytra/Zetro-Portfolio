@@ -16,7 +16,8 @@ import {BigImageText} from "@/object/Project";
 
 defineProps({
   content: {
-    type: Object as PropType<BigImageText>
+    type: Object as PropType<BigImageText>,
+    required:true
   }
 })
 </script>

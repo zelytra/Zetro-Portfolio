@@ -35,7 +35,8 @@ const sliderValue = ref(0);
 
 const props = defineProps({
   content: {
-    type: Object as PropType<Contributor>
+    type: Object as PropType<Contributor>,
+    required: true
   }
 })
 

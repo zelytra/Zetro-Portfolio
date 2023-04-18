@@ -16,7 +16,8 @@ import {BasicText, ExternalLinks} from "@/object/Project";
 
 defineProps({
   content: {
-    type: Object as PropType<ExternalLinks>
+    type: Object as PropType<ExternalLinks>,
+    required:true
   }
 })
 </script>

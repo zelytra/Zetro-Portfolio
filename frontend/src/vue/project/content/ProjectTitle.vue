@@ -19,7 +19,8 @@ import {Title} from "@/object/Project";
 
 defineProps({
   content: {
-    type: Object as PropType<Title>
+    type: Object as PropType<Title>,
+    required:true
   }
 })
 </script>

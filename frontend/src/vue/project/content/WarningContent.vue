@@ -27,7 +27,8 @@ import {BasicText} from "@/object/Project";
 
 defineProps({
   content: {
-    type: Object as PropType<BasicText>
+    type: Object as PropType<BasicText>,
+    required:true
   }
 })
 </script>
