@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img src="@assets/icons/full_logo.svg"/>
+    <img src="@assets/icons/full_logo.svg" alt="logo" @click="router.push('/')"/>
     <nav>
       <router-link v-for="route in routes.routes.filter((x,index)=>{return index !== routes.routes.length})"
                    :key="route.name"
@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import * as routes from '@/router'
-
+import {router} from "@/router";
 </script>
 
 <style scoped lang="scss">
@@ -33,6 +33,10 @@ header {
   padding: 24px 0;
   justify-content: space-between;
   position: relative;
+
+  img[alt="logo"] {
+    cursor: pointer;
+  }
 
   nav {
     position: absolute;
