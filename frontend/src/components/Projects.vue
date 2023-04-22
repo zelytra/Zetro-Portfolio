@@ -1,6 +1,6 @@
 <template>
   <section class="projects" v-if="!selectedProject">
-    <Title title="Mes projets" sub-title="Mes oeuvres"/>
+    <Title title="Mes projets" sub-title="Mes oeuvres" class="title"/>
     <div class="card-wrapper">
       <ProjectCard :project="project" v-for="project of projects" @click="router.push('/projects/'+project.name)"/>
     </div>
@@ -67,7 +67,8 @@ section.projects {
   margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 60px;
+  align-items: center;
 
   .card-wrapper {
     display: flex;

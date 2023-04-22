@@ -29,14 +29,22 @@ const props = defineProps({
 .project-card {
   width: 270px;
   height: fit-content;
-  background: rgba(255, 232, 209, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-  border: solid 1px var(--main);
   cursor: pointer;
   flex-shrink: 0;
 
+  &:hover{
+    background: rgba(255, 232, 209, 0.1);
+    transform: translateY(-8px);
+    .content.banner{
+      opacity: 1;
+    }
+  }
+
   .content {
+    border: solid 1px var(--main);
+    border-top: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 
     &.banner {
       width: 270px;
@@ -46,6 +54,9 @@ const props = defineProps({
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
+      border-radius: 8px 8px 0 0;
+      background-color: var(--secondary-background);
+      opacity: 50%;
     }
 
     &.details {
@@ -53,14 +64,14 @@ const props = defineProps({
       display: flex;
       flex-direction: column;
       gap: 22px;
-      min-height: 120px;
 
-      .footer-details{
+      .footer-details {
         display: flex;
         justify-content: space-between;
         gap: 8px;
         align-items: start;
-        img{
+
+        img {
           padding-top: 8px;
           width: 20px;
         }
@@ -77,7 +88,8 @@ const props = defineProps({
 
       .tags {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        overflow: hidden;
         gap: 6px;
 
         span {
