@@ -3,8 +3,10 @@
     <div class="content banner" :style="{backgroundImage:'url('+props.project.banner+')'}"/>
     <div class="content details">
       <h4>{{ props.project.name }}</h4>
-      <div class="tags">
-        <span v-for="tag of props.project.tags">{{ tag }}</span>
+      <div class="footer-details">
+        <div class="tags">
+          <span v-for="tag of props.project.tags">{{ tag }}</span>
+        </div>
         <img src="@assets/icons/link.svg"/>
       </div>
     </div>
@@ -52,6 +54,17 @@ const props = defineProps({
       flex-direction: column;
       gap: 22px;
       min-height: 120px;
+
+      .footer-details{
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        align-items: start;
+        img{
+          padding-top: 8px;
+          width: 20px;
+        }
+      }
 
       h4 {
         font-family: PlusJakartaSans, sans-serif;
