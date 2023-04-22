@@ -59,7 +59,6 @@
 
 <style scoped lang="scss">
 footer {
-  width: 90%;
   display: flex;
   max-width: 1600px;
   flex-direction: column;
@@ -67,7 +66,7 @@ footer {
   overflow: hidden;
   position: sticky;
   top: 100vh;
-  margin: 120px auto 62px auto;
+  margin: 120px 10% 62px 10%;
 
   p {
     font-weight: 300;
@@ -89,7 +88,7 @@ footer {
   section.upper-side {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 100%;
     gap: 24px;
     margin: auto;
 
