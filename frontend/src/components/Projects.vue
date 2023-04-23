@@ -1,5 +1,5 @@
 <template>
-  <section class="projects" v-else-if="!selectedProject && !loading">
+  <section class="projects" v-if="!selectedProject && !loading">
     <Loading v-if="!selectedProject && loading"/>
     <Title title="Mes projets" sub-title="Mes oeuvres" class="title"/>
     <div class="card-wrapper" v-if="!loading">
