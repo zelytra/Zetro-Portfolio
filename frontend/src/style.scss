@@ -26,8 +26,12 @@ body {
 
 html, body {
   background-color: var(--primary-background);
-  height: fit-content;
   width: auto;
+  min-height: 100vh;
+}
+
+#app{
+  min-height: 100vh;
 }
 
 ::-webkit-scrollbar {

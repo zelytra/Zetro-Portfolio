@@ -44,7 +44,6 @@ defineProps({
       font-weight: 700;
       font-size: 35px;
       line-height: 42px;
-      color: var(--main);
     }
 
     p {
@@ -68,11 +67,6 @@ defineProps({
         border: 1px solid var(--main);
         border-radius: 4px;
         padding: 4px 8px;
-
-        &:hover {
-          background: var(--main);
-          color: var(--primary-background);
-        }
       }
     }
   }

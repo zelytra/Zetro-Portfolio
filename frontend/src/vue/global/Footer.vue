@@ -31,19 +31,19 @@
         <a href="">Themeforest</a>
       </div>
       <div class="content">
-        <div class="badge facebook">
+        <div class="badge">
           <img src="@assets/icons/facebook.svg"/>
           <p>Facebook</p>
         </div>
-        <div class="badge linkedin">
+        <div class="badge">
           <img src="@assets/icons/linkedin.svg"/>
           <p>Linkedin</p>
         </div>
-        <div class="badge twitter">
+        <div class="badge">
           <img src="@assets/icons/twitter.svg"/>
           <p>Twitter</p>
         </div>
-        <div class="badge instagram">
+        <div class="badge">
           <img src="@assets/icons/instagram.svg"/>
           <p>Instagram</p>
         </div>
@@ -59,14 +59,14 @@
 
 <style scoped lang="scss">
 footer {
-  width: 90%;
   display: flex;
+  max-width: 1600px;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
   position: sticky;
   top: 100vh;
-  margin: 120px auto 62px auto;
+  margin: 120px 10% 62px 10%;
 
   p {
     font-weight: 300;
@@ -88,7 +88,7 @@ footer {
   section.upper-side {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 100%;
     gap: 24px;
     margin: auto;
 
@@ -105,6 +105,7 @@ footer {
         color: var(--main);
         font-weight: 400;
         font-size: 16px;
+        margin-bottom: 16px;
       }
 
       a {
@@ -114,6 +115,8 @@ footer {
         &:hover {
           color: var(--main);
         }
+
+
       }
 
       .badge {
@@ -121,42 +124,16 @@ footer {
         align-items: center;
         justify-content: space-between;
         gap: 8px;
-        height: 90%;
+        height: 25px;
         width: fit-content;
         border-radius: 5px;
         padding: 12px;
         cursor: pointer;
+        background: rgba(255, 232, 209, 0.1);
+        border: 1px solid rgba(255, 232, 209, 0.1);
 
-        &.facebook {
-          background: rgba(24, 119, 242, 0.08);
-
-          p {
-            color: #BDBDBD;
-          }
-        }
-
-        &.linkedin {
-          background: #0E76A8;
-
-          p {
-            color: white;
-          }
-        }
-
-        &.twitter {
-          background: rgba(29, 161, 242, 0.08);
-
-          p {
-            color: #BDBDBD;
-          }
-        }
-
-        &.instagram {
-          background: linear-gradient(45deg, rgba(255, 214, 0, 0.08) 8.39%, rgba(255, 1, 0, 0.08) 50%, rgba(216, 0, 185, 0.08) 91.61%);
-
-          p {
-            color: #BDBDBD;
-          }
+        &:hover {
+          border: 1px solid #FFE8D1;
         }
       }
     }

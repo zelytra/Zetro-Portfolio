@@ -3,8 +3,10 @@
     <div class="content banner" :style="{backgroundImage:'url('+props.project.banner+')'}"/>
     <div class="content details">
       <h4>{{ props.project.name }}</h4>
-      <div class="tags">
-        <span v-for="tag of props.project.tags">{{ tag }}</span>
+      <div class="footer-details">
+        <div class="tags">
+          <span v-for="tag of props.project.tags">{{ tag }}</span>
+        </div>
         <img src="@assets/icons/link.svg"/>
       </div>
     </div>
@@ -25,24 +27,38 @@ const props = defineProps({
 
 <style scoped lang="scss">
 .project-card {
-  width: 300px;
-  height: 400px;
-  background: rgba(255, 232, 209, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-  border: solid 1px var(--main);
+  width: 270px;
+  height: fit-content;
   cursor: pointer;
   flex-shrink: 0;
 
+  &:hover {
+    background: rgba(255, 232, 209, 0.1);
+    transform: translateY(-8px);
+    border-radius: 8px;
+
+    .content.banner {
+      opacity: 1;
+    }
+  }
+
   .content {
+    border: solid 1px var(--main);
+    border-top: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 
     &.banner {
-      width: 100%;
-      height: 70%;
+      width: 270px;
+      height: 221px;
+      aspect-ratio: auto;
       border: none;
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
+      border-radius: 8px 8px 0 0;
+      background-color: var(--secondary-background);
+      opacity: 50%;
     }
 
     &.details {
@@ -50,6 +66,19 @@ const props = defineProps({
       display: flex;
       flex-direction: column;
       gap: 22px;
+      min-height: 120px;
+
+      .footer-details {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        align-items: start;
+
+        img {
+          padding-top: 8px;
+          width: 20px;
+        }
+      }
 
       h4 {
         font-family: PlusJakartaSans, sans-serif;
@@ -63,6 +92,7 @@ const props = defineProps({
       .tags {
         display: flex;
         flex-wrap: wrap;
+        //overflow: hidden;
         gap: 6px;
 
         span {

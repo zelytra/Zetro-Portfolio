@@ -55,14 +55,16 @@ defineProps({
   }
 
   &:hover {
-    background: var(--main);
+    background: rgba(255, 232, 209, 0.1);
+
 
     .image-container {
-      background: var(--primary-background);
-    }
+      background: var(--main);
 
-    p, h3 {
-      color: var(--revert-text);
+      img {
+        transition: filter 0ms;
+        filter: brightness(0%);
+      }
     }
   }
 }
