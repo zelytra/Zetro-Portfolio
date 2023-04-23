@@ -32,10 +32,12 @@ const props = defineProps({
   cursor: pointer;
   flex-shrink: 0;
 
-  &:hover{
+  &:hover {
     background: rgba(255, 232, 209, 0.1);
     transform: translateY(-8px);
-    .content.banner{
+    border-radius: 8px;
+
+    .content.banner {
       opacity: 1;
     }
   }
@@ -64,6 +66,7 @@ const props = defineProps({
       display: flex;
       flex-direction: column;
       gap: 22px;
+      min-height: 120px;
 
       .footer-details {
         display: flex;
@@ -88,8 +91,8 @@ const props = defineProps({
 
       .tags {
         display: flex;
-        flex-wrap: nowrap;
-        overflow: hidden;
+        flex-wrap: wrap;
+        //overflow: hidden;
         gap: 6px;
 
         span {
