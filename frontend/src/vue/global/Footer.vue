@@ -32,19 +32,19 @@
       </div>
       <div class="content">
         <div class="badge">
-          <img src="@assets/icons/facebook.svg"/>
+          <img src="@assets/icons/facebook.svg" alt="facebook"/>
           <p>Facebook</p>
         </div>
         <div class="badge">
-          <img src="@assets/icons/linkedin.svg"/>
+          <img src="@assets/icons/linkedin.svg" alt="linkedin"/>
           <p>Linkedin</p>
         </div>
         <div class="badge">
-          <img src="@assets/icons/twitter.svg"/>
+          <img src="@assets/icons/twitter.svg" alt="twitter"/>
           <p>Twitter</p>
         </div>
         <div class="badge">
-          <img src="@assets/icons/instagram.svg"/>
+          <img src="@assets/icons/instagram.svg" alt="instagram"/>
           <p>Instagram</p>
         </div>
       </div>
@@ -66,7 +66,7 @@ footer {
   overflow: hidden;
   position: sticky;
   top: 100vh;
-  margin: 120px 10% 62px 10%;
+  margin: 120px auto 60px auto;
 
   p {
     font-weight: 300;
