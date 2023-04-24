@@ -1,20 +1,19 @@
 <template>
-  <section class="school-story-wrapper">
-    <Title class="title" sub-title="PARCOURS D'APPRENTISSAGE" title="Formations et compétences"/>
+  <section class="school-story-wrapper" v-if="school">
+    <Title class="title" :sub-title="school.subTitle" title="Formations et compétences"/>
     <div class="content-wrapper">
       <div class="content school">
-        <div class="school-detail" v-for="school of schools">
+        <div class="school-detail" v-for="schoolStory of school.schools">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="8" fill="white"/>
           </svg>
-          <h3>{{ school.location }}</h3>
-          <p>{{ school.name }}</p>
-          <h4>{{ school.date }}</h4>
+          <h3>{{ schoolStory.location }}</h3>
+          <p>{{ schoolStory.name }}</p>
+          <h4>{{ schoolStory.date }}</h4>
         </div>
       </div>
       <div class="content skill">
-        <p>Depuis plus de 4 ans, j'apprends continuellement dans le domaine du design web, graphisme et j'expérimente de
-          nouvelles approches et de nouveaux styles. Vous trouverez ici un résumé de mes compétences.</p>
+        <p>{{ school.resume }}</p>
         <SkillValue v-for="skill of skills" :skill="skill"/>
       </div>
     </div>
@@ -23,17 +22,17 @@
 
 <script setup lang="ts">
 import Title from "@/vue/global/Title.vue";
-import {SchoolStory, Skill} from "@/object/UserProfile";
+import {School, SchoolStory, Skill} from "@/object/UserProfile";
 import {onMounted, ref} from "vue";
 import SkillValue from "@/vue/user/SkillValue.vue";
 import {HTTPAxios} from "@/object/HTTPAxios";
 
-const schools = ref<SchoolStory[]>([])
+const school = ref<School>()
 const skills = ref<Skill[]>([])
 
 onMounted(() => {
   new HTTPAxios("user/shool-stories.json", null, true).get().then((data) => {
-    schools.value = data.data
+    school.value = data.data
   })
   new HTTPAxios("user/skills.json", null, true).get().then((data) => {
     skills.value = data.data
@@ -60,6 +59,7 @@ onMounted(() => {
       }
 
       &.school {
+        height: fit-content;
         border-left: solid 2px white;
       }
 

@@ -1,11 +1,18 @@
 <template>
-  <header>
+  <header v-if="header">
     <img src="@assets/icons/full_logo.svg" alt="logo" @click="router.push('/')"/>
     <nav>
-      <router-link v-for="route in routes.routes.filter((x,index)=>{return index !== routes.routes.length})"
-                   :key="route.name"
-                   :to="route.path.includes('projects')?'/projects':route.path">
-        {{ route.name }}
+      <router-link :to="'/'">
+        {{ header.home }}
+      </router-link>
+      <router-link :to="'/projects'">
+        {{ header.projects }}
+      </router-link>
+      <router-link :to="'/blog'">
+        {{ header.blogs }}
+      </router-link>
+      <router-link :to="'/templates'">
+        {{ header.templates }}
       </router-link>
     </nav>
     <section class="action">
@@ -24,7 +31,7 @@
             stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <div class="cv-button">
-        <p>Mon CV</p>
+        <p>{{ header.curriculum }}</p>
       </div>
     </section>
   </header>
@@ -33,6 +40,17 @@
 <script setup lang="ts">
 import * as routes from '@/router'
 import {router} from "@/router";
+import {onMounted, ref} from "vue";
+import {HTTPAxios} from "@/object/HTTPAxios";
+import {HeaderSite} from "@/object/UserProfile";
+
+const header = ref<HeaderSite>()
+
+onMounted(() => {
+  new HTTPAxios("global/header.json", null, true).get().then((data) => {
+    header.value = data.data as HeaderSite
+  })
+})
 </script>
 
 <style scoped lang="scss">

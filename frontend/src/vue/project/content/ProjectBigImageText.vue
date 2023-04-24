@@ -27,6 +27,7 @@ defineProps({
   display: flex;
   flex-direction: column;
   gap: 15px;
+  max-width: 1600px;
 
   .content {
     display: flex;
@@ -53,8 +54,7 @@ defineProps({
       align-self: center;
 
       img {
-        max-height: 500px;
-        aspect-ratio: auto;
+        width: 100%;
         border-radius: 8px;
         overflow: hidden;
       }

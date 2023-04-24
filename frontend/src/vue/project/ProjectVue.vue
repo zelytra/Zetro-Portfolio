@@ -1,9 +1,9 @@
 <template>
-  <section class="project">
+  <article class="project">
     <component v-for="content of project.contents"
                :is="getComponent(content)"
                :content="content"/>
-  </section>
+  </article>
 </template>
 
 <script setup lang="ts">

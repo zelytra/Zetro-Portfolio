@@ -77,6 +77,7 @@ section.projects {
   gap: 60px;
   align-items: center;
   position: relative;
+  overflow: hidden;
 
   .card-wrapper {
     display: flex;
