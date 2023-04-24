@@ -1,7 +1,7 @@
 <template>
-  <section class="projects" v-if="!selectedProject && !loading">
+  <section class="projects" v-if="!selectedProject">
     <Loading v-if="!selectedProject && loading"/>
-    <Title title="Mes projets" sub-title="Mes oeuvres" class="title"/>
+    <Title v-if="projectTitle" :title="projectTitle.title" :sub-title="projectTitle.subTitle" class="title"/>
     <div class="card-wrapper" v-if="!loading">
       <transition-group>
         <ProjectCard :project="project" v-for="project of projects" @click="router.push('/projects/'+project.name)" :key="project.name"/>
@@ -24,6 +24,7 @@ import ProjectCard from "@/vue/project/ProjectCard.vue";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import router from "@/router";
 import Loading from "@/vue/global/Loading.vue";
+import {ProjectTitle} from "@/object/UserProfile";
 
 const projects = ref<Project[]>([])
 const selectedProject = ref()
@@ -31,8 +32,14 @@ const nodes = ref<GitNode[]>([])
 const route = useRoute()
 const loading = ref(false)
 
+const projectTitle = ref<ProjectTitle>()
+
+
 onMounted(() => {
   loading.value = true
+  new HTTPAxios("user/project.json", null, true).get().then((data) => {
+    projectTitle.value = data.data
+  })
   new HTTPAxios("git/project", null, false).get().then(async (response) => {
     nodes.value = response.data
     for (const node of nodes.value) {

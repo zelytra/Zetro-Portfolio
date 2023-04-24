@@ -16,6 +16,7 @@ export interface HeaderSite {
     templates: string
     curriculum: string
 }
+
 export interface FooterSite {
     resume: string
     develop: string
@@ -59,6 +60,11 @@ export interface SchoolStory {
     location: string
     name: string
     date: string
+}
+
+export interface ProjectTitle {
+    title: string
+    subtitle: string
 }
 
 export interface Skill {
