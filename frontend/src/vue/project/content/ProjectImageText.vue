@@ -26,6 +26,7 @@ defineProps({
 .image-text {
   display: flex;
   justify-content: space-between;
+  max-width: 1600px;
 
   .content {
     display: flex;

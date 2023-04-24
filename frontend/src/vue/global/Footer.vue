@@ -1,10 +1,9 @@
 <template>
-  <footer>
+  <footer v-if="footer">
     <section class="upper-side">
       <div class="content resume">
         <img alt="logo" src="@assets/icons/full_logo.svg"/>
-        <p>Je suis un designer web UI/UX créatif avec plus de 4 ans d'expérience. Je suis également expérimenté dans les
-          domaines de la conception de logo, de la conception de sites web et de la conception de marque.</p>
+        <p>{{footer.resume}}</p>
       </div>
       <div class="content">
         <h3>LIENS</h3>
@@ -32,41 +31,53 @@
       </div>
       <div class="content">
         <div class="badge">
-          <img src="@assets/icons/facebook.svg"/>
+          <img src="@assets/icons/facebook.svg" alt="facebook"/>
           <p>Facebook</p>
         </div>
         <div class="badge">
-          <img src="@assets/icons/linkedin.svg"/>
+          <img src="@assets/icons/linkedin.svg" alt="linkedin"/>
           <p>Linkedin</p>
         </div>
         <div class="badge">
-          <img src="@assets/icons/twitter.svg"/>
+          <img src="@assets/icons/twitter.svg" alt="twitter"/>
           <p>Twitter</p>
         </div>
         <div class="badge">
-          <img src="@assets/icons/instagram.svg"/>
+          <img src="@assets/icons/instagram.svg" alt="instagram"/>
           <p>Instagram</p>
         </div>
       </div>
     </section>
     <hr>
-    <h5>Copyright © ZeTro - Developpé par <a href="https://zelytra.fr" target="_blank">Zelytra</a></h5>
+    <h5>Copyright © ZeTro - {{footer.develop}} <a href="https://zelytra.fr" target="_blank">Zelytra</a></h5>
   </footer>
 </template>
 
 <script setup lang="ts">
+import {onMounted, ref} from "vue";
+import {FooterSite} from "@/object/UserProfile";
+import {HTTPAxios} from "@/object/HTTPAxios";
+
+const footer = ref<FooterSite>()
+
+onMounted(() => {
+  new HTTPAxios("global/footer.json", null, true).get().then((data) => {
+    footer.value = data.data as FooterSite
+  })
+})
 </script>
 
 <style scoped lang="scss">
 footer {
   display: flex;
   max-width: 1600px;
+  width: 90%;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
   position: sticky;
   top: 100vh;
-  margin: 120px 10% 62px 10%;
+  margin: 120px auto 60px auto;
 
   p {
     font-weight: 300;

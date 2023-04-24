@@ -1,17 +1,13 @@
 <template>
   <section class="home-wrapper">
     <UserTitle/>
-    <Title class="title" sub-title="SERVICES" title="Spécialisé dans"/>
-    <section class="specialisation">
-      <SkillCard title="UI/UX Design"
-                 content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit condimentum dolor. Nullam eu sollicitudin lacus."
-                 :icon="crown"/>
-      <SkillCard title="Graphiste"
-                 content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit condimentum dolor. Nullam eu sollicitudin lacus."
-                 :icon="stack"/>
-      <SkillCard title="Web Development"
-                 content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit condimentum dolor. Nullam eu sollicitudin lacus."
-                 :icon="web"/>
+    <Title class="title" v-if="service" :sub-title="service.subTitle" :title="service.title"/>
+    <section class="specialisation" v-if="service && service.cards">
+      <SkillCard v-for="(card,index) of service.cards"
+                 :title="card.title"
+                 :content="card.content"
+                 :icon="icons[index]"/>
+
     </section>
     <ProfessionalStory class="professional-wrapper"/>
     <SchoolStory/>
@@ -27,6 +23,18 @@ import stack from "@assets/icons/stack.svg"
 import web from "@assets/icons/web.svg"
 import ProfessionalStory from "@/vue/user/ProfessionalStory.vue";
 import SchoolStory from "@/vue/user/SchoolStory.vue";
+import {onMounted, ref} from "vue";
+import {Service} from "@/object/UserProfile";
+import {HTTPAxios} from "@/object/HTTPAxios";
+
+const service = ref<Service>()
+const icons = [crown, stack, web]
+
+onMounted(() => {
+  new HTTPAxios("user/services.json", null, true).get().then((data) => {
+    service.value = data.data
+  })
+})
 </script>
 
 <style scoped lang="scss">

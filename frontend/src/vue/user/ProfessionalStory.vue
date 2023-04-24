@@ -1,9 +1,9 @@
 <template>
-  <section class="professional-story-wrapper" v-if="stories">
+  <section class="professional-story-wrapper" v-if="professional">
     <div class="content">
       <Title title="Expériences de travail" sub-title="PARCROUS PROFESSIONNEL"/>
       <div class="company-selector">
-        <p v-for="story of stories"
+        <p v-for="story of professional.stories"
            @click="updateStory(story)"
            :class="{selected:selectedStory.company===story.company}">{{ story.company }}
           <span
@@ -33,18 +33,18 @@
 
 <script setup lang="ts">
 import Title from "@/vue/global/Title.vue";
-import {ProfessionalStory} from "@/object/UserProfile";
+import {Professional, ProfessionalStory} from "@/object/UserProfile";
 import {onMounted, ref} from "vue";
 import {HTTPAxios} from "@/object/HTTPAxios";
 import {BasicText} from "@/object/Project";
 
-const stories = ref<ProfessionalStory[]>([])
+const professional = ref<Professional>()
 const selectedStory = ref();
 
 onMounted(() => {
   new HTTPAxios("user/professional-stories.json", null, true).get().then((data) => {
-    stories.value = data.data as ProfessionalStory[]
-    selectedStory.value = stories.value[0]
+    professional.value = data.data as Professional
+    selectedStory.value = professional.value.stories[0]
   })
 })
 
