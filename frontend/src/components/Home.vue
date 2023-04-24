@@ -2,16 +2,12 @@
   <section class="home-wrapper">
     <UserTitle/>
     <Title class="title" v-if="service" :sub-title="service.subTitle" :title="service.title"/>
-    <section class="specialisation" v-if="service">
-      <SkillCard :title="service.cards[0].title"
-                 :content="service.cards[0].content"
-                 :icon="crown"/>
-      <SkillCard :title="service.cards[1].title"
-                 :content="service.cards[1].content"
-                 :icon="stack"/>
-      <SkillCard :title="service.cards[2].title"
-                 :content="service.cards[2].content"
-                 :icon="web"/>
+    <section class="specialisation" v-if="service && service.cards">
+      <SkillCard v-for="(card,index) of service.cards"
+                 :title="card.title"
+                 :content="card.content"
+                 :icon="icons[index]"/>
+
     </section>
     <ProfessionalStory class="professional-wrapper"/>
     <SchoolStory/>
@@ -32,6 +28,7 @@ import {Service} from "@/object/UserProfile";
 import {HTTPAxios} from "@/object/HTTPAxios";
 
 const service = ref<Service>()
+const icons = [crown, stack, web]
 
 onMounted(() => {
   new HTTPAxios("user/services.json", null, true).get().then((data) => {
