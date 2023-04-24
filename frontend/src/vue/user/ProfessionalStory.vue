@@ -56,7 +56,7 @@ async function updateStory(story: ProfessionalStory) {
 <style scoped lang="scss">
 .professional-story-wrapper {
   width: inherit;
-  min-height: 500px;
+  min-height: 400px;
   display: flex;
   align-items: start;
   gap: 40px;
