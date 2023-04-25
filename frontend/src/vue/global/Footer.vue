@@ -3,7 +3,7 @@
     <section class="upper-side">
       <div class="content resume">
         <img alt="logo" src="@assets/icons/full_logo.svg"/>
-        <p>{{footer.resume}}</p>
+        <p>{{ footer.resume }}</p>
       </div>
       <div class="content">
         <h3>LIENS</h3>
@@ -49,7 +49,10 @@
       </div>
     </section>
     <hr>
-    <h5>Copyright © ZeTro - {{footer.develop}} <a href="https://zelytra.fr" target="_blank">Zelytra</a></h5>
+    <h5>Copyright © ZeTro - {{ footer.develop }} <a href="https://zelytra.fr" target="_blank">Zelytra</a></h5>
+    <h5 class="cgu">
+      <router-link to="/cgu">CGU</router-link>
+    </h5>
   </footer>
 </template>
 
@@ -94,6 +97,12 @@ footer {
     color: var(--main);
     margin: 30px 0;
     opacity: 50%;
+  }
+
+  .cgu{
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 
   section.upper-side {

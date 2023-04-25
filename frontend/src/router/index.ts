@@ -29,6 +29,11 @@ export const routes = [
         component: () => import('@components/Templates.vue'),
     },
     {
+        path: "/cgu",
+        name: "CGU",
+        component: () => import('@components/CGU.vue'),
+    },
+    {
         path: "/:pathMatch(.*)*",
         component: () => import('@components/PageNotFound.vue'),
     },
