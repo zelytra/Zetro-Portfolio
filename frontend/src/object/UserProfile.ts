@@ -79,7 +79,7 @@ export interface SchoolStory {
 
 export interface ProjectTitle {
     title: string
-    subtitle: string
+    subTitle: string
 }
 
 export interface Skill {
