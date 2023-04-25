@@ -5,47 +5,27 @@
         <img alt="logo" src="@assets/icons/full_logo.svg"/>
         <p>{{ footer.resume }}</p>
       </div>
-      <div class="content">
-        <h3>LIENS</h3>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
+      <div class="content" v-if="footer.shortcut" v-for="shortcut of footer.shortcut">
+        <h3>{{shortcut.title}}</h3>
+        <a v-for="link of shortcut.content" :href="link.link">{{link.name}}</a>
       </div>
       <div class="content">
-        <h3>LIENS</h3>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-      </div>
-      <div class="content">
-        <h3>LIENS</h3>
-        <a href="">Figma</a>
-        <a href="">Adobe</a>
-        <a href="">Dribbble</a>
-        <a href="">Behance</a>
-        <a href="">Themeforest</a>
-      </div>
-      <div class="content">
-        <div class="badge">
+        <a class="badge" :href="footer.facebook">
           <img src="@assets/icons/facebook.svg" alt="facebook"/>
           <p>Facebook</p>
-        </div>
-        <div class="badge">
+        </a>
+        <a class="badge" :href="footer.linkedin">
           <img src="@assets/icons/linkedin.svg" alt="linkedin"/>
           <p>Linkedin</p>
-        </div>
-        <div class="badge">
+        </a>
+        <a class="badge" :href="footer.twitter">
           <img src="@assets/icons/twitter.svg" alt="twitter"/>
           <p>Twitter</p>
-        </div>
-        <div class="badge">
-          <img src="@assets/icons/instagram.svg" alt="instagram"/>
-          <p>Instagram</p>
-        </div>
+        </a>
+        <a class="badge" :href="footer.figma">
+          <img src="@assets/icons/figma.svg" alt="figma"/>
+          <p>Figma</p>
+        </a>
       </div>
     </section>
     <hr>
@@ -99,7 +79,7 @@ footer {
     opacity: 50%;
   }
 
-  .cgu{
+  .cgu {
     position: absolute;
     bottom: 0;
     left: 0;
