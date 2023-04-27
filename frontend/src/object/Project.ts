@@ -1,5 +1,17 @@
 import {Skill} from "@/object/UserProfile";
 
+export interface ProjectProvider {
+    title: string
+    subTitle: string
+    filters: ProjectFilter[]
+}
+
+export interface ProjectFilter {
+    name: string
+    clear: string
+    tags: string[]
+}
+
 export interface Project {
     banner: string
     name: string

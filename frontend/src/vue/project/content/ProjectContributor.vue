@@ -2,24 +2,48 @@
   <div class="contributor-wrapper">
     <h2>{{ content.title }}</h2>
     <div class="contributor-slider">
-      <span class="slider-button left" @click="updateSlider(cardSize)"><img src="@assets/icons/arrow.svg"></span>
-      <div class="contributors" :style="{justifyContent:content.contributors.length===1?'center':'space-between'}">
+      <span class="slider-button left" @click="updateSlider(-1)"><img src="@assets/icons/arrow.svg"></span>
+      <div class="contributors" :style="{justifyContent:content.contributors.length<3?'center':'space-between'}">
 
-        <div class="contributor" v-for="contributor of content.contributors"
-             :style="{transform:'translateX('+sliderValue+'px)'}">
+        <div class="contributor" v-if="content.contributors.length >=3">
           <div class="image-container">
-            <img :src="contributor.icon"/>
+            <img
+                :src="index===0?content.contributors[content.contributors.length-1].icon:content.contributors[index-1].icon"/>
           </div>
-          <h3>{{ contributor.name }}</h3>
-
+          <h3>{{
+              index === 0 ? content.contributors[content.contributors.length - 1].name : content.contributors[index - 1].name
+            }}</h3>
           <div class="tags">
-            <p v-for="tag of contributor.tags">{{ tag }}</p>
+            <p v-for="tag of index===0?content.contributors[content.contributors.length-1].tags:content.contributors[index-1].tags">
+              {{ tag }}</p>
           </div>
+        </div>
 
+        <div class="contributor">
+          <div class="image-container">
+            <img :src="content.contributors[index].icon"/>
+          </div>
+          <h3>{{ content.contributors[index].name }}</h3>
+          <div class="tags">
+            <p v-for="tag of content.contributors[index].tags">{{ tag }}</p>
+          </div>
+        </div>
+        <div class="contributor" v-if="content.contributors.length >=3">
+          <div class="image-container">
+            <img
+                :src="index===content.contributors.length-1?content.contributors[0].icon:content.contributors[index+1].icon"/>
+          </div>
+          <h3>{{
+              index === content.contributors.length - 1 ? content.contributors[0].name : content.contributors[index + 1].name
+            }}</h3>
+          <div class="tags">
+            <p v-for="tag of index===content.contributors.length-1?content.contributors[0].tags:content.contributors[index+1].tags">
+              {{ tag }}</p>
+          </div>
         </div>
 
       </div>
-      <span class="slider-button right" :style="{transform:'rotate(180deg)'}" @click="updateSlider(-cardSize)"><img
+      <span class="slider-button right" :style="{transform:'rotate(180deg)'}" @click="updateSlider(1)"><img
           src="@assets/icons/arrow.svg"></span>
     </div>
   </div>
@@ -30,8 +54,7 @@ import {PropType} from "vue";
 import {Contributor} from "@/object/Project";
 import {ref} from "vue";
 
-const cardSize = ref(310);
-const sliderValue = ref(0);
+const index = ref(0)
 
 const props = defineProps({
   content: {
@@ -41,10 +64,14 @@ const props = defineProps({
 })
 
 function updateSlider(value: number) {
-  if (!props.content) return;
-  if (sliderValue.value + value > 0 || sliderValue.value + value < -(props.content.contributors.length - 3) * cardSize.value) return
-  sliderValue.value += value
-  console.log(sliderValue.value)
+  if (!props.content) return
+  if (index.value + value < 0) {
+    index.value = props.content.contributors.length - 1;
+  } else if (index.value + value >= props.content.contributors.length) {
+    index.value = 0
+  } else {
+    index.value += value;
+  }
 }
 </script>
 
@@ -63,8 +90,8 @@ function updateSlider(value: number) {
   }
 
   .contributor-slider {
+    display: flex;
     position: relative;
-    justify-content: center;
     align-items: center;
     z-index: 99;
 
@@ -106,6 +133,7 @@ function updateSlider(value: number) {
     transition: transform 0.7s ease-in-out;
     overflow-x: hidden;
     height: 290px;
+    width: 100%;
 
     .contributor {
       display: flex;

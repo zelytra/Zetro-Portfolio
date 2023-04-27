@@ -3,53 +3,36 @@
     <section class="upper-side">
       <div class="content resume">
         <img alt="logo" src="@assets/icons/full_logo.svg"/>
-        <p>{{footer.resume}}</p>
+        <p>{{ footer.resume }}</p>
+      </div>
+      <div class="content" v-if="footer.shortcut" v-for="shortcut of footer.shortcut">
+        <h3>{{shortcut.title}}</h3>
+        <a v-for="link of shortcut.content" :href="link.link">{{link.name}}</a>
       </div>
       <div class="content">
-        <h3>LIENS</h3>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-      </div>
-      <div class="content">
-        <h3>LIENS</h3>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-        <a href="">Autres</a>
-      </div>
-      <div class="content">
-        <h3>LIENS</h3>
-        <a href="">Figma</a>
-        <a href="">Adobe</a>
-        <a href="">Dribbble</a>
-        <a href="">Behance</a>
-        <a href="">Themeforest</a>
-      </div>
-      <div class="content">
-        <div class="badge">
+        <a class="badge" :href="footer.facebook">
           <img src="@assets/icons/facebook.svg" alt="facebook"/>
           <p>Facebook</p>
-        </div>
-        <div class="badge">
+        </a>
+        <a class="badge" :href="footer.linkedin">
           <img src="@assets/icons/linkedin.svg" alt="linkedin"/>
           <p>Linkedin</p>
-        </div>
-        <div class="badge">
+        </a>
+        <a class="badge" :href="footer.twitter">
           <img src="@assets/icons/twitter.svg" alt="twitter"/>
           <p>Twitter</p>
-        </div>
-        <div class="badge">
-          <img src="@assets/icons/instagram.svg" alt="instagram"/>
-          <p>Instagram</p>
-        </div>
+        </a>
+        <a class="badge" :href="footer.figma">
+          <img src="@assets/icons/figma.svg" alt="figma"/>
+          <p>Figma</p>
+        </a>
       </div>
     </section>
     <hr>
-    <h5>Copyright © ZeTro - {{footer.develop}} <a href="https://zelytra.fr" target="_blank">Zelytra</a></h5>
+    <h5>Copyright © ZeTro - {{ footer.develop }} <a href="https://zelytra.fr" target="_blank">Zelytra</a></h5>
+    <h5 class="cgu">
+      <router-link to="/cgu">CGU</router-link>
+    </h5>
   </footer>
 </template>
 
@@ -77,7 +60,7 @@ footer {
   overflow: hidden;
   position: sticky;
   top: 100vh;
-  margin: 120px auto 60px auto;
+  margin: 170px auto 60px auto;
 
   p {
     font-weight: 300;
@@ -94,6 +77,12 @@ footer {
     color: var(--main);
     margin: 30px 0;
     opacity: 50%;
+  }
+
+  .cgu {
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 
   section.upper-side {

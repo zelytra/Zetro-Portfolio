@@ -63,7 +63,7 @@ section.user-title {
   display: flex;
   justify-content: space-between;
   width: inherit;
-  margin: 120px auto;
+  margin: auto;
 
   .content {
     display: flex;
