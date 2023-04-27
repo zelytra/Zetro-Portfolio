@@ -14,8 +14,8 @@
            @mouseleave="closeOption()">
         <div class="option"
              v-for="option of options"
-             :class="{selected:checked.includes(option)}"
-             @click="forceCheckUpdate(option)">
+             :class="{selected:checked.includes(option.toString())}"
+             @click="forceCheckUpdate(option.toString())">
           <input type="checkbox"
                  :id="option+'-input'"
                  v-model="checked"
