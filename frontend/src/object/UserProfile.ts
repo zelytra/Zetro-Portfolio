@@ -77,11 +77,6 @@ export interface SchoolStory {
     date: string
 }
 
-export interface ProjectTitle {
-    title: string
-    subTitle: string
-}
-
 export interface Skill {
     title: string
     subTitle: string
