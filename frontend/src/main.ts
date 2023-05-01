@@ -3,6 +3,7 @@ import './style.scss'
 import './font.scss'
 import App from './App.vue'
 import router from "@/router";
+import {marked} from "marked";
 
 const app = createApp(App)
 
@@ -22,6 +23,6 @@ app.directive('click-outside', {
         document.body.removeEventListener('click', el.clickOutsideEvent);
     }
 });
-
+marked.use()
 app.use(router);
 app.mount('#app')
