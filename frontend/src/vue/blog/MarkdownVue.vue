@@ -32,7 +32,7 @@ onMounted(() => {
     mdFile.value = response.data;
     renderResult.value = marked(mdFile.value);
     loading.value = false;
-  }).catch((error) => {
+  }).catch(() => {
     loading.value = false;
   })
 })
@@ -177,10 +177,12 @@ function copyLink() {
 
     em {
       font-family: Inter, serif;
+      font-style: italic;
     }
 
     strong {
       font-family: Inter, serif;
+      font-weight: 700;
     }
 
     code {
@@ -193,9 +195,11 @@ function copyLink() {
   }
 
   blockquote {
-    border-left: solid #3A3A3A 4px;
-
+    border-left: solid var(--main) 4px;
+    background: rgba(255, 232, 209, 0.1);
+    border-radius: 7px;
     margin-top: 4px;
+    padding: 8px;
 
     :not(:first-child) {
       margin-left: 4px;
@@ -203,17 +207,16 @@ function copyLink() {
 
     p {
       margin: 0 0 0 12px;
-      color: #9C9C9C;
-      font-family: Raleway-Medium, sans-serif;
+      font-family: Inter, sans-serif;
+      font-weight: 400;
     }
   }
 
   ul, ol {
-    margin-left: 35px;
-  }
-
-  ul, li, li > strong {
-    font-family: Raleway-Medium, sans-serif;
+    padding: 4px;
+    margin-left: 20px;
+    font-family: Inter, sans-serif;
+    font-weight: 400;
   }
 
   table {
@@ -222,25 +225,28 @@ function copyLink() {
     margin: 12px;
 
     tr:last-child td:first-child {
-      border-bottom-left-radius: 8px;
+      border-bottom-left-radius: 5px;
     }
 
     tr:last-child td:last-child {
-      border-bottom-right-radius: 8px;
+      border-bottom-right-radius: 5px;
     }
 
     tr:first-child th:first-child {
-      border-top-left-radius: 8px;
+      border-top-left-radius: 5px;
     }
 
     tr:first-child th:last-child {
-      border-top-right-radius: 8px;
+      border-top-right-radius: 5px;
     }
 
     tr {
       th {
-        background: var(--main);
+        background: rgba(255, 232, 209, 0.4);
         padding: 12px;
+        color: var(--revert-text);
+        font-weight: 500;
+        font-size: 16px;
       }
     }
 
@@ -252,7 +258,7 @@ function copyLink() {
 
         td {
           padding: 4px;
-
+          color: var(--primary-text);
           img {
             display: block;
             margin-left: auto;
@@ -262,11 +268,11 @@ function copyLink() {
         }
 
         &:nth-child(2n) td {
-          background-color: #363636;
+          background: #272523;
         }
 
         &:nth-child(2n+1) td {
-          background-color: rgba(123, 123, 123, 0.36);
+          background: #3C3835;
         }
       }
     }
