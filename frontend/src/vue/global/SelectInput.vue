@@ -70,7 +70,7 @@ function closeOption() {
   .wrapper {
     border: 1px solid #FFE8D1;
     border-radius: 8px;
-    padding: 7px 6px;
+    padding: 10px 19px;
     background: #141414;
 
     &.input {

@@ -163,11 +163,6 @@ async function updateStory(story: ProfessionalStory) {
           border: 1px solid #BDBDBD;
           border-radius: 4px;
           padding: 4px 8px;
-
-          &:hover {
-            background: var(--main);
-            color: var(--revert-text);
-          }
         }
       }
 

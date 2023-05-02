@@ -67,7 +67,7 @@ function formatDate(date: Date): string {
 
     span {
       background: var(--main);
-      padding: 4px 8px;
+      padding: 5px 8px;
       border-radius: 4px;
       font-style: normal;
       font-weight: 500;

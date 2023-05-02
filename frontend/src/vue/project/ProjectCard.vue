@@ -95,7 +95,7 @@ const props = defineProps({
         gap: 6px;
 
         span {
-          padding: 4px 8px;
+          padding: 5px 8px;
           border: 1px solid #FFE8D1;
           border-radius: 4px;
           font-style: normal;
