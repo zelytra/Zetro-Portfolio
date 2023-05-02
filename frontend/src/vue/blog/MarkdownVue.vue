@@ -29,6 +29,7 @@ const props = defineProps({
 onMounted(() => {
   loading.value = true;
   axios.get(props.markdownSrc).then((response) => {
+    console.debug("[GET] " + props.markdownSrc)
     mdFile.value = response.data;
     renderResult.value = marked(mdFile.value);
     loading.value = false;
@@ -259,6 +260,7 @@ function copyLink() {
         td {
           padding: 4px;
           color: var(--primary-text);
+
           img {
             display: block;
             margin-left: auto;

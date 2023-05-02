@@ -7,7 +7,6 @@
         <div class="tags">
           <span v-for="tag of props.project.tags">{{ tag }}</span>
         </div>
-        <img src="@assets/icons/link.svg"/>
       </div>
     </div>
   </div>

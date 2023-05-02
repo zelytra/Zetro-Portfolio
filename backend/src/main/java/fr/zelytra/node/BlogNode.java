@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -78,7 +79,7 @@ public class BlogNode extends PanacheEntityBase {
             InputStream inStream = conn.getInputStream();
 
             // Lire la première ligne du fichier
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inStream, StandardCharsets.UTF_8));
             String line = reader.readLine();
 
             while (line != null) {
