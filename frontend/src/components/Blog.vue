@@ -121,6 +121,7 @@ section.blogs {
   .card-wrapper {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     gap: 18px;
   }
 }
