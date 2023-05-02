@@ -85,10 +85,12 @@ public class GithubRest {
                 projectList.add(new ProjectNode(selectedNode.getString("type")
                         , selectedNode.getString("path")
                         , "https://raw.githubusercontent.com/" + wikiRepositoryUrl + "/main/" + selectedNode.getString("path")));
-            } else {
+            } else if (selectedNode.getString("path").contains("/blogs/")) {
                 nodesList.add(new BlogNode(selectedNode.getString("type")
                         , selectedNode.getString("path")
                         , "https://raw.githubusercontent.com/" + wikiRepositoryUrl + "/main/" + selectedNode.getString("path")));
+            } else {
+                //TODO Nothing to do... Wait what the fu
             }
         }
 

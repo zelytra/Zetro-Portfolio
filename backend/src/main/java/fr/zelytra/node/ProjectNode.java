@@ -1,5 +1,6 @@
 package fr.zelytra.node;
 
+import fr.zelytra.utils.Utils;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.Column;
@@ -46,34 +47,14 @@ public class ProjectNode extends PanacheEntityBase {
 
         if (formatName.split("-").length >= 2) {
             List<String> splitName = List.of(formatName.split("-"));
-            formatName = capitalizeWord(splitName.get(0));
+            formatName = Utils.capitalizeWord(splitName.get(0));
             for (int x = 1; x < splitName.size(); x++) {
                 formatName += " " + splitName.get(x);
             }
         } else {
-            formatName = capitalizeWord(formatName);
+            formatName = Utils.capitalizeWord(formatName);
         }
-        return removeExtension(formatName);
-    }
-
-    private String capitalizeWord(String str) {
-        String words[] = str.split("\\s");
-        String capitalizeWord = "";
-        for (String w : words) {
-            String first = w.substring(0, 1);
-            String afterFirst = w.substring(1);
-            capitalizeWord += first.toUpperCase() + afterFirst + " ";
-        }
-        return capitalizeWord.trim();
-    }
-
-    private String removeExtension(String fileName) {
-        int lastDotIndex = fileName.lastIndexOf(".");
-        if (lastDotIndex == -1) {
-            return fileName;
-        } else {
-            return fileName.substring(0, lastDotIndex);
-        }
+        return Utils.removeExtension(formatName);
     }
 
     public String getType() {
