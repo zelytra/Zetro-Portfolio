@@ -12,8 +12,8 @@
     <div class="card-wrapper" v-if="!loading">
       <transition-group>
         <ProjectCard :project="project"
-                     v-for="project of filteredProject"
-                     @click="router.push('/projects/'+project.name)"
+                     v-for="project of filteredProject.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
+                     @click="router.push('/projects/'+project.url)"
                      :key="project.name"/>
       </transition-group>
     </div>
@@ -91,7 +91,7 @@ function updateFilter(key: string, value: string[]) {
 function updateSelectedProject(projectName: string) {
   if (projectName) {
     for (let project of projects.value) {
-      if (project.name === projectName) {
+      if (project.url === projectName) {
         selectedProject.value = project
         filteredProject.value = projects.value
         break
@@ -133,6 +133,7 @@ section.projects {
     display: flex;
     flex-wrap: wrap;
     gap: 18px;
+    justify-content: space-evenly;
   }
 }
 

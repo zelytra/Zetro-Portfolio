@@ -6,11 +6,13 @@
     </transition>
   </router-view>
   <Footer/>
+  <ToTheTop/>
 </template>
 
 <script setup lang="ts">
 import Header from "@vues/global/Header.vue"
 import Footer from "@vues/global/Footer.vue"
+import ToTheTop from "@/vue/global/ToTheTop.vue";
 </script>
 
 <style scoped lang="scss">

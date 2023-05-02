@@ -1,7 +1,11 @@
 package fr.zelytra.node;
 
+import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.logging.Log;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,10 +16,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
 @Table(name = "blog_nodes", schema = "zetro_portfolio")
+@TypeDefs({
+        @TypeDef(name = "list-array", typeClass = ListArrayType.class)
+})
 public class BlogNode extends PanacheEntityBase {
 
     @Column(name = "type", columnDefinition = "text")
@@ -31,8 +41,21 @@ public class BlogNode extends PanacheEntityBase {
     @Column(name = "name", columnDefinition = "text")
     private String name;
 
-    @Column(name = "icon", columnDefinition = "text")
-    private String icon;
+    @Column(name = "banner", columnDefinition = "text")
+    private String banner;
+
+    @Column(name = "url_name", columnDefinition = "text")
+    private String urlName;
+
+    @Type(type = "list-array")
+    @Column(name = "tags", columnDefinition = "text[]")
+    private List<String> tags;
+
+    @Column(name = "date", columnDefinition = "text")
+    private String date;
+
+    @Column(name = "description", columnDefinition = "text")
+    private String description;
 
     public BlogNode() {
         // Empty constructor for hibernate
@@ -42,53 +65,12 @@ public class BlogNode extends PanacheEntityBase {
         this.type = type;
         this.path = path;
         this.url = url;
-        this.name = formatName();
 
         // Read icon if it's a file
-        if (type.equalsIgnoreCase("blob")) readDocumentIcon();
+        if (type.equalsIgnoreCase("blob")) readDocumentMetaData();
     }
 
-    private String formatName() {
-        String formatName;
-        if (type.equalsIgnoreCase("tree")) {
-            formatName = path.split("/")[path.split("/").length <= 0 ? 0 : path.split("/").length - 1];
-        } else {
-            formatName = path.split("/")[path.split("/").length - 1];
-        }
-
-        if (formatName.split("-").length >= 2) {
-            List<String> splitName = List.of(formatName.split("-"));
-            formatName = capitalizeWord(splitName.get(0));
-            for (int x = 1; x < splitName.size(); x++) {
-                formatName += " " + splitName.get(x);
-            }
-        } else {
-            formatName = capitalizeWord(formatName);
-        }
-        return removeExtension(formatName);
-    }
-
-    private String capitalizeWord(String str) {
-        String words[] = str.split("\\s");
-        String capitalizeWord = "";
-        for (String w : words) {
-            String first = w.substring(0, 1);
-            String afterFirst = w.substring(1);
-            capitalizeWord += first.toUpperCase() + afterFirst + " ";
-        }
-        return capitalizeWord.trim();
-    }
-
-    private String removeExtension(String fileName) {
-        int lastDotIndex = fileName.lastIndexOf(".");
-        if (lastDotIndex == -1) {
-            return fileName;
-        } else {
-            return fileName.substring(0, lastDotIndex);
-        }
-    }
-
-    private void readDocumentIcon() {
+    private void readDocumentMetaData() {
         try {
             URL url = new URL(this.url);
             URLConnection conn = url.openConnection();
@@ -97,20 +79,39 @@ public class BlogNode extends PanacheEntityBase {
             InputStream inStream = conn.getInputStream();
 
             // Lire la première ligne du fichier
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inStream, StandardCharsets.UTF_8));
             String line = reader.readLine();
 
             while (line != null) {
                 if (!line.startsWith("%%") || !line.endsWith("%%")) break;
 
-                String variable = line.split("%%")[0].split("=")[0];
-                String value = line.split("%%")[0].split("=")[1];
+                String variable = line.split("%%")[1].split("=")[0];
+                String value = line.split("%%")[1].split("=")[1];
 
-                Log.info("Variable: " + variable);
+                //Log.info("Variable: " + variable);
 
                 switch (variable) {
-                    case "icon":
-                        setIcon(value);
+                    case "banner":
+                        setBanner(value);
+                        break;
+                    case "name":
+                        setName(value);
+                        break;
+                    case "tags":
+                        List<String> tags = new ArrayList<>();
+                        if (value.split(",").length > 0) {
+                            tags = Arrays.asList(value.split(","));
+                        }
+                        setTags(tags);
+                        break;
+                    case "urlName":
+                        setUrlName(value);
+                        break;
+                    case "date":
+                        setDate(value);
+                        break;
+                    case "description":
+                        setDescription(value);
                         break;
                     default:
                         Log.info("nothing");
@@ -161,11 +162,43 @@ public class BlogNode extends PanacheEntityBase {
         this.name = name;
     }
 
-    public String getIcon() {
-        return icon;
+    public String getBanner() {
+        return banner;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setBanner(String banner) {
+        this.banner = banner;
+    }
+
+    public String getUrlName() {
+        return urlName;
+    }
+
+    public void setUrlName(String urlName) {
+        this.urlName = urlName;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

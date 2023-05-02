@@ -1,12 +1,17 @@
 <template>
   <div class="project-card">
-    <div class="content banner" :style="{backgroundImage:'url('+props.project.banner+')'}"/>
+    <div class="content banner" :style="{backgroundImage:'url('+props.blog.banner+')'}">
+      <div class="tags">
+        <span v-for="tag of props.blog.tags">{{ tag }}</span>
+      </div>
+    </div>
     <div class="content details">
-      <h4>{{ props.project.name }}</h4>
+      <h4>{{ props.blog.name }}</h4>
+      <div class="tags">
+        <span>{{ formatDate(new Date(props.blog.date)) }}</span>
+      </div>
       <div class="footer-details">
-        <div class="tags">
-          <span v-for="tag of props.project.tags">{{ tag }}</span>
-        </div>
+        <p>{{ props.blog.description }}</p>
       </div>
     </div>
   </div>
@@ -15,18 +20,32 @@
 <script setup lang="ts">
 import {PropType, ref} from "vue";
 import {Project} from "@/object/Project";
+import {Blog} from "@/object/Blog";
 
 const props = defineProps({
-  project: {
-    type: Object as PropType<Project>,
+  blog: {
+    type: Object as PropType<Blog>,
     required: true
   }
 })
+
+function formatDate(date: Date): string {
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  const day = date.getDate();
+  const monthIndex = date.getMonth();
+  const year = date.getFullYear();
+
+  return `${day} ${monthNames[monthIndex]}, ${year}`;
+}
 </script>
 
 <style scoped lang="scss">
 .project-card {
-  width: 270px;
+  width: 320px;
   height: fit-content;
   cursor: pointer;
   flex-shrink: 0;
@@ -41,6 +60,23 @@ const props = defineProps({
     }
   }
 
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    span {
+      background: var(--main);
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 15px;
+      color: var(--revert-text);
+    }
+  }
+
   .content {
     border: solid 1px var(--main);
     border-top: none;
@@ -48,8 +84,8 @@ const props = defineProps({
     border-bottom-right-radius: 8px;
 
     &.banner {
-      width: 270px;
-      height: 221px;
+      width: 320px;
+      height: 262px;
       aspect-ratio: auto;
       border: none;
       background-position: center;
@@ -57,7 +93,14 @@ const props = defineProps({
       background-repeat: no-repeat;
       border-radius: 8px 8px 0 0;
       background-color: var(--secondary-background);
-      opacity: 50%;
+      opacity: 70%;
+      position: relative;
+
+      .tags {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+      }
     }
 
     &.details {
@@ -65,7 +108,7 @@ const props = defineProps({
       display: flex;
       flex-direction: column;
       gap: 22px;
-      min-height: 120px;
+      min-height: 200px;
 
       .footer-details {
         display: flex;
@@ -86,24 +129,6 @@ const props = defineProps({
         font-size: 16px;
         line-height: 20px;
         color: var(--main);
-      }
-
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        //overflow: hidden;
-        gap: 6px;
-
-        span {
-          padding: 5px 8px;
-          border: 1px solid #FFE8D1;
-          border-radius: 4px;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 12px;
-          line-height: 15px;
-          color: var(--main);
-        }
       }
     }
   }

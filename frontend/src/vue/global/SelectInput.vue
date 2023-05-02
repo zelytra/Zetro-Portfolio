@@ -70,7 +70,7 @@ function closeOption() {
   .wrapper {
     border: 1px solid #FFE8D1;
     border-radius: 8px;
-    padding: 7px 6px;
+    padding: 10px 19px;
     background: #141414;
 
     &.input {
@@ -151,8 +151,8 @@ function closeOption() {
           }
 
           &:checked {
-            //background: #141414;
-            border: 2px solid var(--primary-background);
+            background: var(--main);
+            border: 2px solid var(--main);
 
             &:before {
               transform: scale(1);
@@ -165,10 +165,8 @@ function closeOption() {
         }
 
         &.selected {
-          background: var(--main);
-
           label {
-            color: var(--revert-text);
+            color: var(--main);
           }
         }
       }

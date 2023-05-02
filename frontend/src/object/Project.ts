@@ -16,6 +16,8 @@ export interface Project {
     banner: string
     name: string
     tags: string[]
+    url: string
+    date: string
     contents: Object[]
 }
 

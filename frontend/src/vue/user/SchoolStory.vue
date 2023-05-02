@@ -43,6 +43,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .school-story-wrapper {
   width: inherit;
+  margin-bottom: 120px;
 
   .content-wrapper {
     display: flex;
