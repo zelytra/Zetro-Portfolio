@@ -11,7 +11,7 @@
     </div>
     <div class="card-wrapper" v-if="!loading">
       <transition-group>
-        <ProjectCard :project="blog"
+        <BlogCard :blog="blog"
                      v-for="blog of filteredBlog.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
                      @click="router.push('/blog/'+blog.urlName)"
                      :key="blog.name"/>
@@ -24,19 +24,16 @@
 </template>
 
 <script setup lang="ts">
-import type {Project, ProjectProvider} from "@/object/Project";
-import ProjectVue from "@/vue/project/ProjectVue.vue"
 import {onMounted, ref} from "vue";
-import {GitNode} from "@/object/GitNode";
 import {HTTPAxios} from "@/object/HTTPAxios";
 import Title from "@/vue/global/Title.vue";
-import ProjectCard from "@/vue/project/ProjectCard.vue";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import router from "@/router";
 import Loading from "@/vue/global/Loading.vue";
 import SelectInput from "@/vue/global/SelectInput.vue";
 import {Blog, BlogProvider} from "@/object/Blog";
 import MarkdownVue from "@/vue/blog/MarkdownVue.vue";
+import BlogCard from "@/vue/blog/BlogCard.vue";
 
 const blogs = ref<Blog[]>([])
 const filterMap = ref<Map<string, string[]>>(new Map<string, string[]>())
