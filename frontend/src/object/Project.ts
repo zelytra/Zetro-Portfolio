@@ -17,6 +17,7 @@ export interface Project {
     name: string
     tags: string[]
     url: string
+    date: string
     contents: Object[]
 }
 
