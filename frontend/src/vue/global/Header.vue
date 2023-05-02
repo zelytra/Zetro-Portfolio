@@ -1,5 +1,5 @@
 <template>
-  <header v-if="header">
+  <header v-if="header" :class="{stuck:scrollValue>=5}">
     <img src="@assets/icons/full_logo.svg" alt="logo" @click="router.push('/')"/>
     <nav>
       <router-link :to="'/'">
@@ -45,12 +45,19 @@ import {HTTPAxios} from "@/object/HTTPAxios";
 import {HeaderSite} from "@/object/UserProfile";
 
 const header = ref<HeaderSite>()
+const scrollValue = ref(window.scrollY)
 
 onMounted(() => {
   new HTTPAxios("global/header.json", null, true).get().then((data) => {
     header.value = data.data as HeaderSite
   })
+  window.addEventListener('scroll', scrollHandler)
 })
+
+function scrollHandler(event: any) {
+  scrollValue.value = window.scrollY
+}
+
 </script>
 
 <style scoped lang="scss">
@@ -60,9 +67,18 @@ header {
   width: 90%;
   max-width: 1600px;
   margin: auto;
-  padding: 24px 0;
+  padding: 12px 12px;
   justify-content: space-between;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
+
+  &.stuck{
+    top: 25px;
+    background: rgba(255, 232, 209, 0.1);
+    border-radius: 8px;
+  }
 
   svg {
     cursor: pointer;
