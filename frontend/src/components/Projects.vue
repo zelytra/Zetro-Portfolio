@@ -120,7 +120,7 @@ section.projects {
   align-items: center;
   position: relative;
   overflow: hidden;
-  min-height: 300px;
+  min-height: 400px;
 
   .filters-wrapper {
     display: flex;
