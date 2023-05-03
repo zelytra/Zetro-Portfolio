@@ -1,11 +1,11 @@
 <template>
-  <Header/>
-  <router-view v-slot="{ Component }">
+  <Header :key="langStore.get()"/>
+  <router-view v-slot="{ Component }" :key="langStore.get()">
     <transition mode="out-in">
       <component :is="Component"/>
     </transition>
   </router-view>
-  <Footer/>
+  <Footer :key="langStore.get()"/>
   <ToTheTop/>
 </template>
 
@@ -13,6 +13,7 @@
 import Header from "@vues/global/Header.vue"
 import Footer from "@vues/global/Footer.vue"
 import ToTheTop from "@/vue/global/ToTheTop.vue";
+import {langStore} from "@/store/LangStore";
 </script>
 
 <style scoped lang="scss">

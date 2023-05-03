@@ -1,4 +1,5 @@
 import axios from "axios";
+import {langStore} from "@/store/LangStore";
 
 export class HTTPAxios {
 
@@ -15,7 +16,7 @@ export class HTTPAxios {
         this.path = path;
         this.json = json;
         if (isGithub) {
-            this.url = "https://raw.githubusercontent.com/" + import.meta.env.VITE_GITHUB_HOST + "/main/fr/";
+            this.url = "https://raw.githubusercontent.com/" + import.meta.env.VITE_GITHUB_HOST + "/main/" + langStore.get() + "/";
         } else {
             this.url = import.meta.env.VITE_BACKEND_HOST + "/"
         }

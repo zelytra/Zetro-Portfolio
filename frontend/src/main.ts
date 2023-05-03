@@ -24,6 +24,6 @@ app.directive('click-outside', {
         document.body.removeEventListener('click', el.clickOutsideEvent);
     }
 });
-marked.use({extensions:[metaDataHunter]})
+marked.use({extensions: [metaDataHunter]})
 app.use(router);
 app.mount('#app')

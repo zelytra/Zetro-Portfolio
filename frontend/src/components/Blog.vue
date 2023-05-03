@@ -34,6 +34,7 @@ import SelectInput from "@/vue/global/SelectInput.vue";
 import {Blog, BlogProvider} from "@/object/Blog";
 import MarkdownVue from "@/vue/blog/MarkdownVue.vue";
 import BlogCard from "@/vue/blog/BlogCard.vue";
+import {langStore} from "@/store/LangStore";
 
 const blogs = ref<Blog[]>([])
 const filterMap = ref<Map<string, string[]>>(new Map<string, string[]>())
@@ -49,7 +50,7 @@ onMounted(() => {
   new HTTPAxios("user/blog.json", null, true).get().then((data) => {
     blogProvider.value = data.data as BlogProvider
   })
-  new HTTPAxios("git/blog", null, false).get().then(async (response) => {
+  new HTTPAxios("git/blog/" + langStore.get(), null, false).get().then(async (response) => {
     blogs.value = response.data
     updateFilter('', [])
     updateSelectedBlog(route.params.blog as string)

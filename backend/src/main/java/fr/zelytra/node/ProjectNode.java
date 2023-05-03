@@ -26,6 +26,9 @@ public class ProjectNode extends PanacheEntityBase {
     @Column(name = "name", columnDefinition = "text")
     private String name;
 
+    @Column(name = "lang", columnDefinition = "text")
+    private String lang;
+
     public ProjectNode() {
         // Empty constructor for hibernate
     }
@@ -35,6 +38,7 @@ public class ProjectNode extends PanacheEntityBase {
         this.path = path;
         this.url = url;
         this.name = formatName();
+        this.lang = path.split("/")[0];
     }
 
     private String formatName() {
@@ -87,5 +91,13 @@ public class ProjectNode extends PanacheEntityBase {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 }

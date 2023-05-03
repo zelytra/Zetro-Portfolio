@@ -31,7 +31,7 @@ function scrollToTop() {
 
 .to-the-top {
   position: fixed;
-  bottom: 20%;
+  bottom: 10px;
   background: transparent;
   border: solid 2px var(--main);
   display: flex;
@@ -41,7 +41,7 @@ function scrollToTop() {
   height: fit-content;
   border-radius: 8px;
   cursor: pointer;
-  right: 10px;
+  right: 35px;
 
   svg {
     width: 30px;
