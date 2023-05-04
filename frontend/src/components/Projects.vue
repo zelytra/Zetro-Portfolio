@@ -35,6 +35,7 @@ import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import router from "@/router";
 import Loading from "@/vue/global/Loading.vue";
 import SelectInput from "@/vue/global/SelectInput.vue";
+import {langStore} from "@/store/LangStore";
 
 const projects = ref<Project[]>([])
 const filterMap = ref<Map<string, string[]>>(new Map<string, string[]>())
@@ -51,7 +52,7 @@ onMounted(() => {
   new HTTPAxios("user/project.json", null, true).get().then((data) => {
     projectProvider.value = data.data as ProjectProvider
   })
-  new HTTPAxios("git/project", null, false).get().then(async (response) => {
+  new HTTPAxios("git/project/" + langStore.get(), null, false).get().then(async (response) => {
     nodes.value = response.data
     for (const node of nodes.value) {
       await loadProject(node.url)
@@ -103,7 +104,7 @@ function updateSelectedProject(projectName: string) {
 }
 
 async function loadProject(url: string) {
-  await new HTTPAxios(url.split("fr/")[1], null, true).get().then((response) => {
+  await new HTTPAxios(url.split(langStore.get()+"/")[1], null, true).get().then((response) => {
     projects.value.push(response.data)
   })
 }
@@ -133,7 +134,6 @@ section.projects {
     display: flex;
     flex-wrap: wrap;
     gap: 18px;
-    justify-content: space-evenly;
   }
 }
 

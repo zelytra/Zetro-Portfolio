@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -24,19 +25,19 @@ public class GithubRest {
     String wikiRepositoryUrl;
 
     @GET
-    @Path("blog")
+    @Path("blog/{lang}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllBlog() {
+    public Response getAllBlog(@PathParam("lang") String lang) {
         Log.info("[GET] git/blog");
-        return Response.ok(BlogNode.listAll()).build();
+        return Response.ok(BlogNode.find("lang",lang).list()).build();
     }
 
     @GET
-    @Path("project")
+    @Path("project/{lang}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllProject() {
+    public Response getAllProject(@PathParam("lang") String lang) {
         Log.info("[GET] git/project");
-        return Response.ok(ProjectNode.listAll()).build();
+        return Response.ok(ProjectNode.find("lang",lang).list()).build();
     }
 
 

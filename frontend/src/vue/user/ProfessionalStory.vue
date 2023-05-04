@@ -114,7 +114,7 @@ async function updateStory(story: ProfessionalStory) {
       h4 {
         font-family: PlusJakartaSans, sans-serif;
         font-style: normal;
-        font-weight: 500;
+        font-weight: 700;
         font-size: 18px;
         line-height: 23px;
         color: var(--main);

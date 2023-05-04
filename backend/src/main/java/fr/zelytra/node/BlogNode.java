@@ -57,6 +57,9 @@ public class BlogNode extends PanacheEntityBase {
     @Column(name = "description", columnDefinition = "text")
     private String description;
 
+    @Column(name = "lang", columnDefinition = "text")
+    private String lang;
+
     public BlogNode() {
         // Empty constructor for hibernate
     }
@@ -65,7 +68,7 @@ public class BlogNode extends PanacheEntityBase {
         this.type = type;
         this.path = path;
         this.url = url;
-
+        this.lang = path.split("/")[0];
         // Read icon if it's a file
         if (type.equalsIgnoreCase("blob")) readDocumentMetaData();
     }
@@ -200,5 +203,13 @@ public class BlogNode extends PanacheEntityBase {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 }

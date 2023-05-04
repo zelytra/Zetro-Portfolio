@@ -63,7 +63,9 @@ section.user-title {
   display: flex;
   justify-content: space-between;
   width: inherit;
-  margin: 200px auto auto;
+  margin: 0 auto auto;
+  height: 75vh;
+  align-items: center;
 
   .content {
     display: flex;

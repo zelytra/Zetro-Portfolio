@@ -20,7 +20,7 @@ defineProps({
 .skill-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 18px;
   padding: 20px;
@@ -28,6 +28,7 @@ defineProps({
   border-radius: 8px;
   width: 300px;
   height: 220px;
+  overflow: hidden;
 
   .image-container {
     border: solid 1px var(--main);
@@ -52,6 +53,7 @@ defineProps({
     font-weight: 400;
     font-size: 14px;
     line-height: 24px;
+    height: 100%;
   }
 
   &:hover {
