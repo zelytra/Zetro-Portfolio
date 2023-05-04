@@ -11,7 +11,9 @@
 
       </section>
     </div>
+    <ProjectTrending/>
     <ProfessionalStory class="professional-wrapper"/>
+    <BlogTrending/>
     <SchoolStory/>
   </section>
 </template>
@@ -28,6 +30,8 @@ import SchoolStory from "@/vue/user/SchoolStory.vue";
 import {onMounted, ref} from "vue";
 import {Service} from "@/object/UserProfile";
 import {HTTPAxios} from "@/object/HTTPAxios";
+import BlogTrending from "@/vue/blog/BlogTrending.vue";
+import ProjectTrending from "@/vue/project/ProjectTrending.vue";
 
 const service = ref<Service>()
 const icons = [crown, stack, web]

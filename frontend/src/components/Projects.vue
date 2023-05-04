@@ -134,7 +134,6 @@ section.projects {
     display: flex;
     flex-wrap: wrap;
     gap: 18px;
-    justify-content: space-around;
   }
 }
 

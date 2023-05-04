@@ -50,16 +50,6 @@ function formatDate(date: Date): string {
   cursor: pointer;
   flex-shrink: 0;
 
-  &:hover {
-    background: rgba(255, 232, 209, 0.1);
-    transform: translateY(-8px);
-    border-radius: 8px;
-
-    .content.banner {
-      opacity: 1;
-    }
-  }
-
   .tags {
     display: flex;
     flex-wrap: wrap;
@@ -129,7 +119,22 @@ function formatDate(date: Date): string {
         font-size: 16px;
         line-height: 20px;
         color: var(--main);
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 280px;
+        position: relative;
+        text-overflow: ellipsis;
       }
+    }
+  }
+
+  &:hover {
+    background: rgba(255, 232, 209, 0.1);
+    transform: translateY(-8px);
+    border-radius: 8px;
+
+    .content.banner {
+      opacity: 1;
     }
   }
 }

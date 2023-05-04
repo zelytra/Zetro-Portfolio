@@ -120,9 +120,9 @@ section.blogs {
   }
 
   .card-wrapper {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
     gap: 18px;
   }
 }
