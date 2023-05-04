@@ -40,6 +40,14 @@ public class GithubRest {
         return Response.ok(ProjectNode.find("lang",lang).list()).build();
     }
 
+    @GET
+    @Path("template/{lang}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllTemplate(@PathParam("lang") String lang) {
+        Log.info("[GET] git/template");
+        return Response.ok(TemplatesNode.find("lang",lang).list()).build();
+    }
+
 
     @GET
     @Path("rate")
@@ -72,6 +80,7 @@ public class GithubRest {
         JSONArray nodes = retrieveTree();
         List<BlogNode> nodesList = new ArrayList<>();
         List<ProjectNode> projectList = new ArrayList<>();
+        List<TemplatesNode> templatesList = new ArrayList<>();
 
         for (int i = 0; i < nodes.length(); i++) {
             JSONObject selectedNode = nodes.getJSONObject(i);
@@ -90,6 +99,10 @@ public class GithubRest {
                 nodesList.add(new BlogNode(selectedNode.getString("type")
                         , selectedNode.getString("path")
                         , "https://raw.githubusercontent.com/" + wikiRepositoryUrl + "/main/" + selectedNode.getString("path")));
+            }else if (selectedNode.getString("path").contains("/templates/")) {
+                templatesList.add(new TemplatesNode(selectedNode.getString("type")
+                        , selectedNode.getString("path")
+                        , "https://raw.githubusercontent.com/" + wikiRepositoryUrl + "/main/" + selectedNode.getString("path")));
             } else {
                 //TODO Nothing to do... Wait what the fu
             }
@@ -100,6 +113,9 @@ public class GithubRest {
 
         ProjectNode.deleteAll();
         projectList.forEach((node) -> node.persist());
+
+        TemplatesNode.deleteAll();
+        templatesList.forEach((node) -> node.persist());
 
     }
 

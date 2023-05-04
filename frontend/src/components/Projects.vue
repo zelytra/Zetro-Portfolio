@@ -133,6 +133,7 @@ section.projects {
   .card-wrapper {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
     gap: 18px;
   }
 }
