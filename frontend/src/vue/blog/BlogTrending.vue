@@ -3,7 +3,9 @@
     <!-- <Loading v-if="loading"/> -->
     <div class="title-wrapper-more">
       <Title v-if="blogProvider" :title="blogProvider.title" :sub-title="blogProvider.subTitle" class="title"/>
-      <router-link class="more" to="/blog">Voir plus</router-link>
+      <Button @click="router.push('/blog')">
+        <p>Voir plus -></p>
+      </Button>
     </div>
     <div class="card-wrapper" v-if="!loading">
       <transition-group>
@@ -25,6 +27,7 @@ import {langStore} from "@/store/LangStore";
 import router from "@/router";
 import Title from "@/vue/global/Title.vue";
 import Loading from "@/vue/global/Loading.vue";
+import Button from "@/vue/global/Button.vue";
 
 const blogs = ref<Blog[]>([])
 const loading = ref(false)
@@ -45,9 +48,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 section.blog-trending {
-  padding: 0 10%;
   max-width: 1600px;
-  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -64,8 +65,9 @@ section.blog-trending {
 
   .title-wrapper-more {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
     gap: 10px;
 
     .more:hover {

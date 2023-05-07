@@ -31,9 +31,9 @@
             fill="white"/>
       </svg>
       <LangSelector/>
-      <div class="cv-button">
+      <Button @click="">
         <p>{{ header.curriculum }}</p>
-      </div>
+      </Button>
     </section>
   </header>
 </template>
@@ -44,6 +44,7 @@ import {onMounted, onUnmounted, ref} from "vue";
 import {HTTPAxios} from "@/object/HTTPAxios";
 import {HeaderSite} from "@/object/UserProfile";
 import LangSelector from "@/vue/preferences/LangSelector.vue";
+import Button from "@/vue/global/Button.vue";
 
 const header = ref<HeaderSite>()
 const scrollValue = ref(window.scrollY)
@@ -126,21 +127,6 @@ header {
     display: flex;
     align-items: center;
     gap: 16px;
-
-    .cv-button {
-      padding: 14px 22px;
-      border: 1px solid var(--main);
-      border-radius: 8px;
-      cursor: pointer;
-
-      &:hover {
-        background: var(--main);
-
-        p {
-          color: var(--revert-text);
-        }
-      }
-    }
   }
 }
 

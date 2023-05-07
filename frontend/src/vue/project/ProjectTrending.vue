@@ -3,7 +3,9 @@
     <!-- <Loading v-if="loading"/> -->
     <div class="title-wrapper-more">
       <Title v-if="projectProvider" :title="projectProvider.title" :sub-title="projectProvider.subTitle" class="title"/>
-      <router-link class="more" to="/projects">Voir plus</router-link>
+      <Button @click="router.push('/projects')">
+        <p>Voir plus -></p>
+      </Button>
     </div>
     <div class="card-wrapper" v-if="!loading">
       <transition-group>
@@ -26,6 +28,7 @@ import router from "@/router";
 import ProjectCard from "@/vue/project/ProjectCard.vue";
 import Loading from "@/vue/global/Loading.vue";
 import Title from "@/vue/global/Title.vue";
+import Button from "@/vue/global/Button.vue";
 
 const projects = ref<Project[]>([])
 const nodes = ref<GitNode[]>([])
@@ -57,7 +60,7 @@ async function loadProject(url: string) {
 
 <style scoped lang="scss">
 section.project-trending {
-  margin: auto;
+  max-width: 1600px;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -68,14 +71,14 @@ section.project-trending {
   .card-wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 18px;
   }
 
   .title-wrapper-more {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
     gap: 10px;
 
     .more:hover {

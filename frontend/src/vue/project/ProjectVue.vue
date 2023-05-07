@@ -1,5 +1,8 @@
 <template>
   <article class="project">
+    <Button @click="router.push('/projects')">
+      <p>{{"<- Retour"}}</p>
+    </Button>
     <component v-for="content of project.contents"
                :is="getComponent(content)"
                :content="content"/>
@@ -21,6 +24,8 @@ import WarningContent from "@/vue/project/content/WarningContent.vue";
 import ErrorContent from "@/vue/project/content/ErrorContent.vue";
 import InformationContent from "@/vue/project/content/InformationContent.vue";
 import ExternalLinksVue from "@/vue/project/content/ExternalLinksVue.vue";
+import router from "@/router";
+import Button from "@/vue/global/Button.vue";
 
 defineProps({
   project: {

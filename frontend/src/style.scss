@@ -9,7 +9,7 @@
   font-family: Inter, sans-serif;
   font-weight: 400;
   color: var(--secondary-text);
-  scrollbar-color: var(--main) #101010;
+  scrollbar-color: var(--main) var(--primary-background);
   scrollbar-width: thin;
 }
 
