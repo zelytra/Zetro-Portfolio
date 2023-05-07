@@ -37,10 +37,10 @@ defineProps({
 .content-wrapper {
   display: flex;
   gap: 10px;
-  background: rgba(255, 232, 209, 0.1);
-  border: 1px solid rgba(255, 232, 209, 0.1);
-  border-left: solid 4px var(--main);
-  box-shadow: 0 12px 32px rgba(6, 28, 61, 0.08);
+  background: var(--detail-background);
+  border: 1px solid var(--detail-border);
+  border-left: solid 4px var(--detail-main);
+  box-shadow: 0 12px 32px var(--detail-shadow);
   border-radius: 10px;
   padding: 20px;
 

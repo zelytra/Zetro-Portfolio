@@ -295,8 +295,7 @@ function copyLink() {
   }
 
   img {
-    max-width: 200px;
-
+    width: 100%;
   }
 }
 </style>

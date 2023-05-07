@@ -1,6 +1,6 @@
 <template>
   <section class="project-trending">
-    <Loading v-if="loading"/>
+    <!-- <Loading v-if="loading"/> -->
     <div class="title-wrapper-more">
       <Title v-if="projectProvider" :title="projectProvider.title" :sub-title="projectProvider.subTitle" class="title"/>
       <router-link class="more" to="/projects">Voir plus</router-link>
@@ -41,7 +41,7 @@ onMounted(() => {
   new HTTPAxios("git/project/" + langStore.get(), null, false).get().then(async (response) => {
     nodes.value = response.data
     for (const [index, value] of nodes.value.entries()) {
-      if (index >= 4) break
+      if (index >= 5) break
       await loadProject(value.url)
     }
     loading.value = false

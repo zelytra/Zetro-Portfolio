@@ -68,10 +68,10 @@ function closeOption() {
   width: 240px;
 
   .wrapper {
-    border: 1px solid #FFE8D1;
+    border: 1px solid var(--main);
     border-radius: 8px;
     padding: 10px 19px;
-    background: #141414;
+    background: var(--input-background);
 
     &.input {
       display: flex;

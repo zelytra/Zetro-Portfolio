@@ -1,6 +1,6 @@
 <template>
   <section class="blog-trending">
-    <Loading v-if="loading"/>
+    <!-- <Loading v-if="loading"/> -->
     <div class="title-wrapper-more">
       <Title v-if="blogProvider" :title="blogProvider.title" :sub-title="blogProvider.subTitle" class="title"/>
       <router-link class="more" to="/blog">Voir plus</router-link>
