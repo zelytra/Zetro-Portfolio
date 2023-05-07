@@ -103,6 +103,8 @@ section.projects {
   .filters-wrapper {
     display: flex;
     gap: 12px;
+    width: 100%;
+    justify-content: center;
     align-items: center;
     align-self: start;
   }
@@ -111,6 +113,7 @@ section.projects {
     display: flex;
     flex-wrap: wrap;
     gap: 18px;
+    justify-content: center;
     width: 100%;
   }
 }

@@ -126,13 +126,16 @@ section.projects {
   .filters-wrapper {
     display: flex;
     gap: 12px;
+    width: 100%;
     align-items: center;
     align-self: start;
+    justify-content: center;
   }
 
   .card-wrapper {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
     gap: 18px;
   }
