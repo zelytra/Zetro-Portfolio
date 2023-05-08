@@ -1,7 +1,7 @@
 <template>
   <div class="skill-container">
     <div class="image-container">
-      <img :src="icon" alt="Skill icon">
+      <slot/>
     </div>
     <h3>{{ title }}</h3>
     <p>{{ content }}</p>
@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
 defineProps({
-  icon: String,
   title: String,
   content: String
 })
@@ -36,6 +35,15 @@ defineProps({
     border-radius: 8px;
     display: flex;
     justify-content: center;
+
+    :slotted(svg) {
+      &.fill path{
+        fill: var(--main);
+      }
+      &.stroke path{
+        stroke: var(--main)
+      }
+    }
   }
 
   h3 {
@@ -57,15 +65,19 @@ defineProps({
   }
 
   &:hover {
-    background: rgba(255, 232, 209, 0.1);
+    background: var(--hover-main);
 
 
     .image-container {
       background: var(--main);
 
-      img {
-        transition: filter 0ms;
-        filter: brightness(0%);
+      :slotted(svg) {
+        &.fill path{
+          fill: var(--primary-background);
+        }
+        &.stroke path{
+          stroke: var(--primary-background);
+        }
       }
     }
   }

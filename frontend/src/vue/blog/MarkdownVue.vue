@@ -3,9 +3,12 @@
     <transition mode="in-out">
       <Loading v-if="loading"/>
     </transition>
-    <transition mode="in-out">
+    <transition-group mode="in-out">
+      <Button @click="router.back()">
+        <p>{{"<- Retour"}}</p>
+      </Button>
       <div id="content" v-html="renderResult"/>
-    </transition>
+    </transition-group>
   </div>
 </template>
 
@@ -14,6 +17,8 @@ import {marked} from "marked";
 import {onMounted, ref} from "vue";
 import Loading from "../global/Loading.vue";
 import axios from "axios";
+import Button from "@/vue/global/Button.vue";
+import router from "@/router";
 
 const mdFile = ref();
 const renderResult = ref("");
@@ -295,8 +300,7 @@ function copyLink() {
   }
 
   img {
-    max-width: 200px;
-
+    width: 100%;
   }
 }
 </style>

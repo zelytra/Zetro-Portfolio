@@ -67,6 +67,7 @@ defineProps({
         border: 1px solid var(--main);
         border-radius: 4px;
         padding: 4px 8px;
+        color: var(--main);
       }
     }
   }

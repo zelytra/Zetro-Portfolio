@@ -9,19 +9,8 @@
   font-family: Inter, sans-serif;
   font-weight: 400;
   color: var(--secondary-text);
-  scrollbar-color: #FFE8D1 #101010;
+  scrollbar-color: var(--main) var(--primary-background);
   scrollbar-width: thin;
-}
-
-body {
-  --main: #FFE8D1;
-  --primary-text: #ffffff;
-  --secondary-text: #BDBDBD;
-  --revert-text: #101010;
-  --primary-background: #101010;
-  --secondary-background: #FFE8D1;
-  --error: #E05050;
-  --heavy-background: #060606;
 }
 
 html, body {

@@ -37,10 +37,10 @@ defineProps({
 .content-wrapper {
   display: flex;
   gap: 10px;
-  background: rgba(80, 86, 224, 0.1);
-  border: 1px solid rgba(80, 86, 224, 0.1);
-  box-shadow: 0 12px 32px rgba(6, 28, 61, 0.08);
-  border-left: solid 4px #5056E0;
+  background: var(--info-background);
+  border: 1px solid var(--info-border);
+  box-shadow: 0 12px 32px var(--info-shadow);
+  border-left: solid 4px var(--info-main);
   border-radius: 10px;
   padding: 20px;
 
@@ -54,7 +54,7 @@ defineProps({
       font-weight: 500;
       font-size: 16px;
       line-height: 24px;
-      color: #5056E0;
+      color: var(--info-main);
     }
 
     p {
@@ -63,6 +63,11 @@ defineProps({
       font-weight: 400;
       font-size: 14px;
       line-height: 20px;
+    }
+
+    svg path {
+      fill: var(--info-main);
+      stroke: var(--info-main)
     }
   }
 }

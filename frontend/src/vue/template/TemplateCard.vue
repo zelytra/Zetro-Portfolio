@@ -86,6 +86,7 @@ const props = defineProps({
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         h4 {
           font-family: PlusJakartaSans, sans-serif;
           font-style: normal;
@@ -104,7 +105,7 @@ const props = defineProps({
 
         span {
           padding: 5px 8px;
-          border: 1px solid #FFE8D1;
+          border: 1px solid var(--main);
           border-radius: 4px;
           font-style: normal;
           font-weight: 500;

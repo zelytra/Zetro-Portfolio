@@ -115,6 +115,8 @@ section.blogs {
   .filters-wrapper {
     display: flex;
     gap: 12px;
+    width: 100%;
+    justify-content: center;
     align-items: center;
     align-self: start;
   }
@@ -123,6 +125,7 @@ section.blogs {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 18px;
   }
 }
