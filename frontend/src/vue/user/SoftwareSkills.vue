@@ -28,7 +28,7 @@ onMounted(() => {
 .software-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 40px;
 
   .skills {
     display: flex;

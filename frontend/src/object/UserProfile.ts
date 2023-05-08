@@ -87,3 +87,8 @@ export interface SoftwareSkill {
     subTitle: string
     skills: Skill[]
 }
+
+export interface Range {
+    min: number,
+    max: number
+}

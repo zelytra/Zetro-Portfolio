@@ -1,13 +1,16 @@
 <template>
   <section class="projects">
     <Loading v-if="loading"/>
-    <Title v-if="templateProvider" :title="templateProvider.title" :sub-title="templateProvider.subTitle" class="title"/>
+    <Title v-if="templateProvider" :title="templateProvider.title" :sub-title="templateProvider.subTitle"
+           class="title"/>
     <div class="filters-wrapper">
       <SelectInput v-if="templateProvider"
                    v-for="provider of templateProvider.filters"
                    :options="provider.tags"
                    @select-change="updateFilter(provider.name,$event)"
                    :place-holder="provider.name"/>
+      <RangeSelectInput @select-change="updatePriceFilter($event)"
+                        :place-holder="'Price'"/>
     </div>
     <div class="card-wrapper" v-if="!loading">
       <transition-group>
@@ -30,6 +33,8 @@ import SelectInput from "@/vue/global/SelectInput.vue";
 import {langStore} from "@/store/LangStore";
 import {Template, TemplateProvider} from "@/object/Template";
 import TemplateCard from "@/vue/template/TemplateCard.vue";
+import RangeSelectInput from "@/vue/global/RangeSelectInput.vue";
+import {Range} from "@/object/UserProfile";
 
 const templates = ref<Template[]>([])
 const filterMap = ref<Map<string, string[]>>(new Map<string, string[]>())
@@ -74,6 +79,16 @@ function updateFilter(key: string, value: string[]) {
       filteredTemplate.value = filterValues;
     }
   }
+}
+
+function updatePriceFilter(range: Range) {
+  if (!range) {
+    filteredTemplate.value = templates.value
+    return
+  }
+  filteredTemplate.value = templates.value.filter((template) =>
+      template.price >= range.min && template.price <= range.max
+  )
 }
 
 async function loadTemplate(url: string) {
