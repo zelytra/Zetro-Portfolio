@@ -43,7 +43,6 @@ onMounted(() => {
 <style scoped lang="scss">
 .school-story-wrapper {
   width: inherit;
-  margin-bottom: 120px;
 
   .content-wrapper {
     display: flex;
@@ -61,7 +60,7 @@ onMounted(() => {
 
       &.school {
         height: fit-content;
-        border-left: solid 2px white;
+        border-left: solid 2px var(--primary-text);
       }
 
       .school-detail {
@@ -83,6 +82,10 @@ onMounted(() => {
           position: absolute;
           top: 0;
           left: -9px;
+
+          circle {
+            fill: var(--primary-text);
+          }
         }
 
         h3 {

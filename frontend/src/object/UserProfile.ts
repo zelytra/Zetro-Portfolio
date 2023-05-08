@@ -78,8 +78,12 @@ export interface SchoolStory {
 }
 
 export interface Skill {
-    title: string
-    subTitle: string
     name: string
     level: number
+}
+
+export interface SoftwareSkill {
+    title: string
+    subTitle: string
+    skills: Skill[]
 }

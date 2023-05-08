@@ -48,6 +48,7 @@
     <ProfessionalStory class="professional-wrapper"/>
     <BlogTrending/>
     <SchoolStory/>
+    <SoftwareSkills/>
   </section>
 </template>
 
@@ -62,6 +63,7 @@ import {Service} from "@/object/UserProfile";
 import {HTTPAxios} from "@/object/HTTPAxios";
 import BlogTrending from "@/vue/blog/BlogTrending.vue";
 import ProjectTrending from "@/vue/project/ProjectTrending.vue";
+import SoftwareSkills from "@/vue/user/SoftwareSkills.vue";
 
 const service = ref<Service>()
 

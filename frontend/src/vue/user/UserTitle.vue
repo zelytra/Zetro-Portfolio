@@ -130,6 +130,10 @@ section.user-title {
       display: flex;
       gap: 32px;
 
+      svg path{
+        fill: var(--primary-text);
+      }
+
       a:hover svg path {
         fill: var(--main);
       }

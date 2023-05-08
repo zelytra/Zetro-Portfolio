@@ -88,7 +88,7 @@ header {
 
   &.stuck {
     top: 25px;
-    background: rgba(16, 16, 16, 0.65);;
+    background: var(--header-background);
     border-radius: 8px;
   }
 
