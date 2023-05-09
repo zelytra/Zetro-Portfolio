@@ -3,12 +3,12 @@
     <transition mode="in-out">
       <Loading v-if="loading"/>
     </transition>
-    <transition-group mode="in-out">
-      <Button @click="router.back()">
-        <p>{{"<- Retour"}}</p>
-      </Button>
+    <Button @click="router.back()">
+      <p>{{ "<- Retour" }}</p>
+    </Button>
+    <transition mode="in-out">
       <div id="content" v-html="renderResult"/>
-    </transition-group>
+    </transition>
   </div>
 </template>
 
@@ -19,6 +19,7 @@ import Loading from "../global/Loading.vue";
 import axios from "axios";
 import Button from "@/vue/global/Button.vue";
 import router from "@/router";
+import {useHead} from "unhead";
 
 const mdFile = ref();
 const renderResult = ref("");

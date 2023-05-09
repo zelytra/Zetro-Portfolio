@@ -4,9 +4,9 @@ export interface User {
     lastName: string
     resume: string
     github: string
+    figma: string
+    behance: string
     linkedin: string
-    instagram: string
-    twitter: string
 }
 
 export interface HeaderSite {

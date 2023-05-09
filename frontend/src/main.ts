@@ -1,4 +1,4 @@
-import {createApp} from 'vue'
+import {createApp,reactive} from 'vue'
 import './style.scss'
 import './font.scss'
 import './color.scss'
@@ -6,8 +6,10 @@ import App from './App.vue'
 import router from "@/router";
 import {marked} from "marked";
 import {metaDataHunter} from "@/object/MarkedExtension";
+import {createHead} from "unhead";
 
 const app = createApp(App)
+createHead()
 
 // Click outside custom event
 app.directive('click-outside', {
