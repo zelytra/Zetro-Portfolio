@@ -75,7 +75,7 @@ function closeOption() {
 
     &.options {
       top: 46px;
-      left: -50px;
+      right: 0;
       position: absolute;
       z-index: 99;
       width: auto;
