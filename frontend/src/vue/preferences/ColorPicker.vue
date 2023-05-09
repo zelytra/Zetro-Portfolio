@@ -9,12 +9,14 @@
     </div>
 
     <transition>
-      <div class="options" v-if="toggleOption" v-click-outside="() => closeOption()"
-           @mouseleave="closeOption()">
-        <div class="option"
-             v-for="color of colors"
-             @click="replaceCSSVariables(color)">
-          <span :style="{background:color.main}"/>
+      <div class="option-container">
+        <div class="options" v-if="toggleOption" v-click-outside="() => closeOption()"
+             @mouseleave="closeOption()">
+          <div class="option"
+               v-for="color of colors"
+               @click="replaceCSSVariables(color)">
+            <span :style="{background:color.main}"/>
+          </div>
         </div>
       </div>
     </transition>
@@ -27,11 +29,11 @@ import {onMounted, ref} from "vue";
 import axios from "axios";
 
 const toggleOption = ref<boolean>(false)
-const colors = ref()
+const colors = ref([{main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}])
 
 onMounted(() => {
   axios.get("https://raw.githubusercontent.com/" + import.meta.env.VITE_GITHUB_HOST + "/main/palette/colors.json").then((data) => {
-    colors.value = data.data
+    //colors.value = data.data
   })
 })
 
@@ -47,7 +49,7 @@ function openOption() {
 }
 
 function closeOption() {
-  toggleOption.value = false;
+  //toggleOption.value = false;
 }
 </script>
 
@@ -68,7 +70,7 @@ function closeOption() {
     }
   }
 
-  .options {
+  .option-container {
     border: 1px solid var(--main);
     border-radius: 8px;
     padding: 10px 19px;
@@ -77,30 +79,34 @@ function closeOption() {
     right: 0;
     position: absolute;
     z-index: 99;
-    overflow: hidden;
+    height: fit-content;
+    max-width: 218px;
+  }
 
-    width: fit-content;
-    max-width: 300px;
-
+  .options {
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
     gap: 6px;
+
 
     .option {
       padding: 10px;
       border-radius: 8px;
       display: flex;
       align-items: center;
-      gap: 6px;
       cursor: pointer;
       filter: brightness(0.8);
+      width: 25px;
+      height: 25px;
 
       &:hover {
         filter: brightness(1);
       }
 
       span {
-        width: 30px;
-        height: 30px;
+        width: inherit;
+        height: inherit;
         border-radius: 50% 50% 50% 0;
       }
     }
