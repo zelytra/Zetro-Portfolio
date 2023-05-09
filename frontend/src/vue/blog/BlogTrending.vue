@@ -52,7 +52,7 @@ section.blog-trending {
   display: flex;
   flex-direction: column;
   gap: 60px;
-  align-items: center;
+  width: 100%;
   position: relative;
   overflow: hidden;
 

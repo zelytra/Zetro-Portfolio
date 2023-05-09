@@ -62,9 +62,9 @@ async function loadProject(url: string) {
 section.project-trending {
   max-width: 1600px;
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 60px;
-  align-items: center;
   position: relative;
   overflow: hidden;
 

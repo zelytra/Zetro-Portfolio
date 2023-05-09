@@ -20,8 +20,8 @@ export interface HeaderSite {
 export interface FooterSite {
     resume: string
     develop: string
-    facebook: string
-    linkedin: string
+    github: string
+    behance: string
     twitter: string
     figma: string
     shortcut: [
