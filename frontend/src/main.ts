@@ -1,4 +1,4 @@
-import {createApp,reactive} from 'vue'
+import {createApp, reactive} from 'vue'
 import '@assets/style.scss'
 import '@assets/font.scss'
 import '@assets/color.scss'
@@ -6,7 +6,7 @@ import '@assets/animation.scss'
 import App from './App.vue'
 import router from "@/router";
 import {marked} from "marked";
-import {metaDataHunter} from "@/object/utils/MarkedExtension";
+import {errorTag, infoTag, metaDataHunter, warnTag} from "@/object/utils/MarkedExtension";
 import {createHead} from "unhead";
 
 const app = createApp(App)
@@ -28,6 +28,6 @@ app.directive('click-outside', {
         document.body.removeEventListener('click', el.clickOutsideEvent);
     }
 });
-marked.use({extensions: [metaDataHunter]})
+marked.use({extensions: [metaDataHunter, infoTag, errorTag, warnTag]})
 app.use(router);
 app.mount('#app')
