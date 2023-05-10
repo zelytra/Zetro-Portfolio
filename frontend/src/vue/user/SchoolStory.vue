@@ -1,34 +1,40 @@
 <template>
   <section class="school-story-wrapper" v-if="school">
-    <Title class="title" :sub-title="school.subTitle" title="Formations et compétences"/>
-    <div class="content-wrapper">
-      <div class="content school">
-        <div class="school-detail" v-for="schoolStory of school.schools">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="8" cy="8" r="8" fill="white"/>
-          </svg>
-          <h3>{{ schoolStory.location }}</h3>
-          <p>{{ schoolStory.name }}</p>
-          <h4>{{ schoolStory.date }}</h4>
+    <AppearAnimation :once="true" v-model="isOnScreen">
+      <Title class="title" :sub-title="school.subTitle" title="Formations et compétences"
+             :class="{'slide-left-to-right':isOnScreen}" :style="'opacity:0'"/>
+      <div class="content-wrapper">
+        <div class="content school">
+          <div class="school-detail" v-for="schoolStory of school.schools" :class="{'slide-right-to-left':isOnScreen}">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="8" cy="8" r="8" fill="white"/>
+            </svg>
+            <h3>{{ schoolStory.location }}</h3>
+            <p>{{ schoolStory.name }}</p>
+            <h4>{{ schoolStory.date }}</h4>
+          </div>
+        </div>
+        <div class="content skill">
+          <p>{{ school.resume }}</p>
+          <SkillValue v-for="skill of skills" :skill="skill"/>
         </div>
       </div>
-      <div class="content skill">
-        <p>{{ school.resume }}</p>
-        <SkillValue v-for="skill of skills" :skill="skill"/>
-      </div>
-    </div>
+    </AppearAnimation>
   </section>
 </template>
 
 <script setup lang="ts">
-import Title from "@/vue/global/Title.vue";
+import Title from "@/vue/global/utils/Title.vue";
 import {School, SchoolStory, Skill} from "@/object/UserProfile";
-import {onMounted, ref} from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
 import SkillValue from "@/vue/user/SkillValue.vue";
-import {HTTPAxios} from "@/object/HTTPAxios";
+import {HTTPAxios} from "@/object/utils/HTTPAxios";
+import {onIntersect} from "@/object/utils/IntersectionListener";
+import AppearAnimation from "@/vue/global/AppearAnimation.vue";
 
 const school = ref<School>()
 const skills = ref<Skill[]>([])
+const isOnScreen = ref(false);
 
 onMounted(() => {
   new HTTPAxios("user/shool-stories.json", null, true).get().then((data) => {
@@ -71,6 +77,7 @@ onMounted(() => {
         flex-direction: column;
         gap: 10px;
         overflow: visible;
+        opacity: 0;
 
         &:last-child {
           height: 0;

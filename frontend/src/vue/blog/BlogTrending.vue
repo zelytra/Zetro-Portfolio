@@ -22,12 +22,12 @@
 import BlogCard from "@/vue/blog/BlogCard.vue";
 import {onMounted, ref} from "vue";
 import {Blog, BlogProvider} from "@/object/Blog";
-import {HTTPAxios} from "@/object/HTTPAxios";
+import {HTTPAxios} from "@/object/utils/HTTPAxios";
 import {langStore} from "@/store/LangStore";
 import router from "@/router";
-import Title from "@/vue/global/Title.vue";
-import Loading from "@/vue/global/Loading.vue";
-import Button from "@/vue/global/Button.vue";
+import Title from "@/vue/global/utils/Title.vue";
+import Loading from "@/vue/global/utils/Loading.vue";
+import Button from "@/vue/global/form/Button.vue";
 
 const blogs = ref<Blog[]>([])
 const loading = ref(false)
@@ -52,7 +52,7 @@ section.blog-trending {
   display: flex;
   flex-direction: column;
   gap: 60px;
-  align-items: center;
+  width: 100%;
   position: relative;
   overflow: hidden;
 

@@ -21,14 +21,14 @@
 <script setup lang="ts">
 import {onMounted, ref} from "vue";
 import {Project, ProjectProvider} from "@/object/Project";
-import {GitNode} from "@/object/GitNode";
-import {HTTPAxios} from "@/object/HTTPAxios";
+import {GitNode} from "@/object/utils/GitNode";
+import {HTTPAxios} from "@/object/utils/HTTPAxios";
 import {langStore} from "@/store/LangStore";
 import router from "@/router";
 import ProjectCard from "@/vue/project/ProjectCard.vue";
-import Loading from "@/vue/global/Loading.vue";
-import Title from "@/vue/global/Title.vue";
-import Button from "@/vue/global/Button.vue";
+import Loading from "@/vue/global/utils/Loading.vue";
+import Title from "@/vue/global/utils/Title.vue";
+import Button from "@/vue/global/form/Button.vue";
 
 const projects = ref<Project[]>([])
 const nodes = ref<GitNode[]>([])
@@ -62,9 +62,9 @@ async function loadProject(url: string) {
 section.project-trending {
   max-width: 1600px;
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 60px;
-  align-items: center;
   position: relative;
   overflow: hidden;
 

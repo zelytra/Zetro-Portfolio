@@ -28,6 +28,7 @@ defineProps({
   width: 300px;
   height: 220px;
   overflow: hidden;
+  opacity: 0;
 
   .image-container {
     border: solid 1px var(--main);
@@ -37,10 +38,11 @@ defineProps({
     justify-content: center;
 
     :slotted(svg) {
-      &.fill path{
+      &.fill path {
         fill: var(--main);
       }
-      &.stroke path{
+
+      &.stroke path {
         stroke: var(--main)
       }
     }
@@ -72,10 +74,11 @@ defineProps({
       background: var(--main);
 
       :slotted(svg) {
-        &.fill path{
+        &.fill path {
           fill: var(--primary-background);
         }
-        &.stroke path{
+
+        &.stroke path {
           stroke: var(--primary-background);
         }
       }

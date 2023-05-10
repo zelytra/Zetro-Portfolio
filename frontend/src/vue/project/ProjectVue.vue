@@ -1,7 +1,7 @@
 <template>
   <article class="project">
     <Button @click="router.push('/projects')">
-      <p>{{"<- Retour"}}</p>
+      <p>{{ "<- Retour" }}</p>
     </Button>
     <component v-for="content of project.contents"
                :is="getComponent(content)"
@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import {PropType} from "vue";
+import {onMounted, PropType} from "vue";
 import {Content} from "@/object/Project";
 import {Project} from "@/object/Project";
 import PageNotFound from "@components/PageNotFound.vue";
@@ -25,9 +25,10 @@ import ErrorContent from "@/vue/project/content/ErrorContent.vue";
 import InformationContent from "@/vue/project/content/InformationContent.vue";
 import ExternalLinksVue from "@/vue/project/content/ExternalLinksVue.vue";
 import router from "@/router";
-import Button from "@/vue/global/Button.vue";
+import Button from "@/vue/global/form/Button.vue";
+import {useHead, useServerHead} from "unhead";
 
-defineProps({
+const props = defineProps({
   project: {
     type: Object as PropType<Project>,
     required: true

@@ -4,9 +4,9 @@ export interface User {
     lastName: string
     resume: string
     github: string
+    figma: string
+    behance: string
     linkedin: string
-    instagram: string
-    twitter: string
 }
 
 export interface HeaderSite {
@@ -20,8 +20,8 @@ export interface HeaderSite {
 export interface FooterSite {
     resume: string
     develop: string
-    facebook: string
-    linkedin: string
+    github: string
+    behance: string
     twitter: string
     figma: string
     shortcut: [
@@ -86,4 +86,9 @@ export interface SoftwareSkill {
     title: string
     subTitle: string
     skills: Skill[]
+}
+
+export interface Range {
+    min: number,
+    max: number
 }

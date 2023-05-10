@@ -25,12 +25,12 @@
 
 <script setup lang="ts">
 import {onMounted, ref} from "vue";
-import {HTTPAxios} from "@/object/HTTPAxios";
-import Title from "@/vue/global/Title.vue";
+import {HTTPAxios} from "@/object/utils/HTTPAxios";
+import Title from "@/vue/global/utils/Title.vue";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import router from "@/router";
-import Loading from "@/vue/global/Loading.vue";
-import SelectInput from "@/vue/global/SelectInput.vue";
+import Loading from "@/vue/global/utils/Loading.vue";
+import SelectInput from "@/vue/global/form/SelectInput.vue";
 import {Blog, BlogProvider} from "@/object/Blog";
 import MarkdownVue from "@/vue/blog/MarkdownVue.vue";
 import BlogCard from "@/vue/blog/BlogCard.vue";

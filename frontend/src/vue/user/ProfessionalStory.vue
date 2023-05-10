@@ -32,10 +32,10 @@
 </template>
 
 <script setup lang="ts">
-import Title from "@/vue/global/Title.vue";
+import Title from "@/vue/global/utils/Title.vue";
 import {Professional, ProfessionalStory} from "@/object/UserProfile";
 import {onMounted, ref} from "vue";
-import {HTTPAxios} from "@/object/HTTPAxios";
+import {HTTPAxios} from "@/object/utils/HTTPAxios";
 import {BasicText} from "@/object/Project";
 
 const professional = ref<Professional>()

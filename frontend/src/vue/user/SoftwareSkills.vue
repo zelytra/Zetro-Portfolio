@@ -9,10 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import Title from "@/vue/global/Title.vue";
+import Title from "@/vue/global/utils/Title.vue";
 import {onMounted, ref} from "vue";
 import {SoftwareSkill} from "@/object/UserProfile";
-import {HTTPAxios} from "@/object/HTTPAxios";
+import {HTTPAxios} from "@/object/utils/HTTPAxios";
 import SkillValue from "@/vue/user/SkillValue.vue";
 
 const softwareSkills = ref<SoftwareSkill>()
@@ -28,7 +28,7 @@ onMounted(() => {
 .software-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 40px;
 
   .skills {
     display: flex;
