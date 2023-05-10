@@ -31,10 +31,10 @@
 
 <script setup lang="ts">
 import {onMounted, onUnmounted, ref} from "vue";
-import {HTTPAxios} from "@/object/HTTPAxios";
+import {HTTPAxios} from "@/object/utils/HTTPAxios";
 import {HeaderSite} from "@/object/UserProfile";
 import LangSelector from "@/vue/preferences/LangSelector.vue";
-import Button from "@/vue/global/Button.vue";
+import Button from "@/vue/global/form/Button.vue";
 import ColorPicker from "@/vue/preferences/ColorPicker.vue";
 
 const header = ref<HeaderSite>()

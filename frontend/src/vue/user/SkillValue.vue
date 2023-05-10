@@ -1,15 +1,21 @@
 <template>
-  <div class="skill-container">
-    <h3>{{ skill.name }}</h3>
-    <div class="skill-bar">
-      <div class="skill-value" :style="{width: skill.level + '%'}"/>
+  <AppearAnimation :once="true" v-model="isOnScreen">
+    <div class="skill-container">
+      <h3 :class="{'opacity':isOnScreen}">{{ skill.name }}</h3>
+      <div class="skill-bar">
+        <div :class="{'progress-width':isOnScreen,'skill-value':true}"
+             :style="{'max-width': skill.level + '%'}"/>
+      </div>
     </div>
-  </div>
+  </AppearAnimation>
 </template>
 
 <script setup lang="ts">
-import {PropType} from "vue";
+import {PropType, ref} from "vue";
 import {Skill} from "@/object/UserProfile";
+import AppearAnimation from "@/vue/global/AppearAnimation.vue";
+
+const isOnScreen = ref(false)
 
 defineProps({
   skill: {
@@ -23,7 +29,7 @@ defineProps({
 .skill-container {
   display: flex;
   flex-direction: column;
-  width: inherit;
+  width: 100%;
 
   h3 {
     font-style: normal;

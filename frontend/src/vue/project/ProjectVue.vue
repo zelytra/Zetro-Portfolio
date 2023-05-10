@@ -25,7 +25,7 @@ import ErrorContent from "@/vue/project/content/ErrorContent.vue";
 import InformationContent from "@/vue/project/content/InformationContent.vue";
 import ExternalLinksVue from "@/vue/project/content/ExternalLinksVue.vue";
 import router from "@/router";
-import Button from "@/vue/global/Button.vue";
+import Button from "@/vue/global/form/Button.vue";
 import {useHead, useServerHead} from "unhead";
 
 const props = defineProps({

@@ -77,7 +77,7 @@
 <script setup lang="ts">
 import {onMounted, ref} from "vue";
 import {FooterSite} from "@/object/UserProfile";
-import {HTTPAxios} from "@/object/HTTPAxios";
+import {HTTPAxios} from "@/object/utils/HTTPAxios";
 
 const footer = ref<FooterSite>()
 

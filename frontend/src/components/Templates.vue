@@ -25,15 +25,15 @@
 
 <script setup lang="ts">
 import {onMounted, ref} from "vue";
-import {GitNode} from "@/object/GitNode";
-import {HTTPAxios} from "@/object/HTTPAxios";
-import Title from "@/vue/global/Title.vue";
-import Loading from "@/vue/global/Loading.vue";
-import SelectInput from "@/vue/global/SelectInput.vue";
+import {GitNode} from "@/object/utils/GitNode";
+import {HTTPAxios} from "@/object/utils/HTTPAxios";
+import Title from "@/vue/global/utils/Title.vue";
+import Loading from "@/vue/global/utils/Loading.vue";
+import SelectInput from "@/vue/global/form/SelectInput.vue";
 import {langStore} from "@/store/LangStore";
 import {Template, TemplateProvider} from "@/object/Template";
 import TemplateCard from "@/vue/template/TemplateCard.vue";
-import RangeSelectInput from "@/vue/global/RangeSelectInput.vue";
+import RangeSelectInput from "@/vue/global/form/RangeSelectInput.vue";
 import {Range} from "@/object/UserProfile";
 
 const templates = ref<Template[]>([])

@@ -15,9 +15,9 @@
 <script setup lang="ts">
 import {marked} from "marked";
 import {onMounted, ref} from "vue";
-import Loading from "../global/Loading.vue";
+import Loading from "../global/utils/Loading.vue";
 import axios from "axios";
-import Button from "@/vue/global/Button.vue";
+import Button from "@/vue/global/form/Button.vue";
 import router from "@/router";
 import {useHead} from "unhead";
 

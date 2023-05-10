@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import Header from "@vues/global/Header.vue"
 import Footer from "@vues/global/Footer.vue"
-import ToTheTop from "@/vue/global/ToTheTop.vue";
+import ToTheTop from "@/vue/global/utils/ToTheTop.vue";
 import {langStore} from "@/store/LangStore";
 </script>
 

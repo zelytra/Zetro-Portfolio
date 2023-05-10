@@ -9,14 +9,12 @@
     </div>
 
     <transition>
-      <div class="option-container">
-        <div class="options" v-if="toggleOption" v-click-outside="() => closeOption()"
-             @mouseleave="closeOption()">
-          <div class="option"
-               v-for="color of colors"
-               @click="replaceCSSVariables(color)">
-            <span :style="{background:color.main}"/>
-          </div>
+      <div class="options" v-if="toggleOption" v-click-outside="() => closeOption()"
+           @mouseleave="closeOption()">
+        <div class="option"
+             v-for="color of colors"
+             @click="replaceCSSVariables(color)">
+          <span :style="{background:color.main}"/>
         </div>
       </div>
     </transition>
@@ -29,11 +27,11 @@ import {onMounted, ref} from "vue";
 import axios from "axios";
 
 const toggleOption = ref<boolean>(false)
-const colors = ref([{main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}, {main: '#FFE8D1'}])
+const colors = ref()
 
 onMounted(() => {
   axios.get("https://raw.githubusercontent.com/" + import.meta.env.VITE_GITHUB_HOST + "/main/palette/colors.json").then((data) => {
-    //colors.value = data.data
+    colors.value = data.data
   })
 })
 
@@ -49,7 +47,7 @@ function openOption() {
 }
 
 function closeOption() {
-  //toggleOption.value = false;
+  toggleOption.value = false;
 }
 </script>
 
@@ -70,7 +68,7 @@ function closeOption() {
     }
   }
 
-  .option-container {
+  .options {
     border: 1px solid var(--main);
     border-radius: 8px;
     padding: 10px 19px;
@@ -79,16 +77,8 @@ function closeOption() {
     right: 0;
     position: absolute;
     z-index: 99;
-    height: fit-content;
-    max-width: 218px;
-  }
-
-  .options {
-    width: 100%;
     display: flex;
-    flex-wrap: wrap;
     gap: 6px;
-
 
     .option {
       padding: 10px;
