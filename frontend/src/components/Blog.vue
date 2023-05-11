@@ -104,7 +104,7 @@ function updateSelectedBlog(blogUrlName: string) {
 
 <style scoped lang="scss">
 section.blogs {
-  padding: 60px 10%;
+  padding: 60px 5%;
   max-width: 1600px;
   margin: auto;
   display: flex;

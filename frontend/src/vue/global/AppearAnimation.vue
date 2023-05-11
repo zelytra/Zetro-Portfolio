@@ -32,7 +32,6 @@ onMounted(() => {
   }, props.once, {
     threshold: props.threshold ? props.threshold : 0.85,
   });
-  console.log(props.threshold)
 })
 
 
