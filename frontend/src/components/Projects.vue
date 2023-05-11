@@ -9,14 +9,16 @@
                    @select-change="updateFilter(provider.name,$event)"
                    :place-holder="provider.name"/>
     </div>
-    <div class="card-wrapper" v-if="!loading">
-      <transition-group>
+    <AppearAnimation :once="true" v-model="onScreen" :threshold="0.2">
+      <div class="card-wrapper" v-if="!loading">
         <ProjectCard :project="project"
-                     v-for="project of filteredProject.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
+                     :class="{'slide-bottom-to-top':onScreen}"
+                     v-for="(project,index) of filteredProject.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
                      @click="router.push('/projects/'+project.url)"
+                     :style="['animation-delay:'+index*0.2+'s','opacity:0']"
                      :key="project.name"/>
-      </transition-group>
-    </div>
+      </div>
+    </AppearAnimation>
   </section>
   <section class="projects" v-else>
     <ProjectVue v-if="selectedProject" :project="selectedProject"/>
@@ -36,6 +38,7 @@ import router from "@/router";
 import Loading from "@/vue/global/utils/Loading.vue";
 import SelectInput from "@/vue/global/form/SelectInput.vue";
 import {langStore} from "@/store/LangStore";
+import AppearAnimation from "@/vue/global/AppearAnimation.vue";
 
 const projects = ref<Project[]>([])
 const filterMap = ref<Map<string, string[]>>(new Map<string, string[]>())
@@ -44,7 +47,7 @@ const selectedProject = ref()
 const nodes = ref<GitNode[]>([])
 const route = useRoute()
 const loading = ref(false)
-
+const onScreen = ref(false)
 const projectProvider = ref<ProjectProvider>()
 
 onMounted(() => {
@@ -104,7 +107,7 @@ function updateSelectedProject(projectName: string) {
 }
 
 async function loadProject(url: string) {
-  await new HTTPAxios(url.split(langStore.get()+"/")[1], null, true).get().then((response) => {
+  await new HTTPAxios(url.split(langStore.get() + "/")[1], null, true).get().then((response) => {
     projects.value.push(response.data)
   })
 }

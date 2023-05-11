@@ -9,14 +9,16 @@
                    @select-change="updateFilter(provider.name,$event)"
                    :place-holder="provider.name"/>
     </div>
-    <div class="card-wrapper" v-if="!loading">
-      <transition-group>
+    <AppearAnimation :once="true" v-model="onScreen" :threshold="0.2">
+      <div class="card-wrapper" v-if="!loading">
         <BlogCard :blog="blog"
-                     v-for="blog of filteredBlog.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
-                     @click="router.push('/blog/'+blog.urlName)"
-                     :key="blog.name"/>
-      </transition-group>
-    </div>
+                  :class="{'slide-bottom-to-top':onScreen}"
+                  v-for="(blog,index) of filteredBlog.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
+                  :style="['animation-delay:'+index*0.2+'s','opacity:0']"
+                  @click="router.push('/blog/'+blog.urlName)"
+                  :key="blog.name"/>
+      </div>
+    </AppearAnimation>
   </section>
   <section class="blogs" v-else>
     <MarkdownVue v-if="selectedBlog" :markdown-src="selectedBlog"/>
@@ -35,6 +37,7 @@ import {Blog, BlogProvider} from "@/object/Blog";
 import MarkdownVue from "@/vue/blog/MarkdownVue.vue";
 import BlogCard from "@/vue/blog/BlogCard.vue";
 import {langStore} from "@/store/LangStore";
+import AppearAnimation from "@/vue/global/AppearAnimation.vue";
 
 const blogs = ref<Blog[]>([])
 const filterMap = ref<Map<string, string[]>>(new Map<string, string[]>())
@@ -42,7 +45,7 @@ const filteredBlog = ref<Blog[]>([])
 const selectedBlog = ref()
 const route = useRoute()
 const loading = ref(false)
-
+const onScreen = ref(false)
 const blogProvider = ref<BlogProvider>()
 
 onMounted(() => {
@@ -101,7 +104,7 @@ function updateSelectedBlog(blogUrlName: string) {
 
 <style scoped lang="scss">
 section.blogs {
-  padding: 60px 10%;
+  padding: 60px 5%;
   max-width: 1600px;
   margin: auto;
   display: flex;

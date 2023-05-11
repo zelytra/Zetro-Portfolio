@@ -1,11 +1,18 @@
 <template>
-  <div class="title-wrapper">
-    <h2>- {{ subTitle }}</h2>
-    <h1>{{ title }}</h1>
-  </div>
+  <AppearAnimation :once="true" v-model="onScreen">
+    <div class="title-wrapper">
+      <h2 :class="{'slide-left-to-right':onScreen}" :style="['opacity:0']">- {{ subTitle }}</h2>
+      <h1 :class="{'slide-top-to-bottom':onScreen}" :style="['opacity:0']">{{ title }}</h1>
+    </div>
+  </AppearAnimation>
 </template>
 
 <script setup lang="ts">
+import {ref} from "vue";
+import AppearAnimation from "@/vue/global/AppearAnimation.vue";
+
+const onScreen = ref(false)
+
 defineProps({
   title: String,
   subTitle: String

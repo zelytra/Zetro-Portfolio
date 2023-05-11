@@ -15,7 +15,11 @@ const scrollRef = ref();
 
 const props = defineProps({
   once: Boolean,
-  modelValue: Boolean
+  modelValue: Boolean,
+  threshold: {
+    type: Number,
+    required: false
+  }
 })
 
 const emits = defineEmits(['update:modelValue'])
@@ -26,7 +30,7 @@ onMounted(() => {
   }, () => {
     emits('update:modelValue', false)
   }, props.once, {
-    threshold: 0.85,
+    threshold: props.threshold ? props.threshold : 0.85,
   });
 })
 

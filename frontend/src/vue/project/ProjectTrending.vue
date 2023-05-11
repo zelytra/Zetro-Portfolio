@@ -7,14 +7,16 @@
         <p>Voir plus -></p>
       </Button>
     </div>
-    <div class="card-wrapper" v-if="!loading">
-      <transition-group>
+    <AppearAnimation :once="true" v-model="onScreen" :threshold="0.2">
+      <div class="card-wrapper" v-if="!loading">
         <ProjectCard :project="project"
-                     v-for="project of projects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
+                     :class="{'slide-right-to-left':onScreen}"
+                     v-for="(project,index) of projects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
+                     :style="['animation-delay:'+index*0.2+'s','opacity:0']"
                      @click="router.push('/projects/'+project.url)"
                      :key="project.name"/>
-      </transition-group>
-    </div>
+      </div>
+    </AppearAnimation>
   </section>
 </template>
 
@@ -29,11 +31,12 @@ import ProjectCard from "@/vue/project/ProjectCard.vue";
 import Loading from "@/vue/global/utils/Loading.vue";
 import Title from "@/vue/global/utils/Title.vue";
 import Button from "@/vue/global/form/Button.vue";
+import AppearAnimation from "@/vue/global/AppearAnimation.vue";
 
 const projects = ref<Project[]>([])
 const nodes = ref<GitNode[]>([])
 const loading = ref(false)
-
+const onScreen = ref(false)
 const projectProvider = ref<ProjectProvider>()
 
 onMounted(() => {
