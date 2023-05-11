@@ -1,34 +1,45 @@
 <template>
-  <section class="professional-story-wrapper" v-if="professional">
-    <div class="content">
-      <Title title="Expériences de travail" sub-title="PARCROUS PROFESSIONNEL"/>
-      <div class="company-selector">
-        <p v-for="story of professional.stories"
-           @click="updateStory(story)"
-           :class="{selected:selectedStory.company===story.company}">{{ story.company }}
-          <span
-              v-if="selectedStory.company===story.company">{{ ">" }}
+  <AppearAnimation :once="true" v-model="onScreen">
+    <section class="professional-story-wrapper" v-if="professional">
+      <div class="content">
+        <Title title="Expériences de travail" sub-title="PARCROUS PROFESSIONNEL"/>
+        <div class="company-selector">
+          <p v-for="(story,index) of professional.stories"
+             @click="updateStory(story)"
+             :class="{selected:selectedStory.company===story.company,'slide-left-to-right':onScreen}"
+             :style="'animation-delay:'+index*0.2+'s'">{{ story.company }}
+            <span
+                v-if="selectedStory.company===story.company">{{ ">" }}
           </span>
-        </p>
-      </div>
-    </div>
-    <div class="job-animation-container">
-      <Transition name="job">
-        <div class="content story" v-if="selectedStory" :key="selectedStory.company">
-          <h4>{{ selectedStory.title }}</h4>
-          <p class="location">{{ selectedStory.location }}</p>
-          <p class="date">{{ selectedStory.date }}</p>
-          <div class="tags">
-            <span class="tag" v-for="tag of selectedStory.tags">{{ tag }}</span>
-          </div>
-          <hr>
-          <ul>
-            <li v-for="content of selectedStory.content">- {{ content }}</li>
-          </ul>
+          </p>
         </div>
-      </Transition>
-    </div>
-  </section>
+      </div>
+      <div class="job-animation-container">
+        <Transition name="job">
+          <div class="content story" v-if="selectedStory" :key="selectedStory.company">
+            <h4 :class="{'opacity':onScreen}">{{ selectedStory.title }}</h4>
+            <p class="location" :class="{'opacity':onScreen}">{{ selectedStory.location }}</p>
+            <p class="date" :class="{'opacity':onScreen}">{{ selectedStory.date }}</p>
+            <div class="tags">
+              <span :class="{'slide-bottom-to-top':onScreen}"
+                    class="tag"
+                    v-for="(tag,index) of selectedStory.tags"
+                    :style="'animation-delay:'+index*0.2+'s'">{{
+                  tag
+                }}</span>
+            </div>
+            <hr :class="{'slide-right-to-left':onScreen}">
+            <ul>
+              <li :class="{'slide-bottom-to-top':onScreen}"
+                  v-for="(content,index) of selectedStory.content"
+                  :style="'animation-delay:'+index*0.1+'s'"
+              >- {{ content }}</li>
+            </ul>
+          </div>
+        </Transition>
+      </div>
+    </section>
+  </AppearAnimation>
 </template>
 
 <script setup lang="ts">
@@ -37,9 +48,11 @@ import {Professional, ProfessionalStory} from "@/object/UserProfile";
 import {onMounted, ref} from "vue";
 import {HTTPAxios} from "@/object/utils/HTTPAxios";
 import {BasicText} from "@/object/Project";
+import AppearAnimation from "@/vue/global/AppearAnimation.vue";
 
 const professional = ref<Professional>()
 const selectedStory = ref();
+const onScreen = ref(false)
 
 onMounted(() => {
   new HTTPAxios("user/professional-stories.json", null, true).get().then((data) => {
