@@ -12,16 +12,14 @@
       <RangeSelectInput @select-change="updatePriceFilter($event)"
                         :place-holder="'Price'"/>
     </div>
-    <AppearAnimation :once="true" v-model="onScreen" :threshold="0.2">
-      <div class="card-wrapper" v-if="!loading">
+    <div class="card-wrapper" v-if="!loading">
+      <transition-group>
         <TemplateCard :template="template"
-                      :class="{'slide-bottom-to-top':onScreen}"
                       v-for="(template,index) of filteredTemplate.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
-                      :style="['animation-delay:'+index*0.2+'s','opacity:0']"
                       @click="redirectTo(template.redirection)"
                       :key="template.name"/>
-      </div>
-    </AppearAnimation>
+      </transition-group>
+    </div>
   </section>
 </template>
 

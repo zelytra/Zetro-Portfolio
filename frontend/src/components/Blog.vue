@@ -9,16 +9,14 @@
                    @select-change="updateFilter(provider.name,$event)"
                    :place-holder="provider.name"/>
     </div>
-    <AppearAnimation :once="true" v-model="onScreen" :threshold="0.2">
-      <div class="card-wrapper" v-if="!loading">
+    <div class="card-wrapper" v-if="!loading">
+      <transition-group>
         <BlogCard :blog="blog"
-                  :class="{'slide-bottom-to-top':onScreen}"
                   v-for="(blog,index) of filteredBlog.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
-                  :style="['animation-delay:'+index*0.2+'s','opacity:0']"
                   @click="router.push('/blog/'+blog.urlName)"
                   :key="blog.name"/>
-      </div>
-    </AppearAnimation>
+      </transition-group>
+    </div>
   </section>
   <section class="blogs" v-else>
     <MarkdownVue v-if="selectedBlog" :markdown-src="selectedBlog"/>
