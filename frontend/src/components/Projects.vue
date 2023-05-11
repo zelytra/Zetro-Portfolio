@@ -9,16 +9,16 @@
                    @select-change="updateFilter(provider.name,$event)"
                    :place-holder="provider.name"/>
     </div>
-    <AppearAnimation :once="true" v-model="onScreen" :threshold="0.2">
-      <div class="card-wrapper" v-if="!loading">
+
+    <div class="card-wrapper" v-if="!loading">
+      <transition-group>
         <ProjectCard :project="project"
-                     :class="{'slide-bottom-to-top':onScreen}"
                      v-for="(project,index) of filteredProject.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
                      @click="router.push('/projects/'+project.url)"
-                     :style="['animation-delay:'+index*0.2+'s','opacity:0']"
                      :key="project.name"/>
-      </div>
-    </AppearAnimation>
+      </transition-group>
+    </div>
+
   </section>
   <section class="projects" v-else>
     <ProjectVue v-if="selectedProject" :project="selectedProject"/>
