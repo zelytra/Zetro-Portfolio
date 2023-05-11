@@ -7,14 +7,16 @@
         <p>Voir plus -></p>
       </Button>
     </div>
-    <div class="card-wrapper" v-if="!loading">
-      <transition-group>
+    <AppearAnimation :once="true" v-model="onScreen" :threshold="0.2">
+      <div class="card-wrapper" v-if="!loading">
         <BlogCard :blog="blog"
-                  v-for="blog of blogs.filter((x,index)=>index<4).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
+                  :class="{'slide-right-to-left':onScreen}"
+                  v-for="(blog,indexAnimation) of blogs.filter((x,index)=>index<4).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
+                  :style="['animation-delay:'+indexAnimation*0.2+'s','opacity:0']"
                   @click="router.push('/blog/'+blog.urlName)"
                   :key="blog.name"/>
-      </transition-group>
-    </div>
+      </div>
+    </AppearAnimation>
   </section>
 </template>
 
@@ -28,10 +30,11 @@ import router from "@/router";
 import Title from "@/vue/global/utils/Title.vue";
 import Loading from "@/vue/global/utils/Loading.vue";
 import Button from "@/vue/global/form/Button.vue";
+import AppearAnimation from "@/vue/global/AppearAnimation.vue";
 
 const blogs = ref<Blog[]>([])
 const loading = ref(false)
-
+const onScreen = ref(false)
 const blogProvider = ref<BlogProvider>()
 
 onMounted(() => {

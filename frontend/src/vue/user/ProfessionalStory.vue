@@ -7,7 +7,7 @@
           <p v-for="(story,index) of professional.stories"
              @click="updateStory(story)"
              :class="{selected:selectedStory.company===story.company,'slide-left-to-right':onScreen}"
-             :style="'animation-delay:'+index*0.2+'s'">{{ story.company }}
+             :style="['animation-delay:'+index*0.2+'s','opacity:0']">{{ story.company }}
             <span
                 v-if="selectedStory.company===story.company">{{ ">" }}
           </span>
@@ -17,22 +17,22 @@
       <div class="job-animation-container">
         <Transition name="job">
           <div class="content story" v-if="selectedStory" :key="selectedStory.company">
-            <h4 :class="{'opacity':onScreen}">{{ selectedStory.title }}</h4>
-            <p class="location" :class="{'opacity':onScreen}">{{ selectedStory.location }}</p>
-            <p class="date" :class="{'opacity':onScreen}">{{ selectedStory.date }}</p>
+            <h4 :class="{'opacity':onScreen}" :style="'opacity:0'">{{ selectedStory.title }}</h4>
+            <p class="location" :class="{'opacity':onScreen}" :style="'opacity:0'">{{ selectedStory.location }}</p>
+            <p class="date" :class="{'opacity':onScreen}" :style="'opacity:0'">{{ selectedStory.date }}</p>
             <div class="tags">
               <span :class="{'slide-bottom-to-top':onScreen}"
                     class="tag"
                     v-for="(tag,index) of selectedStory.tags"
-                    :style="'animation-delay:'+index*0.2+'s'">{{
+                    :style="['animation-delay:'+index*0.2+'s','opacity:0']">{{
                   tag
                 }}</span>
             </div>
-            <hr :class="{'slide-right-to-left':onScreen}">
+            <hr :class="{'slide-right-to-left':onScreen}" :style="'opacity:0'">
             <ul>
               <li :class="{'slide-bottom-to-top':onScreen}"
                   v-for="(content,index) of selectedStory.content"
-                  :style="'animation-delay:'+index*0.1+'s'"
+                  :style="['animation-delay:'+index*0.1+'s','opacity:0']"
               >- {{ content }}</li>
             </ul>
           </div>

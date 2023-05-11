@@ -12,14 +12,16 @@
       <RangeSelectInput @select-change="updatePriceFilter($event)"
                         :place-holder="'Price'"/>
     </div>
-    <div class="card-wrapper" v-if="!loading">
-      <transition-group>
+    <AppearAnimation :once="true" v-model="onScreen" :threshold="0.2">
+      <div class="card-wrapper" v-if="!loading">
         <TemplateCard :template="template"
-                      v-for="template of filteredTemplate.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
+                      :class="{'slide-bottom-to-top':onScreen}"
+                      v-for="(template,index) of filteredTemplate.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
+                      :style="['animation-delay:'+index*0.2+'s','opacity:0']"
                       @click="redirectTo(template.redirection)"
                       :key="template.name"/>
-      </transition-group>
-    </div>
+      </div>
+    </AppearAnimation>
   </section>
 </template>
 
@@ -35,13 +37,14 @@ import {Template, TemplateProvider} from "@/object/Template";
 import TemplateCard from "@/vue/template/TemplateCard.vue";
 import RangeSelectInput from "@/vue/global/form/RangeSelectInput.vue";
 import {Range} from "@/object/UserProfile";
+import AppearAnimation from "@/vue/global/AppearAnimation.vue";
 
 const templates = ref<Template[]>([])
 const filterMap = ref<Map<string, string[]>>(new Map<string, string[]>())
 const filteredTemplate = ref<Template[]>([])
 const nodes = ref<GitNode[]>([])
 const loading = ref(false)
-
+const onScreen = ref(false)
 const templateProvider = ref<TemplateProvider>()
 
 onMounted(() => {
