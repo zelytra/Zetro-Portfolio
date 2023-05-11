@@ -1,8 +1,8 @@
 <template>
   <AppearAnimation :once="true" v-model="onScreen">
     <div class="title-wrapper">
-      <h2 :class="{'slide-left-to-right':onScreen}">- {{ subTitle }}</h2>
-      <h1 :class="{'slide-top-to-bottom':onScreen}">{{ title }}</h1>
+      <h2 :class="{'slide-left-to-right':onScreen}" :style="['opacity:0']">- {{ subTitle }}</h2>
+      <h1 :class="{'slide-top-to-bottom':onScreen}" :style="['opacity:0']">{{ title }}</h1>
     </div>
   </AppearAnimation>
 </template>
