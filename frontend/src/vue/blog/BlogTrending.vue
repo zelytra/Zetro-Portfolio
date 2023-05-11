@@ -64,6 +64,7 @@ section.blog-trending {
     display: flex;
     flex-wrap: wrap;
     gap: 18px;
+    padding-bottom: 10px;
   }
 
   .title-wrapper-more {
