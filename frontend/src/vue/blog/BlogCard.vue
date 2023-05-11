@@ -129,7 +129,7 @@ function formatDate(date: Date): string {
   }
 
   &:hover {
-    background: rgba(255, 232, 209, 0.1);
+    background: var(--hover-main);
     transform: translateY(-8px);
     border-radius: 8px;
 
