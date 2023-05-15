@@ -11,6 +11,7 @@
   color: var(--secondary-text);
   scrollbar-color: var(--main) var(--primary-background);
   scrollbar-width: thin;
+  z-index: 1;
 }
 
 html, body {

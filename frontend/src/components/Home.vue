@@ -31,5 +31,6 @@ section.home-wrapper {
   padding: 60px 10%;
   max-width: 1600px;
   margin: auto;
+  z-index: 1;
 }
 </style>
