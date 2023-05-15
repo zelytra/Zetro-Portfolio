@@ -24,6 +24,7 @@ const onLoad = ref(false)
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
 section.home-wrapper {
   display: flex;
   flex-direction: column;
@@ -32,5 +33,10 @@ section.home-wrapper {
   max-width: 1600px;
   margin: auto;
   z-index: 1;
+
+
+  @media screen and (max-width: $responsive-break-point) {
+    padding: 60px 10%;
+  }
 }
 </style>

@@ -1,3 +1,5 @@
+$responsive-break-point: 800px;
+
 * {
   scroll-behavior: smooth;
   margin: 0;
@@ -11,7 +13,7 @@
   color: var(--secondary-text);
   scrollbar-color: var(--main) var(--primary-background);
   scrollbar-width: thin;
-  z-index: 1;
+  //z-index: 1;
 }
 
 html, body {
