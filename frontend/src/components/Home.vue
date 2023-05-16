@@ -36,7 +36,7 @@ section.home-wrapper {
 
 
   @media screen and (max-width: $responsive-break-point) {
-    padding: 60px 10%;
+    padding: 60px 5%;
   }
 }
 </style>

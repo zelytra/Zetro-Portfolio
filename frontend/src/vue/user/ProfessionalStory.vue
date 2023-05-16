@@ -33,7 +33,8 @@
               <li :class="{'slide-bottom-to-top':onScreen}"
                   v-for="(content,index) of selectedStory.content"
                   :style="['animation-delay:'+index*0.1+'s','opacity:0']"
-              >- {{ content }}</li>
+              >- {{ content }}
+              </li>
             </ul>
           </div>
         </Transition>
@@ -67,6 +68,8 @@ async function updateStory(story: ProfessionalStory) {
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
+
 .professional-story-wrapper {
   width: inherit;
   min-height: 400px;
@@ -98,6 +101,11 @@ async function updateStory(story: ProfessionalStory) {
         cursor: pointer;
         position: relative;
 
+        @media screen and (max-width: $responsive-break-point) {
+          width: fit-content;
+          padding: 12px;
+        }
+
         span {
           font-weight: 500;
           top: 50%;
@@ -105,6 +113,10 @@ async function updateStory(story: ProfessionalStory) {
           transform: translate(0, -50%);
           position: absolute;
           color: var(--main);
+
+          @media screen and (max-width: $responsive-break-point) {
+            display: none;
+          }
         }
 
         &:hover {
@@ -173,9 +185,10 @@ async function updateStory(story: ProfessionalStory) {
         gap: 10px;
 
         span {
-          border: 1px solid #BDBDBD;
+          border: 1px solid var(--main);
           border-radius: 4px;
           padding: 4px 8px;
+          color: var(--main);
         }
       }
 
