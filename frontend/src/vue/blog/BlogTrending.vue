@@ -50,6 +50,8 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
+
 section.blog-trending {
   max-width: 1600px;
   display: flex;
@@ -65,6 +67,13 @@ section.blog-trending {
     flex-wrap: wrap;
     gap: 18px;
     padding-bottom: 10px;
+
+    @media screen and (max-width: $responsive-break-point) {
+      flex-wrap: nowrap;
+      overflow: hidden;
+      overflow-x: auto;
+      padding-bottom: 12px;
+    }
   }
 
   .title-wrapper-more {
@@ -73,6 +82,10 @@ section.blog-trending {
     justify-content: space-between;
     width: 100%;
     gap: 10px;
+
+    @media screen and (max-width: $responsive-break-point) {
+      flex-direction: column;
+    }
 
     .more:hover {
       color: var(--main);

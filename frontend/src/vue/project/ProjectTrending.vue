@@ -62,6 +62,8 @@ async function loadProject(url: string) {
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
+
 section.project-trending {
   max-width: 1600px;
   display: flex;
@@ -75,6 +77,14 @@ section.project-trending {
     display: flex;
     flex-wrap: wrap;
     gap: 18px;
+
+    @media screen and (max-width: $responsive-break-point) {
+      flex-wrap: nowrap;
+      overflow: hidden;
+      overflow-x: auto;
+      padding-bottom: 12px;
+    }
+
   }
 
   .title-wrapper-more {
@@ -83,6 +93,10 @@ section.project-trending {
     justify-content: space-between;
     width: 100%;
     gap: 10px;
+
+    @media screen and (max-width: $responsive-break-point) {
+      flex-direction: column;
+    }
 
     .more:hover {
       color: var(--main);

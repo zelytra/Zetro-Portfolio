@@ -89,6 +89,7 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
 section.user-title {
   display: flex;
   justify-content: space-between;
@@ -103,7 +104,14 @@ section.user-title {
     max-width: 60%;
     gap: 12px;
 
+    @media screen and (max-width: $responsive-break-point) {
+      max-width: fit-content;
+    }
+
     .logo-container {
+      @media screen and (max-width: $responsive-break-point) {
+        display: none;
+      }
       border-radius: 50%;
       padding: 40px;
       border: solid var(--main) 12px;

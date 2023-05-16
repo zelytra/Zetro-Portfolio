@@ -63,6 +63,7 @@ function closeOption() {
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
 .input-wrapper {
   position: relative;
   width: 240px;
@@ -117,6 +118,12 @@ function closeOption() {
       display: flex;
       flex-direction: column;
       gap: 6px;
+
+      @media screen and (max-width: $responsive-break-point) {
+        top: unset;
+        position: relative;
+        margin-top: 6px;
+      }
 
       .option {
         padding: 10px;

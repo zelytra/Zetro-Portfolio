@@ -9,11 +9,13 @@
         </svg>
         <p>{{ footer.resume }}</p>
       </div>
-      <div class="content" v-if="footer.shortcut" v-for="shortcut of footer.shortcut">
-        <h3>{{ shortcut.title }}</h3>
-        <a v-for="link of shortcut.content" :href="link.link">{{ link.name }}</a>
+      <div class="content shortcuts">
+        <div class="group" v-if="footer.shortcut" v-for="shortcut of footer.shortcut">
+          <h3>{{ shortcut.title }}</h3>
+          <a v-for="link of shortcut.content" :href="link.link">{{ link.name }}</a>
+        </div>
       </div>
-      <div class="content">
+      <div class="content badges">
         <a class="badge" :href="footer.github">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -89,6 +91,8 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
+
 footer {
   display: flex;
   max-width: 1600px;
@@ -134,13 +138,34 @@ footer {
     gap: 24px;
     margin: auto;
 
+    @media screen and (max-width: $responsive-break-point) {
+      flex-direction: column;
+      justify-content: center;
+    }
+
     .content {
       display: flex;
       flex-direction: column;
       gap: 12px;
 
+      &.shortcuts {
+        flex-direction: row;
+        justify-content: space-between;
+
+        .group {
+          display: flex;
+          flex-direction: column;
+          width: fit-content;
+          align-items: center;
+          gap: 12px;
+        }
+      }
+
       &.resume {
         max-width: 35%;
+        @media screen and (max-width: $responsive-break-point) {
+          max-width: fit-content;
+        }
       }
 
       h3 {
@@ -159,6 +184,14 @@ footer {
         }
 
 
+      }
+
+      &.badges{
+        @media screen and (max-width: $responsive-break-point) {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
       }
 
       .badge {
@@ -189,6 +222,9 @@ footer {
   }
 
   h5 {
+    @media screen and (max-width: $responsive-break-point) {
+      align-self: flex-end;
+    }
     a:hover {
       color: var(--main);
     }

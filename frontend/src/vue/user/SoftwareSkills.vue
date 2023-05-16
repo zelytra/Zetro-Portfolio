@@ -25,6 +25,8 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
+
 .software-wrapper {
   display: flex;
   flex-direction: column;
@@ -39,6 +41,9 @@ onMounted(() => {
 
     .skill {
       width: 48%;
+      @media screen and (max-width: $responsive-break-point) {
+        width: 100%;
+      }
     }
   }
 }

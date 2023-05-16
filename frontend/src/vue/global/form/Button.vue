@@ -9,6 +9,7 @@
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
 .custom-button {
   padding: 10px 22px;
   border: 1px solid var(--main);
@@ -22,6 +23,10 @@
 
   :slotted(p) {
     color: var(--main);
+    white-space: nowrap;
+    @media screen and (max-width: $responsive-break-point) {
+      font-size: 12px;
+    }
   }
 
   :slotted(svg) path {

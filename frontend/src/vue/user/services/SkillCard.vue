@@ -16,6 +16,8 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
+
 .skill-container {
   display: flex;
   flex-direction: column;
@@ -29,6 +31,12 @@ defineProps({
   height: 220px;
   overflow: hidden;
   opacity: 0;
+
+  @media screen and (max-width: $responsive-break-point) {
+    width: auto;
+    max-width: 300px;
+    height: auto;
+  }
 
   .image-container {
     border: solid 1px var(--main);

@@ -1,7 +1,7 @@
 <template>
   <section class="services-wrapper">
     <Title class="title" v-if="service" :sub-title="service.subTitle" :title="service.title"/>
-    <AppearAnimation :once="true" v-model="isOnScreen">
+    <AppearAnimation :once="true" v-model="isOnScreen" :threshold="0.2">
       <section class="specialisation" v-if="service && service.cards">
         <SkillCard :class="{'slide-left-to-right':isOnScreen}" :title="getCard(0).title"
                    :content="getCard(0).content">
@@ -69,6 +69,8 @@ function getCard(index: number) {
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
+
 .title {
   margin: auto;
 }
@@ -77,6 +79,7 @@ function getCard(index: number) {
   display: flex;
   flex-direction: column;
   gap: 80px;
+
 }
 
 section.specialisation {
@@ -84,5 +87,8 @@ section.specialisation {
   justify-content: center;
   align-items: center;
   gap: 40px;
+  @media screen and (max-width: $responsive-break-point) {
+    flex-direction: column;
+  }
 }
 </style>

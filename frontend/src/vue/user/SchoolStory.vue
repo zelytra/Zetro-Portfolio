@@ -47,6 +47,8 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
+
 .school-story-wrapper {
   width: inherit;
 
@@ -55,8 +57,17 @@ onMounted(() => {
     justify-content: space-between;
     margin-top: 80px;
 
+    @media screen and (max-width: $responsive-break-point) {
+      flex-direction: column;
+      margin-top: 40px;
+    }
+
     .content {
       max-width: 50%;
+
+      @media screen and (max-width: $responsive-break-point) {
+        max-width: fit-content;
+      }
 
       &.skill {
         display: flex;
@@ -67,6 +78,10 @@ onMounted(() => {
       &.school {
         height: fit-content;
         border-left: solid 2px var(--primary-text);
+
+        @media screen and (max-width: $responsive-break-point) {
+          margin-bottom: 120px;
+        }
       }
 
       .school-detail {

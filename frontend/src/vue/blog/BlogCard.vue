@@ -44,11 +44,16 @@ function formatDate(date: Date): string {
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
 .project-card {
   width: 320px;
   height: fit-content;
   cursor: pointer;
   flex-shrink: 0;
+
+  @media screen and (max-width: $responsive-break-point) {
+    width: 280px;
+  }
 
   .tags {
     display: flex;
@@ -85,6 +90,10 @@ function formatDate(date: Date): string {
       background-color: var(--secondary-background);
       opacity: 70%;
       position: relative;
+
+      @media screen and (max-width: $responsive-break-point) {
+        width: 280px;
+      }
 
       .tags {
         position: absolute;
