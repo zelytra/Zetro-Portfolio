@@ -101,6 +101,7 @@ function updateSelectedBlog(blogUrlName: string) {
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
 section.blogs {
   padding: 60px 5%;
   max-width: 1600px;
@@ -120,6 +121,9 @@ section.blogs {
     justify-content: center;
     align-items: center;
     align-self: start;
+    @media screen and (max-width: $responsive-break-point) {
+      flex-direction: column;
+    }
   }
 
   .card-wrapper {
