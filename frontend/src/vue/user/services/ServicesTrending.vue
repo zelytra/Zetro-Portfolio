@@ -1,7 +1,7 @@
 <template>
   <section class="services-wrapper">
     <Title class="title" v-if="service" :sub-title="service.subTitle" :title="service.title"/>
-    <AppearAnimation :once="true" v-model="isOnScreen">
+    <AppearAnimation :once="true" v-model="isOnScreen" :threshold="0.2">
       <section class="specialisation" v-if="service && service.cards">
         <SkillCard :class="{'slide-left-to-right':isOnScreen}" :title="getCard(0).title"
                    :content="getCard(0).content">
