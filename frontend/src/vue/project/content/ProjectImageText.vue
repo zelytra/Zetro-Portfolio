@@ -17,16 +17,24 @@ import {ImageText} from "@/object/Project";
 defineProps({
   content: {
     type: Object as PropType<ImageText>,
-    required:true
+    required: true
   }
 })
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
+
 .image-text {
   display: flex;
   justify-content: space-between;
   max-width: 1600px;
+
+  @media screen and (max-width: $responsive-break-point) {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
 
   .content {
     display: flex;
@@ -34,6 +42,10 @@ defineProps({
     justify-content: center;
     gap: 10px;
     max-width: 75%;
+
+    @media screen and (max-width: $responsive-break-point) {
+      max-width: 100%;
+    }
 
     h2 {
       font-style: normal;

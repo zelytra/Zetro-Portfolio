@@ -127,6 +127,10 @@ section.projects {
   overflow: hidden;
   min-height: 400px;
 
+  @media screen and (max-width: $responsive-break-point) {
+    padding: 60px 10px;
+  }
+
   .filters-wrapper {
     display: flex;
     gap: 12px;

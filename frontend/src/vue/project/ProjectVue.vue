@@ -68,5 +68,6 @@ function getComponent(content: Object): any {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  width: 100%;
 }
 </style>

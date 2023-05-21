@@ -20,17 +20,23 @@ import {Title} from "@/object/Project";
 defineProps({
   content: {
     type: Object as PropType<Title>,
-    required:true
+    required: true
   }
 })
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
+
 .project-title {
   display: flex;
   width: auto;
   justify-content: space-between;
   align-items: start;
+
+  @media screen and (max-width: $responsive-break-point) {
+    align-items: center;
+  }
 
   .content {
     display: flex;
@@ -51,12 +57,18 @@ defineProps({
       font-weight: 400;
       font-size: 16px;
       line-height: 26px;
+
     }
 
     img {
       width: 180px;
       border-radius: 8px;
       overflow: hidden;
+      align-self: center;
+
+      @media screen and (max-width: $responsive-break-point) {
+        width: 80px;
+      }
     }
 
     .tags {
