@@ -196,6 +196,7 @@ function scrollToHeading(heading: string) {
       margin: 6px 0 0 0;
       font-family: Inter, sans-serif;
       font-size: 16px;
+      text-align: justify;
 
 
       em {

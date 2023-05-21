@@ -6,6 +6,7 @@
     <component v-for="content of project.contents"
                :is="getComponent(content)"
                :content="content"/>
+    <ProjectTrending/>
   </article>
 </template>
 
@@ -27,6 +28,7 @@ import ExternalLinksVue from "@/vue/project/content/ExternalLinksVue.vue";
 import router from "@/router";
 import Button from "@/vue/global/form/Button.vue";
 import {useHead, useServerHead} from "unhead";
+import ProjectTrending from "@/vue/project/ProjectTrending.vue";
 
 const props = defineProps({
   project: {

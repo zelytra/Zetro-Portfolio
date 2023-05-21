@@ -45,16 +45,16 @@
     </section>
     <transition name="menu">
         <nav class="menu" v-if="!deployMenu">
-          <router-link :to="'/'" @click="toggleMenu()">
+          <router-link class="router-link" :to="'/'" @click="toggleMenu()">
             {{ header.home }}
           </router-link>
-          <router-link :to="'/projects'" @click="toggleMenu()">
+          <router-link class="router-link" :to="'/projects'" @click="toggleMenu()">
             {{ header.projects }}
           </router-link>
-          <router-link :to="'/blog'" @click="toggleMenu()">
+          <router-link class="router-link" :to="'/blog'" @click="toggleMenu()">
             {{ header.blogs }}
           </router-link>
-          <router-link :to="'/templates'" @click="toggleMenu()">
+          <router-link class="router-link" :to="'/templates'" @click="toggleMenu()">
             {{ header.templates }}
           </router-link>
         </nav>
@@ -198,11 +198,12 @@ header {
       z-index: 999;
       left: 0;
       transform: none;
+      gap: 16px;
 
       .router-link {
         width: 100%;
         text-align: center;
-        padding: 7px 0;
+        padding: 12px 0;
       }
 
       .router-link-active {

@@ -50,6 +50,7 @@ defineProps({
       font-weight: 700;
       font-size: 35px;
       line-height: 42px;
+      color: var(--main);
     }
 
     p {
