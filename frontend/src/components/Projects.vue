@@ -38,7 +38,7 @@ import router from "@/router";
 import Loading from "@/vue/global/utils/Loading.vue";
 import SelectInput from "@/vue/global/form/SelectInput.vue";
 import {langStore} from "@/store/LangStore";
-import AppearAnimation from "@/vue/global/AppearAnimation.vue";
+import AppearAnimation from "@/vue/global/utils/AppearAnimation.vue";
 
 const projects = ref<Project[]>([])
 const filterMap = ref<Map<string, string[]>>(new Map<string, string[]>())

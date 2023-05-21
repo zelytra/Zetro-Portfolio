@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import {ref} from "vue";
-import AppearAnimation from "@/vue/global/AppearAnimation.vue";
+import AppearAnimation from "@/vue/global/utils/AppearAnimation.vue";
 
 const onScreen = ref(false)
 

@@ -4,22 +4,31 @@
       <h2>{{ content.title }}</h2>
       <p>{{ content.text }}</p>
     </div>
-    <div class="content image">
+    <div class="content image" @click="toggleZoom()">
       <img :src="content.image"/>
     </div>
   </div>
+  <Modal v-model:is-modal-open="zoomIn">
+    <img class="zoom-img" :src="content.image"/>
+  </Modal>
 </template>
 
 <script setup lang="ts">
-import {PropType} from "vue";
+import {PropType, ref} from "vue";
 import {BigImageText} from "@/object/Project";
+import Modal from "@/vue/global/utils/Modal.vue";
 
+const zoomIn = ref(false)
 defineProps({
   content: {
     type: Object as PropType<BigImageText>,
-    required:true
+    required: true
   }
 })
+
+function toggleZoom() {
+  zoomIn.value = !zoomIn.value
+}
 </script>
 
 <style scoped lang="scss">
@@ -60,5 +69,10 @@ defineProps({
       }
     }
   }
+}
+
+.zoom-img {
+  max-width: 50%;
+  max-height: 50%;
 }
 </style>

@@ -75,7 +75,7 @@
 import {onMounted, ref} from "vue";
 import {User} from "@/object/UserProfile";
 import {HTTPAxios} from "@/object/utils/HTTPAxios";
-import AppearAnimation from "@/vue/global/AppearAnimation.vue";
+import AppearAnimation from "@/vue/global/utils/AppearAnimation.vue";
 
 const user = ref<User>()
 const isOnScreen = ref(false)

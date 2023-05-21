@@ -49,7 +49,7 @@ import {Professional, ProfessionalStory} from "@/object/UserProfile";
 import {onMounted, ref} from "vue";
 import {HTTPAxios} from "@/object/utils/HTTPAxios";
 import {BasicText} from "@/object/Project";
-import AppearAnimation from "@/vue/global/AppearAnimation.vue";
+import AppearAnimation from "@/vue/global/utils/AppearAnimation.vue";
 
 const professional = ref<Professional>()
 const selectedStory = ref();

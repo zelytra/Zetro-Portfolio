@@ -30,7 +30,7 @@ import router from "@/router";
 import Title from "@/vue/global/utils/Title.vue";
 import Loading from "@/vue/global/utils/Loading.vue";
 import Button from "@/vue/global/form/Button.vue";
-import AppearAnimation from "@/vue/global/AppearAnimation.vue";
+import AppearAnimation from "@/vue/global/utils/AppearAnimation.vue";
 
 const blogs = ref<Blog[]>([])
 const loading = ref(false)

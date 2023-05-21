@@ -30,7 +30,7 @@ import {onMounted, onUnmounted, ref} from "vue";
 import SkillValue from "@/vue/user/SkillValue.vue";
 import {HTTPAxios} from "@/object/utils/HTTPAxios";
 import {onIntersect} from "@/object/utils/IntersectionListener";
-import AppearAnimation from "@/vue/global/AppearAnimation.vue";
+import AppearAnimation from "@/vue/global/utils/AppearAnimation.vue";
 
 const school = ref<School>()
 const skills = ref<Skill[]>([])
