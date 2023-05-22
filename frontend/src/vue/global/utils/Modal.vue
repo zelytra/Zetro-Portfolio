@@ -53,7 +53,6 @@ function toggleModal() {
     justify-content: start;
     align-items: center;
     flex-direction: column;
-    background: red;
     max-width: 90%;
 
     svg {

@@ -72,7 +72,8 @@ function toggleZoom() {
 }
 
 .zoom-img {
-  max-width: 50%;
-  max-height: 50%;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: auto;
 }
 </style>
