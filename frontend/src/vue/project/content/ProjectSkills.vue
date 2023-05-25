@@ -24,14 +24,23 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
 .project-skill {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
 
+  @media screen and (max-width: $responsive-break-point) {
+    flex-direction: column;
+  }
+
   .content {
     width: 50%;
+
+    @media screen and (max-width: $responsive-break-point) {
+      width: 100%;
+    }
 
     h2 {
       font-style: normal;

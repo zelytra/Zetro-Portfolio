@@ -6,7 +6,7 @@ export interface User {
     github: string
     figma: string
     behance: string
-    linkedin: string
+    twitter: string
 }
 
 export interface HeaderSite {
@@ -91,4 +91,16 @@ export interface SoftwareSkill {
 export interface Range {
     min: number,
     max: number
+}
+
+export interface UserComment {
+    title: string
+    subTitle: string
+    comments: [
+        {
+            name: string
+            icon: string
+            comment: string
+        }
+    ]
 }

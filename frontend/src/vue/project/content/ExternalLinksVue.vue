@@ -17,7 +17,7 @@ import {BasicText, ExternalLinks} from "@/object/Project";
 defineProps({
   content: {
     type: Object as PropType<ExternalLinks>,
-    required:true
+    required: true
   }
 })
 </script>
@@ -43,16 +43,21 @@ defineProps({
     display: flex;
     gap: 10px;
     align-items: center;
+    flex-wrap: wrap;
 
     .button {
       display: flex;
       align-items: center;
       gap: 10px;
-      background: rgba(255, 232, 209, 0.1);
+
       border: 1px solid var(--main);
       border-radius: 4px;
       padding: 15px 18px;
       cursor: pointer;
+
+      &:hover {
+        background: var(--hover-main);
+      }
 
       img {
         width: 23px;

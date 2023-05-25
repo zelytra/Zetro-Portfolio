@@ -35,7 +35,7 @@ import {Template, TemplateProvider} from "@/object/Template";
 import TemplateCard from "@/vue/template/TemplateCard.vue";
 import RangeSelectInput from "@/vue/global/form/RangeSelectInput.vue";
 import {Range} from "@/object/UserProfile";
-import AppearAnimation from "@/vue/global/AppearAnimation.vue";
+import AppearAnimation from "@/vue/global/utils/AppearAnimation.vue";
 
 const templates = ref<Template[]>([])
 const filterMap = ref<Map<string, string[]>>(new Map<string, string[]>())

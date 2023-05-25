@@ -55,8 +55,8 @@ const props = defineProps({
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
-      border-radius: 8px 8px 0 0;
-      background-color: var(--secondary-background);
+      border-radius: 7px 7px 0 0;
+      //background-color: var(--secondary-background);
       opacity: 50%;
     }
 

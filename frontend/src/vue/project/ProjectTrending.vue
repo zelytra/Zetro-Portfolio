@@ -31,7 +31,7 @@ import ProjectCard from "@/vue/project/ProjectCard.vue";
 import Loading from "@/vue/global/utils/Loading.vue";
 import Title from "@/vue/global/utils/Title.vue";
 import Button from "@/vue/global/form/Button.vue";
-import AppearAnimation from "@/vue/global/AppearAnimation.vue";
+import AppearAnimation from "@/vue/global/utils/AppearAnimation.vue";
 
 const projects = ref<Project[]>([])
 const nodes = ref<GitNode[]>([])

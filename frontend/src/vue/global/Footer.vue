@@ -150,7 +150,8 @@ footer {
 
       &.shortcuts {
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
+        width: 100%;
 
         .group {
           display: flex;
@@ -186,11 +187,12 @@ footer {
 
       }
 
-      &.badges{
+      &.badges {
         @media screen and (max-width: $responsive-break-point) {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
+          justify-content: center;
         }
       }
 
@@ -225,6 +227,7 @@ footer {
     @media screen and (max-width: $responsive-break-point) {
       align-self: flex-end;
     }
+
     a:hover {
       color: var(--main);
     }

@@ -20,6 +20,7 @@
   </section>
   <section class="blogs" v-else>
     <MarkdownVue v-if="selectedBlog" :markdown-src="selectedBlog"/>
+    <BlogTrending/>
   </section>
 </template>
 
@@ -35,7 +36,8 @@ import {Blog, BlogProvider} from "@/object/Blog";
 import MarkdownVue from "@/vue/blog/MarkdownVue.vue";
 import BlogCard from "@/vue/blog/BlogCard.vue";
 import {langStore} from "@/store/LangStore";
-import AppearAnimation from "@/vue/global/AppearAnimation.vue";
+import AppearAnimation from "@/vue/global/utils/AppearAnimation.vue";
+import BlogTrending from "@/vue/blog/BlogTrending.vue";
 
 const blogs = ref<Blog[]>([])
 const filterMap = ref<Map<string, string[]>>(new Map<string, string[]>())

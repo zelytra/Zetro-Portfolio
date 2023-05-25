@@ -34,6 +34,7 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
+@import "@assets/style.scss";
 .content-wrapper {
   display: flex;
   gap: 10px;
@@ -43,6 +44,10 @@ defineProps({
   box-shadow: 0 12px 32px var(--detail-shadow);
   border-radius: 10px;
   padding: 20px;
+
+  @media screen and (max-width: $responsive-break-point) {
+    padding: 7px;
+  }
 
   .content {
     display: flex;

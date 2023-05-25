@@ -51,7 +51,7 @@ import {onMounted, ref} from "vue";
 import {HTTPAxios} from "@/object/utils/HTTPAxios";
 import {Service} from "@/object/UserProfile";
 import Title from "@/vue/global/utils/Title.vue";
-import AppearAnimation from "@/vue/global/AppearAnimation.vue";
+import AppearAnimation from "@/vue/global/utils/AppearAnimation.vue";
 import SkillCard from "@/vue/user/services/SkillCard.vue";
 
 const service = ref<Service>()
