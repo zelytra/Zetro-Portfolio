@@ -44,7 +44,7 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
+    gap: 18px;
     flex-wrap: nowrap;
     @media screen and (max-width: $responsive-break-point) {
       flex-wrap: wrap;
@@ -59,6 +59,10 @@ onMounted(() => {
       gap: 12px;
       background: var(--hover-main);
       opacity: 0;
+
+      @media screen and (max-width: $responsive-break-point) {
+        padding: 12px;
+      }
 
       .header {
         display: flex;
