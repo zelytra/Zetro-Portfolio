@@ -6,7 +6,7 @@ export interface User {
     github: string
     figma: string
     behance: string
-    linkedin: string
+    twitter: string
 }
 
 export interface HeaderSite {
