@@ -92,3 +92,15 @@ export interface Range {
     min: number,
     max: number
 }
+
+export interface UserComment {
+    title: string
+    subTitle: string
+    comments: [
+        {
+            name: string
+            icon: string
+            comment: string
+        }
+    ]
+}

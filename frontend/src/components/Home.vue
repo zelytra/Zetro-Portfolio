@@ -7,6 +7,7 @@
     <BlogTrending v-if="onLoad"/>
     <SchoolStory v-if="onLoad"/>
     <SoftwareSkills v-if="onLoad"/>
+    <UserComment v-if="onLoad"/>
   </section>
 </template>
 
@@ -19,6 +20,7 @@ import ProjectTrending from "@/vue/project/ProjectTrending.vue";
 import SoftwareSkills from "@/vue/user/SoftwareSkills.vue";
 import ServicesTrending from "@/vue/user/services/ServicesTrending.vue";
 import {ref} from "vue";
+import UserComment from "@/vue/user/UserComment.vue";
 
 const onLoad = ref(false)
 </script>

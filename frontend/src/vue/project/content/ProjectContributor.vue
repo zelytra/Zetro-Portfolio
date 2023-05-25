@@ -59,7 +59,7 @@ const props = defineProps({
       height: 70px;
       overflow: hidden;
       background: var(--hover-main);
-      border: 1px solid #FFE8D1;
+      border: 1px solid var(--main);
       border-radius: 8px;
       padding: 12px 23px;
 

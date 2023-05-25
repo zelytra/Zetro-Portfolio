@@ -5,7 +5,6 @@
       <SkillValue class="skill" :skill="skill" v-for="skill of softwareSkills.skills"/>
     </div>
   </section>
-
 </template>
 
 <script setup lang="ts">
