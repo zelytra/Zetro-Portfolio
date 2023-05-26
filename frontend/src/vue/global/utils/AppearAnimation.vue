@@ -38,6 +38,8 @@ onUnmounted(() => {
 })
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.appear-animation{
+  width: inherit;
+}
 </style>
