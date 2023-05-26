@@ -38,7 +38,8 @@ onMounted(() => {
 .user-comments-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  gap: 80px;
 
   .comments-wrapper {
     display: flex;
@@ -52,7 +53,7 @@ onMounted(() => {
 
     .comment {
       padding: 24px;
-      border: solid 2px var(--main);
+      border: solid 1px var(--main);
       border-radius: 8px;
       display: flex;
       flex-direction: column;
