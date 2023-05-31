@@ -4,7 +4,7 @@
     <div class="title-wrapper-more">
       <Title v-if="projectProvider" :title="projectProvider.title" :sub-title="projectProvider.subTitle" class="title"/>
       <Button @click="router.push('/projects')">
-        <p>Voir plus -></p>
+        <p v-if="buttonTraduction">{{buttonTraduction.more}} -></p>
       </Button>
     </div>
     <AppearAnimation :once="true" v-model="onScreen" :threshold="0.2">
@@ -32,12 +32,14 @@ import Loading from "@/vue/global/utils/Loading.vue";
 import Title from "@/vue/global/utils/Title.vue";
 import Button from "@/vue/global/form/Button.vue";
 import AppearAnimation from "@/vue/global/utils/AppearAnimation.vue";
+import {ButtonTraduction} from "@/object/Button";
 
 const projects = ref<Project[]>([])
 const nodes = ref<GitNode[]>([])
 const loading = ref(false)
 const onScreen = ref(false)
 const projectProvider = ref<ProjectProvider>()
+const buttonTraduction = ref<ButtonTraduction>()
 
 onMounted(() => {
   loading.value = true
@@ -49,8 +51,11 @@ onMounted(() => {
     for (const [index, value] of nodes.value.entries()) {
       if (index >= 5) break
       await loadProject(value.url)
+      loading.value = false
     }
-    loading.value = false
+  })
+  new HTTPAxios("/buttons.json", null, true).get().then((data) => {
+    buttonTraduction.value = data.data as ButtonTraduction
   })
 })
 

@@ -69,10 +69,14 @@
       </div>
     </section>
     <hr>
-    <h5>Copyright © ZeTro - {{ footer.develop }} <a href="https://zelytra.fr" target="_blank">Zelytra</a></h5>
-    <h5 class="cgu">
-      <router-link to="/cgu">CGU</router-link>
-    </h5>
+    <div class="copyrights">
+      <h5>Copyright © ZeTro - {{ footer.develop }} <a href="https://zelytra.fr" target="_blank">Zelytra</a></h5>
+      <h5 class="cg">
+        <router-link to="/cgu">CGU</router-link>
+        <img src="@assets/icons/separation.svg">
+        <router-link to="/cgv">CGV</router-link>
+      </h5>
+    </div>
   </footer>
 </template>
 
@@ -125,11 +129,7 @@ footer {
     opacity: 50%;
   }
 
-  .cgu {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
+
 
   section.upper-side {
     display: flex;
@@ -223,15 +223,40 @@ footer {
     }
   }
 
-  h5 {
+  .copyrights{
+
     @media screen and (max-width: $responsive-break-point) {
-      align-self: flex-end;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
     }
 
-    a:hover {
-      color: var(--main);
+    .cg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+
+      @media screen and (max-width: $responsive-break-point) {
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    h5 {
+
+      a:hover {
+        color: var(--main);
+      }
     }
   }
+
+
 
 }
 </style>

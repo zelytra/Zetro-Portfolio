@@ -4,7 +4,7 @@
     <div class="title-wrapper-more">
       <Title v-if="blogProvider" :title="blogProvider.title" :sub-title="blogProvider.subTitle" class="title"/>
       <Button @click="router.push('/blog')">
-        <p>Voir plus -></p>
+        <p v-if="buttonTraduction">{{buttonTraduction.more}} -></p>
       </Button>
     </div>
     <AppearAnimation :once="true" v-model="onScreen" :threshold="0.2">
@@ -31,11 +31,13 @@ import Title from "@/vue/global/utils/Title.vue";
 import Loading from "@/vue/global/utils/Loading.vue";
 import Button from "@/vue/global/form/Button.vue";
 import AppearAnimation from "@/vue/global/utils/AppearAnimation.vue";
+import {ButtonTraduction} from "@/object/Button";
 
 const blogs = ref<Blog[]>([])
 const loading = ref(false)
 const onScreen = ref(false)
 const blogProvider = ref<BlogProvider>()
+const buttonTraduction = ref<ButtonTraduction>()
 
 onMounted(() => {
   loading.value = true
@@ -44,6 +46,9 @@ onMounted(() => {
   })
   new HTTPAxios("git/blog/" + langStore.get(), null, false).get().then(async (response) => {
     blogs.value = response.data
+  })
+  new HTTPAxios("/buttons.json", null, true).get().then((data) => {
+    buttonTraduction.value = data.data as ButtonTraduction
     loading.value = false
   })
 })

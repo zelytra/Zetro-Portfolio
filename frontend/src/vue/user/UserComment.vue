@@ -44,8 +44,9 @@ onMounted(() => {
   .comments-wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 18px;
+    justify-content: space-around;
+    gap: 40px;
+    width: 100%;
     flex-wrap: nowrap;
     @media screen and (max-width: $responsive-break-point) {
       flex-wrap: wrap;
@@ -60,6 +61,11 @@ onMounted(() => {
       gap: 12px;
       background: var(--hover-main);
       opacity: 0;
+      max-width: 400px;
+
+      p{
+        line-height: 28px;
+      }
 
       @media screen and (max-width: $responsive-break-point) {
         padding: 12px;
