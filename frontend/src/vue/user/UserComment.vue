@@ -61,7 +61,11 @@ onMounted(() => {
       gap: 12px;
       background: var(--hover-main);
       opacity: 0;
-      max-width: 300px;
+      max-width: 400px;
+
+      p{
+        line-height: 28px;
+      }
 
       @media screen and (max-width: $responsive-break-point) {
         padding: 12px;

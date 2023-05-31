@@ -34,6 +34,11 @@ export const routes = [
         component: () => import('@components/CGU.vue'),
     },
     {
+        path: "/cgv",
+        name: "CGV",
+        component: () => import('@components/CGU.vue'),
+    },
+    {
         path: "/:pathMatch(.*)*",
         component: () => import('@components/PageNotFound.vue'),
     },

@@ -1,7 +1,7 @@
 <template>
   <article class="project">
     <Button @click="router.push('/projects')">
-      <p>{{ "<- Retour" }}</p>
+      <p v-if="buttonTraduction">{{ "<- "+buttonTraduction.back }}</p>
     </Button>
     <component v-for="content of project.contents"
                :is="getComponent(content)"
@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, PropType} from "vue";
+import {onMounted, PropType, ref} from "vue";
 import {Content} from "@/object/Project";
 import {Project} from "@/object/Project";
 import PageNotFound from "@components/PageNotFound.vue";
@@ -29,12 +29,21 @@ import router from "@/router";
 import Button from "@/vue/global/form/Button.vue";
 import {useHead, useServerHead} from "unhead";
 import ProjectTrending from "@/vue/project/ProjectTrending.vue";
+import {HTTPAxios} from "@/object/utils/HTTPAxios";
+import {ButtonTraduction} from "@/object/Button";
 
+const buttonTraduction = ref<ButtonTraduction>()
 const props = defineProps({
   project: {
     type: Object as PropType<Project>,
     required: true
   }
+})
+
+onMounted(()=>{
+  new HTTPAxios("/buttons.json", null, true).get().then((data) => {
+    buttonTraduction.value = data.data as ButtonTraduction
+  })
 })
 
 function getComponent(content: Object): any {

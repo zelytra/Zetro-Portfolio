@@ -18,13 +18,13 @@ $responsive-break-point: 800px;
 
 html, body {
   background-color: var(--primary-background);
-  background-size: cover;
+  background-size: contain;
   width: auto;
   min-height: 100vh;
 }
 
 body{
-  //background-image: url("@assets/icons/background.svg");
+  background-image: url("@assets/icons/background.svg");
 }
 
 #app {

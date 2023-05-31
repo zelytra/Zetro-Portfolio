@@ -2,7 +2,7 @@
   <AppearAnimation :once="true" v-model="isOnScreen">
     <div class="skill-container">
       <h3 :class="{'opacity':isOnScreen}">{{ skill.name }}</h3>
-      <div class="skill-bar">
+      <div class="skill-bar" :class="{'opacity':isOnScreen}" >
         <div :class="{'progress-width':isOnScreen,'skill-value':true}"
              :style="{'max-width': skill.level + '%'}"/>
       </div>
@@ -38,6 +38,7 @@ defineProps({
     line-height: 17px;
     color: var(--main);
     margin-bottom: 12px;
+    opacity: 0;
   }
 
   .skill-bar, .skill-value {
@@ -49,6 +50,7 @@ defineProps({
     width: 100%;
     background: rgba(255, 232, 209, 0.1);
     overflow: hidden;
+    opacity: 0;
   }
 
   .skill-value {

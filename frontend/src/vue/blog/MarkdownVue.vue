@@ -6,7 +6,7 @@
         <Loading v-if="loading"/>
       </transition>
       <Button @click="router.back()">
-        <p>{{ "<- Retour" }}</p>
+        <p v-if="buttonTraduction">{{ "<- "+buttonTraduction.back }}</p>
       </Button>
       <div id="content" v-html="renderResult"/>
     </div>
@@ -21,11 +21,14 @@ import axios from "axios";
 import Button from "@/vue/global/form/Button.vue";
 import router from "@/router";
 import Summary from "@/vue/blog/Summary.vue";
+import {HTTPAxios} from "@/object/utils/HTTPAxios";
+import {ButtonTraduction} from "@/object/Button";
 
 const mdFile = ref();
 const renderResult = ref("");
 const loading = ref<boolean>(false)
 const headings = ref<Element[]>([])
+const buttonTraduction = ref<ButtonTraduction>()
 
 const props = defineProps({
   markdownSrc: {
@@ -46,6 +49,9 @@ onMounted(() => {
     loading.value = false;
   }).catch(() => {
     loading.value = false;
+  })
+  new HTTPAxios("/buttons.json", null, true).get().then((data) => {
+    buttonTraduction.value = data.data as ButtonTraduction
   })
 })
 
