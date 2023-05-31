@@ -18,19 +18,23 @@ $responsive-break-point: 800px;
 
 html, body {
   background-color: var(--primary-background);
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: auto;
   min-height: 100vh;
+  height: auto;
 }
 
 body{
-  //background-image: url("@assets/icons/background.svg");
+
 }
 
-#app {
+body {
   min-height: 100vh;
+  height: auto;
   position: relative;
+  padding-bottom: 60px;
+
+  background-image: url("@assets/icons/background.svg");
+  background-repeat: repeat-y;
+  background-size: 100% auto;
 }
 
 ::-webkit-scrollbar {
