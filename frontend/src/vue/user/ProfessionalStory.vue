@@ -2,7 +2,7 @@
   <AppearAnimation :once="true" v-model="onScreen">
     <section class="professional-story-wrapper" v-if="professional">
       <div class="content">
-        <Title title="Expériences de travail" sub-title="PARCROUS PROFESSIONNEL"/>
+        <Title :title="professional.title" :sub-title="professional.subTitle"/>
         <div class="company-selector">
           <p v-for="(story,index) of professional.stories"
              @click="updateStory(story)"

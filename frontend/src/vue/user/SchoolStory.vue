@@ -1,7 +1,7 @@
 <template>
   <section class="school-story-wrapper" v-if="school">
     <AppearAnimation :once="true" v-model="isOnScreen">
-      <Title class="title" :sub-title="school.subTitle" title="Formations et compétences"
+      <Title class="title" :sub-title="school.subTitle" :title="school.title"
              :class="{'slide-left-to-right':isOnScreen}" :style="'opacity:0'"/>
       <div class="content-wrapper">
         <div class="content school">
