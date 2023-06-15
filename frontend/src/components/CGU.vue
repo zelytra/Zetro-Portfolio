@@ -1,11 +1,16 @@
 <template>
   <section class="marked-wrapper">
-    <MarkdownVue markdown-src="https://raw.githubusercontent.com/ZeTro-dev/portfolio/main/fr/CGU.md"/>
+    <MarkdownVue :markdown-src="getLink()"/>
   </section>
 </template>
 
 <script setup lang="ts">
 import MarkdownVue from "@/vue/blog/MarkdownVue.vue";
+import {langStore} from "@/store/LangStore";
+
+function getLink(){
+  return "https://raw.githubusercontent.com/ZeTro-dev/portfolio/main/"+langStore.get()+"/CGU.md"
+}
 </script>
 
 <style scoped lang="scss">

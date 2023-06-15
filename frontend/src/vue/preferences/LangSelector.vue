@@ -18,7 +18,7 @@
         <div class="option"
              v-for="lang of langs"
              @click="langStore.set(lang.tag)">
-          <label>{{ lang.display }}</label>
+          <label :class="{'selected':langStore.get()===lang.tag}">{{ lang.display }}</label>
         </div>
       </div>
     </transition>
@@ -90,15 +90,20 @@ function closeOption() {
         align-items: center;
         gap: 6px;
         cursor: pointer;
-        filter: brightness(0.8);
-
-        &:hover {
-          filter: brightness(1);
-        }
 
         label {
           cursor: pointer;
           color: var(--primary-text);
+          filter: brightness(0.8);
+
+          &:hover {
+            filter: brightness(1);
+          }
+
+          &.selected{
+            color: var(--main);
+            filter: brightness(1);
+          }
         }
 
         &.selected {
