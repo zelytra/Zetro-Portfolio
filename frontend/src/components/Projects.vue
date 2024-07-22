@@ -13,7 +13,7 @@
     <div class="card-wrapper" v-if="!loading">
       <transition-group>
         <ProjectCard :project="project"
-                     v-for="(project,index) of filteredProject.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
+                     v-for="project of filteredProject.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
                      @click="router.push('/projects/'+project.url)"
                      :key="project.name"/>
       </transition-group>

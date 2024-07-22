@@ -1,5 +1,5 @@
 <template>
-  <section class="blog-trending">
+  <section class="blog-trending" v-if="blogs.length>0">
     <!-- <Loading v-if="loading"/> -->
     <div class="title-wrapper-more">
       <Title v-if="blogProvider" :title="blogProvider.title" :sub-title="blogProvider.subTitle" class="title"/>

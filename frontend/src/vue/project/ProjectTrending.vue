@@ -1,5 +1,5 @@
 <template>
-  <section class="project-trending">
+  <section class="project-trending" v-if="projects.length>0">
     <!-- <Loading v-if="loading"/> -->
     <div class="title-wrapper-more">
       <Title v-if="projectProvider" :title="projectProvider.title" :sub-title="projectProvider.subTitle" class="title"/>
@@ -11,7 +11,7 @@
       <div class="card-wrapper" v-if="!loading">
         <ProjectCard :project="project"
                      :class="{'slide-right-to-left':onScreen}"
-                     v-for="(project,index) of projects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())"
+                     v-for="(project,index) of projects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0,5)"
                      :style="['animation-delay:'+index*0.2+'s','opacity:0']"
                      @click="router.push('/projects/'+project.url)"
                      :key="project.name"/>
@@ -49,7 +49,6 @@ onMounted(() => {
   new HTTPAxios("git/project/" + langStore.get(), null, false).get().then(async (response) => {
     nodes.value = response.data
     for (const [index, value] of nodes.value.entries()) {
-      if (index >= 5) break
       await loadProject(value.url)
       loading.value = false
     }
