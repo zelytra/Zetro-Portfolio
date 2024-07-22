@@ -25,22 +25,22 @@
 <script setup lang="ts">
 import {onMounted, ref} from "vue";
 import axios from "axios";
+import {replaceCSSVariables} from "@/object/utils/Color";
 
 const toggleOption = ref<boolean>(false)
-const colors = ref()
+const colors = ref<any[]>()
 
 onMounted(() => {
   axios.get("https://raw.githubusercontent.com/" + import.meta.env.VITE_GITHUB_HOST + "/main/palette/colors.json").then((data) => {
     colors.value = data.data
+    replaceCSSVariables(colors.value![0])
+  })
+  axios.get("https://raw.githubusercontent.com/" + import.meta.env.VITE_GITHUB_HOST + "/main/palette/default.json").then((data) => {
+    replaceCSSVariables(data.data)
   })
 })
 
-function replaceCSSVariables(variables: { [key: string]: string }) {
-  Object.keys(variables).forEach((variableName) => {
-    const variableValue = variables[variableName];
-    document.documentElement.style.setProperty(`--${variableName}`, variableValue);
-  });
-}
+
 
 function openOption() {
   toggleOption.value = true
