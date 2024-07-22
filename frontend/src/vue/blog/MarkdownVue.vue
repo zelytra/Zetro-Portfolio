@@ -8,7 +8,7 @@
       <Button @click="router.back()">
         <p v-if="buttonTraduction">{{ "<- "+buttonTraduction.back }}</p>
       </Button>
-      <div id="content" v-html="renderResult"/>
+      <div id="content" v-html="rawText || renderResult"/>
     </div>
   </div>
 </template>
@@ -34,6 +34,10 @@ const props = defineProps({
   markdownSrc: {
     type: String,
     required: true
+  },
+  rawText:{
+    type:String,
+    required:false
   }
 })
 

@@ -34,6 +34,11 @@ export const routes = [
         component: () => import('@components/CGU.vue'),
     },
     {
+        path: "/preview",
+        name: "Preview",
+        component: () => import('@components/LiveMDPreview.vue'),
+    },
+    {
         path: "/cgv",
         name: "CGV",
         component: () => import('@components/CGU.vue'),

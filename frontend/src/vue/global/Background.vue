@@ -26,7 +26,7 @@ import {onBeforeRouteUpdate} from "vue-router";
 
 const leftShapeNumber = ref(0)
 const offsetLeft = 300;
-let listenerInstance: string | number | NodeJS.Timer | undefined;
+let listenerInstance: any;
 
 onMounted(() => {
   listenerInstance = setInterval(() => {
