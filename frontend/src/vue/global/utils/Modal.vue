@@ -29,7 +29,6 @@ const props = defineProps({
 const emits = defineEmits(['update:isModalOpen'])
 
 function toggleModal() {
-  console.log(props.isModalOpen)
   emits('update:isModalOpen', !props.isModalOpen)
 }
 </script>
