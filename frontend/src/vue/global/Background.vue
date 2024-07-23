@@ -41,7 +41,6 @@ onUnmounted(() => {
 function resizeListener() {
   leftShapeNumber.value = 0
   leftShapeNumber.value = Math.abs(Math.round(document.documentElement.scrollHeight / (400 + offsetLeft)))
-  //console.log(leftShapeNumber.value)
 }
 </script>
 

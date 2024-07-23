@@ -31,12 +31,11 @@ const toggleOption = ref<boolean>(false)
 const colors = ref<any[]>()
 
 onMounted(() => {
-  axios.get("https://raw.githubusercontent.com/" + import.meta.env.VITE_GITHUB_HOST + "/main/palette/colors.json").then((data) => {
-    colors.value = data.data
-    replaceCSSVariables(colors.value![0])
-  })
   axios.get("https://raw.githubusercontent.com/" + import.meta.env.VITE_GITHUB_HOST + "/main/palette/default.json").then((data) => {
     replaceCSSVariables(data.data)
+  })
+  axios.get("https://raw.githubusercontent.com/" + import.meta.env.VITE_GITHUB_HOST + "/main/palette/colors.json").then((data) => {
+    colors.value = data.data
   })
 })
 

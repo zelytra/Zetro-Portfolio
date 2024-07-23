@@ -8,8 +8,8 @@
 import MarkdownVue from "@/vue/blog/MarkdownVue.vue";
 import {langStore} from "@/store/LangStore";
 
-function getLink(){
-  return "https://raw.githubusercontent.com/ZeTro-dev/portfolio/main/"+langStore.get()+"/CGV.md"
+function getLink() {
+  return "https://raw.githubusercontent.com/" + import.meta.env.VITE_GITHUB_HOST + "/portfolio/main/" + langStore.get() + "/CGV.md"
 }
 </script>
 
