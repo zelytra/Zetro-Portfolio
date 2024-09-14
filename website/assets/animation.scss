@@ -1,0 +1,90 @@
+.slide-left-to-right {
+  animation: animation-slide-left-to-right 0.8s cubic-bezier(0.5, 0.35, 0.15, 1) 0s 1 normal both;
+}
+
+@keyframes animation-slide-left-to-right {
+  0% {
+    opacity: 0;
+    translate: -100px 0;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.slide-right-to-left {
+  animation: animation-slide-right-to-left 0.8s cubic-bezier(0.5, 0.35, 0.15, 1) 0s 1 normal both;
+}
+
+@keyframes animation-slide-right-to-left {
+  0% {
+    opacity: 0;
+    translate: 100px 0;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes animation-opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.opacity {
+  animation: animation-opacity 0.8s cubic-bezier(0.5, 0.35, 0.15, 1) 0.2s 1 normal both;
+}
+
+
+@keyframes animation-top-to-bottom {
+  0% {
+    opacity: 0;
+    translate: 0 -100px;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.slide-top-to-bottom {
+  animation: animation-top-to-bottom 0.94s cubic-bezier(0.5, 0.35, 0.15, 1) 0s 1 normal both;
+}
+
+@keyframes animation-bottom-to-top {
+  0% {
+    opacity: 0;
+    translate: 0 100px;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.slide-bottom-to-top {
+  animation: animation-bottom-to-top 0.94s cubic-bezier(0.5, 0.35, 0.15, 1) 0s 1 normal both;
+}
+
+@keyframes animation-progress-width {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.progress-width {
+  animation: animation-progress-width 2s ease 0s 1 normal both;
+}
