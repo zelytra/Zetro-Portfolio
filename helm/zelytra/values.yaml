@@ -1,0 +1,12 @@
+global:
+  docker:
+    # Artifactory host used for download Docker images
+    artifactoryUrl: "zelytra"
+    # Set in Gitlab-ci at the deployment. See values in CI/CD gitlab variables
+    user: ""
+    password: ""
+    imageTag:
+      zelytraPortfolio: latest
+
+  config:
+    PLATFORM: dv1

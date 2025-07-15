@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "zelytra-portfolio.fullname" $ }}-env
+  labels:
+    app: {{ template "zelytra-portfolio.fullname" $ }}
+    chart: {{ template "zelytra-portfolio.chart" $ }}
+    heritage: {{ $.Release.Service }}
+    release: {{ $.Release.Name }}
+data:
+  PLATFORM: {{ $.Values.global.config.PLATFORM | quote }}
+  APP_NAME: {{ $.Chart.Name | quote }}
+  LOGGER_NAME: {{ $.Values.config.LOGGER_NAME | quote }}

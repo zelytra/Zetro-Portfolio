@@ -1,0 +1,5 @@
+apiVersion: v2
+name: zelytra-portfolio
+version: 1.0.0
+description: Charts for App1
+home: https://gitlab/monorepo-template/-/tree/master/app1/helm
