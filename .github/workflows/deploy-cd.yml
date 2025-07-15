@@ -58,7 +58,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: "Deploy latest"
-    needs: build_and_push
+    needs:
+      - build_and_push
+      - build_and_push2
     steps:
       # Étape 1 : Vérifier le code du repository
       - name: Checkout repository
