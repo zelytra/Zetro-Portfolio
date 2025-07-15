@@ -1,4 +1,4 @@
-name: "[FRONTEND] CI | "
+name: "[FRONTEND] CI"
 on:
   pull_request:
     types:
