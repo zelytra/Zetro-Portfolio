@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "zelytra-portfolio.fullname" $ }}
+  name: {{ template "zetro-frontend.fullname" $ }}
   labels:
-    app: {{ template "zelytra-portfolio.fullname" $ }}
-    chart: {{ template "zelytra-portfolio.chart" $ }}
+    app: {{ template "zetro-frontend.fullname" $ }}
+    chart: {{ template "zetro-frontend.chart" $ }}
     heritage: {{ $.Release.Service }}
     release: {{ $.Release.Name }}
 spec:
   selector:
     matchLabels:
-      app: {{ template "zelytra-portfolio.fullname" $ }}
+      app: {{ template "zetro-frontend.fullname" $ }}
       release: {{ $.Release.Name }}
   strategy:
     type: RollingUpdate
@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "zelytra-portfolio.fullname" $ }}
+        app: {{ template "zetro-frontend.fullname" $ }}
         release: {{ $.Release.Name }}
       annotations:
         {{ if eq $.Values.global.config.PLATFORM "dv1"}}
@@ -31,8 +31,8 @@ spec:
 #      imagePullSecrets:
 #        - name: {{.Release.Name}}-monorepo-docker-secret
       containers:
-        - name: zelytra-portfolio
-          image: {{ $.Values.global.docker.artifactoryUrl }}{{ $.Values.deployment.image.repository }}:{{ $.Values.global.docker.imageTag.zelytraPortfolio }}
+        - name: zetro-frontend
+          image: {{ $.Values.global.docker.artifactoryUrl }}{{ $.Values.deployment.image.repository }}:{{ $.Values.global.docker.imageTag.zetroFrontend }}
           imagePullPolicy: {{ $.Values.deployment.image.pullPolicy | quote }}
           tty: true
           ports:
@@ -40,7 +40,7 @@ spec:
               protocol: TCP
           envFrom:
             - configMapRef:
-                name: {{ template "zelytra-portfolio.fullname" $ }}-env
+                name: {{ template "zetro-frontend.fullname" $ }}-env
           resources:
             requests:
               cpu: {{ $.Values.deployment.resources.requests.cpu }}

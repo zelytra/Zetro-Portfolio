@@ -6,7 +6,7 @@ global:
     user: ""
     password: ""
     imageTag:
-      zelytraPortfolio: latest
+      zetroFrontend: latest
 
   config:
     PLATFORM: dv1

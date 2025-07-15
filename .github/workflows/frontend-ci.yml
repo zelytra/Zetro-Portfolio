@@ -1,4 +1,4 @@
-name: "[PORTFOLIO] CI | "
+name: "[FRONTEND] CI | "
 on:
   pull_request:
     types:
@@ -23,11 +23,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          cache-dependency-path: zelytra/zelytra-portfolio/package-lock.json
+          cache-dependency-path: zetro/zetro-frontend/package-lock.json
       - run: npm ci
         name: Node install
-        working-directory: "zelytra/zelytra-portfolio"
+        working-directory: "zetro/zetro-frontend"
 
       - run: npm run build --if-present
-        working-directory: "zelytra/zelytra-portfolio"
+        working-directory: "zetro/zetro-frontend"
         name: Node build

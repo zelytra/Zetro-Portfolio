@@ -1,21 +1,17 @@
-FROM node:latest as build-stage
+# Step 1: Build the application with Node.js (build-stage)
+FROM node:latest AS build-stage
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
 
-FROM nginx:latest as production-build
+# Step 2: Use the Nginx image with reduced privileges (rootless)
+FROM nginxinc/nginx-unprivileged:stable-alpine AS production-build
+
 COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY --from=build-stage /app/dist /etc/nginx/html
 
-## Remove default nginx index page
-RUN rm -rf /usr/share/nginx/html/*
+EXPOSE 8080
 
-# Copy from the stage 1
-COPY --from=build-stage /app/dist /usr/share/nginx/html
-COPY ./env_runtime_editor.sh /env_runtime_editor.sh
-RUN chmod +x /env_runtime_editor.sh
-
-EXPOSE 80
-ENTRYPOINT ["/env_runtime_editor.sh"]
-# CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,5 +1,0 @@
-apiVersion: v1
-name: zelytra-portfolio
-version: 0.0.0
-description: Frontend for portfolio
-home: https://gitlab/monorepo-template/-/tree/master/app1/helm/charts/zelytra-portfolio

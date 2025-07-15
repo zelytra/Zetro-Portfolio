@@ -1,10 +1,10 @@
 ---
-## zelytra-portfolio image version
+## zetro-frontend image version
 ##
 
 deployment:
   image:
-    repository: /zelytra-portfolio
+    repository: /zetro-frontend
     pullPolicy: Always
   replicas: 1
   securityContext:
@@ -29,4 +29,4 @@ ingress:
   suffix: ""
 
 config:
-  LOGGER_NAME: zelytra-portfolio-logger
+  LOGGER_NAME: zetro-frontend-logger
