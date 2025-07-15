@@ -12,11 +12,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - zetro.zelytra.fr.fr
+        - zetro.zelytra.fr
       secretName: zetro-zelytra-fr-tls
   ingressClassName: traefik
   rules:
-    - host: "zetro.zelytra.fr.fr"
+    - host: "zetro.zelytra.fr"
       http:
         paths:
           - path: {{.Values.ingress.path | default "/" }}
