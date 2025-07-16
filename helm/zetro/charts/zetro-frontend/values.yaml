@@ -24,6 +24,9 @@ service:
   port: 80
   targetPort: 8080
 
+github: "ZeTro-dev/portfolio"
+backendURL: "/api"
+
 ingress:
   prefix: ""
   suffix: ""
