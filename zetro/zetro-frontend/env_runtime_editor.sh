@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ROOT_DIR=/usr/share/nginx/html
+ROOT_DIR=/tmp/html
 
 # Replace env vars in JavaScript files
 echo "Replacing env constants in JS"

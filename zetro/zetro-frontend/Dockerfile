@@ -34,14 +34,14 @@ RUN mkdir -p /var/run/nginx && \
     chown nginx:nginx /var/run/nginx
 
 # Remove default nginx index page
-RUN rm -rf /usr/share/nginx/html/*
+RUN rm -rf /tmp/html/*
 
 # Copy built application from the build-stage and set ownership
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY --from=build-stage /app/dist /tmp/html
 
 # Ensure ownership and permissions are correct
-RUN chown -R nginx:nginx /usr/share/nginx/html && \
-    chmod -R u+rwX /usr/share/nginx/html
+RUN chown -R nginx:nginx /tmp/html && \
+    chmod -R u+rwX /tmp/html
 
 # Copy the environment runtime editor script
 COPY ./env_runtime_editor.sh /env_runtime_editor.sh
