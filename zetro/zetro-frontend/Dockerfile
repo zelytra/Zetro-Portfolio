@@ -41,7 +41,7 @@ COPY --from=build-stage /app/dist /tmp/html
 
 # Ensure ownership and permissions are correct
 RUN chown -R nginx:nginx /tmp/html && \
-    chmod -R 700 /tmp/html
+    chmod -R 777 /tmp/html
 
 # Copy the environment runtime editor script
 COPY ./env_runtime_editor.sh /env_runtime_editor.sh
