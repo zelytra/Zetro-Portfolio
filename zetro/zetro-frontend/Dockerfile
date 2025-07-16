@@ -12,6 +12,15 @@ FROM nginxinc/nginx-unprivileged:stable-alpine AS production-build
 COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY --from=build-stage /app/dist /etc/nginx/html
 
+COPY ./env_runtime_editor.sh /env_runtime_editor.sh
+
+# Fix permissions so unprivileged user can write to these files
+USER root
+RUN chown -R nginx:nginx /etc/nginx/html && \
+    chmod -R u+w /etc/nginx/html
+
+USER nginx
+
 EXPOSE 8080
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/env_runtime_editor.sh"]
