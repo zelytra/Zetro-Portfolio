@@ -22,7 +22,6 @@ export class HTTPAxios {
         }
 
         this.axios = axios.create({
-            baseURL: this.url,
             timeout: 10000,
             headers: this.header
         });
