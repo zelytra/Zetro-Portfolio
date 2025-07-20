@@ -15,6 +15,8 @@ global:
 postgresql:
   enabled: true
   auth:
+    username: zetro
+    database: ZetroPortfolio
     existingSecret: "zetro-db-secret"
   primary:
     resources:
