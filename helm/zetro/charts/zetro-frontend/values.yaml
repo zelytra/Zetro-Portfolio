@@ -17,15 +17,12 @@ deployment:
       cpu: 100m
       memory: 100M
     limits:
-      cpu: 200m
-      memory: 200M
+      cpu: 1
+      memory: 512M
 
 service:
   port: 80
   targetPort: 8080
-
-github: "ZeTro-dev/portfolio"
-backendURL: "/api"
 
 ingress:
   prefix: ""

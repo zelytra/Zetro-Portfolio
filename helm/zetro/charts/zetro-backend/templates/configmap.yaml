@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "zetro-backend.fullname" $ }}-env
+  labels:
+    app: {{ template "zetro-backend.fullname" $ }}
+    chart: {{ template "zetro-backend.chart" $ }}
+    heritage: {{ $.Release.Service }}
+    release: {{ $.Release.Name }}
+data:
+  PLATFORM: {{ $.Values.global.config.PLATFORM | quote }}
+  APP_NAME: {{ $.Chart.Name | quote }}
+  LOGGER_NAME: {{ $.Values.config.LOGGER_NAME | quote }}
+
+  WIKI_REPO_URL: "ZeTro-dev/portfolio"
+  DB_HOST: {{ printf "%s-postgresql" .Release.Name | quote }}
+  DB_DATABASE: {{ .Values.postgresql.auth.database | quote }}
+  DB_USER: {{ .Values.postgresql.auth.username | quote }}
+  DB_PASSWORD: {{ .Values.postgresql.auth.password | quote }}
