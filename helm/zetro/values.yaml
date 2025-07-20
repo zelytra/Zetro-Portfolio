@@ -26,5 +26,5 @@ postgresql:
         memory: 512Mi
     persistence:
       enabled: true
-      storageClass: ""
+      storageClass: "local-path"
       size: 100Mi

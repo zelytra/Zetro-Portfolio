@@ -30,6 +30,10 @@ spec:
     spec:
       #      imagePullSecrets:
       #        - name: {{.Release.Name}}-monorepo-docker-secret
+      initContainers:
+        - name: wait-for-postgres
+          image: busybox
+          command: [ 'sh', '-c', 'until nc -zv {{ printf "%s-postgresql" .Release.Name }} 5432; do echo waiting for postgres; sleep 2; done' ]
       containers:
         - name: zetro-backend
           image: {{ $.Values.global.docker.artifactoryUrl }}{{ $.Values.deployment.image.repository }}:{{ $.Values.global.docker.imageTag.zetroBackend }}
