@@ -1,0 +1,98 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "zetro-backend.fullname" $ }}
+  labels:
+    app: {{ template "zetro-backend.fullname" $ }}
+    chart: {{ template "zetro-backend.chart" $ }}
+    heritage: {{ $.Release.Service }}
+    release: {{ $.Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "zetro-backend.fullname" $ }}
+      release: {{ $.Release.Name }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: {{ $.Values.deployment.rolling.maxSurge }}
+      maxUnavailable: {{ $.Values.deployment.rolling.maxUnavailable }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "zetro-backend.fullname" $ }}
+        release: {{ $.Release.Name }}
+      annotations:
+        {{ if eq $.Values.global.config.PLATFORM "dv1"}}
+        timestamp: "{{ date "20060102150405" now }}"
+        {{ end }}
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") $ | sha256sum }}
+    spec:
+      #      imagePullSecrets:
+      #        - name: {{.Release.Name}}-monorepo-docker-secret
+      initContainers:
+        - name: wait-for-postgres
+          image: busybox
+          command: [ 'sh', '-c', 'until nc -zv {{ printf "%s-postgresql" .Release.Name }} 5432; do echo waiting for postgres; sleep 2; done' ]
+      containers:
+        - name: zetro-backend
+          image: {{ $.Values.global.docker.artifactoryUrl }}{{ $.Values.deployment.image.repository }}:{{ $.Values.global.docker.imageTag.zetroBackend }}
+          imagePullPolicy: {{ $.Values.deployment.image.pullPolicy | quote }}
+          tty: true
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ template "zetro-backend.fullname" $ }}-env
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: zetro-db-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: zetro-db-secret
+                  key: password
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: zetro-db-secret
+                  key: database
+            - name: DB_HOST
+              value: {{ printf "%s-postgresql" .Release.Name | quote }}
+          resources:
+            requests:
+              cpu: {{ $.Values.deployment.resources.requests.cpu }}
+              memory: {{ $.Values.deployment.resources.requests.memory }}
+            limits:
+              cpu: {{ $.Values.deployment.resources.limits.cpu }}
+              memory: {{ $.Values.deployment.resources.limits.memory }}
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /q/health/ready
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /q/health/live
+            initialDelaySeconds: 15
+            timeoutSeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+          {{ if $.Values.deployment.securityContext.enabled }}
+          securityContext:
+            runAsUser: 1000
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ "ALL" ]
+          {{ end }}

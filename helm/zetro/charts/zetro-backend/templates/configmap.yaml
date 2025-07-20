@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "zetro-backend.fullname" $ }}-env
+  labels:
+    app: {{ template "zetro-backend.fullname" $ }}
+    chart: {{ template "zetro-backend.chart" $ }}
+    heritage: {{ $.Release.Service }}
+    release: {{ $.Release.Name }}
+data:
+  PLATFORM: {{ $.Values.global.config.PLATFORM | quote }}
+  APP_NAME: {{ $.Chart.Name | quote }}
+  LOGGER_NAME: {{ $.Values.config.LOGGER_NAME | quote }}
+
+  WIKI_REPO_URL: "ZeTro-dev/portfolio"

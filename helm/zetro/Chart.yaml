@@ -1,0 +1,10 @@
+apiVersion: v2
+name: zetro-portfolio
+version: 1.0.0
+description: Charts for zetro portfolio
+home: https://gitlab/monorepo-template/-/tree/master/app1/helm
+
+dependencies:
+  - name: postgresql
+    version: 12.1.5    # Pick a stable version, not `latest`
+    repository: https://charts.bitnami.com/bitnami

@@ -1,0 +1,32 @@
+global:
+  docker:
+    # Artifactory host used for download Docker images
+    artifactoryUrl: "zelytra"
+    # Set in Gitlab-ci at the deployment. See values in CI/CD gitlab variables
+    user: ""
+    password: ""
+    imageTag:
+      zetroFrontend: latest
+      zetroBackend: latest
+
+  config:
+    PLATFORM: dv1
+
+postgresql:
+  enabled: true
+  auth:
+    username: zetro
+    database: ZetroPortfolio
+    existingSecret: "zetro-db-secret"
+  primary:
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+    persistence:
+      enabled: true
+      storageClass: "local-path"
+      size: 100Mi

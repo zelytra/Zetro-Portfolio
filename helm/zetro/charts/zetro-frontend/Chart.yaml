@@ -1,0 +1,5 @@
+apiVersion: v2
+name: zetro-frontend
+version: 0.0.0
+description: backend for portfolio
+home: https://gitlab/monorepo-template/-/tree/master/app1/helm/charts/zetro-portfolio

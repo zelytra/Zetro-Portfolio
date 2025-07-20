@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "zetro-backend.fullname" . }}-rewrite
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ include "zetro-backend.fullname" . }}
+    chart: {{ include "zetro-backend.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replacePathRegex:
+    regex: "^/api/(.*)"
+    replacement: "/$1"

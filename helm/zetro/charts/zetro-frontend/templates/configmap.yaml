@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "zetro-frontend.fullname" $ }}-env
+  labels:
+    app: {{ template "zetro-frontend.fullname" $ }}
+    chart: {{ template "zetro-frontend.chart" $ }}
+    heritage: {{ $.Release.Service }}
+    release: {{ $.Release.Name }}
+data:
+  PLATFORM: {{ $.Values.global.config.PLATFORM | quote }}
+  APP_NAME: {{ $.Chart.Name | quote }}
+  LOGGER_NAME: {{ $.Values.config.LOGGER_NAME | quote }}
+  VITE_GITHUB_HOST: {{ $.Values.github | quote }}
+  VITE_BACKEND_HOST: {{ $.Values.backendURL | quote }}
