@@ -9,6 +9,7 @@ metadata:
     release: {{ $.Release.Name }}
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Namespace }}-{{ include "zetro-backend.fullname" . }}-rewrite@kubernetescrd"
 spec:
   tls:
     - hosts:
