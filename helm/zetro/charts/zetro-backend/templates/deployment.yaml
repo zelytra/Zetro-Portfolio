@@ -28,8 +28,8 @@ spec:
         {{ end }}
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") $ | sha256sum }}
     spec:
-#      imagePullSecrets:
-#        - name: {{.Release.Name}}-monorepo-docker-secret
+      #      imagePullSecrets:
+      #        - name: {{.Release.Name}}-monorepo-docker-secret
       containers:
         - name: zetro-backend
           image: {{ $.Values.global.docker.artifactoryUrl }}{{ $.Values.deployment.image.repository }}:{{ $.Values.global.docker.imageTag.zetroBackend }}
@@ -41,6 +41,24 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ template "zetro-backend.fullname" $ }}-env
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: zetro-db-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: zetro-db-secret
+                  key: password
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: zetro-db-secret
+                  key: database
+            - name: DB_HOST
+              value: {{ printf "%s-postgresql" .Release.Name | quote }}
           resources:
             requests:
               cpu: {{ $.Values.deployment.resources.requests.cpu }}
@@ -72,5 +90,5 @@ spec:
               type: RuntimeDefault
             allowPrivilegeEscalation: false
             capabilities:
-              drop: ["ALL"]
+              drop: [ "ALL" ]
           {{ end }}

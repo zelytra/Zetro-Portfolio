@@ -13,7 +13,3 @@ data:
   LOGGER_NAME: {{ $.Values.config.LOGGER_NAME | quote }}
 
   WIKI_REPO_URL: "ZeTro-dev/portfolio"
-  DB_HOST: {{ printf "%s-postgresql" .Release.Name | quote }}
-  DB_DATABASE: {{ .Values.postgresql.auth.database | quote }}
-  DB_USER: {{ .Values.postgresql.auth.username | quote }}
-  DB_PASSWORD: {{ .Values.postgresql.auth.password | quote }}
