@@ -89,6 +89,8 @@ jobs:
       - name: Deploy Helm Chart
         run: |
           export KUBECONFIG=$(pwd)/kubeconfig.yaml
+          helm dependency build 
+          helm dependency update 
           helm upgrade --install zetro-portfolio ./helm/zetro \
           --namespace default \
           --values ./helm/zetro/values.yaml \
