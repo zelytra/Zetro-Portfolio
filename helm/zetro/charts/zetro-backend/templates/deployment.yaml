@@ -50,17 +50,17 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: zetro-db-secret
-                  key: postgres-username
+                  key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: zetro-db-secret
-                  key: postgres-password
+                  key: password
             - name: DB_DATABASE
               valueFrom:
                 secretKeyRef:
                   name: zetro-db-secret
-                  key: postgres-database
+                  key: database
             - name: DB_HOST
               value: {{ printf "%s-postgresql" .Release.Name | quote }}
           resources:
