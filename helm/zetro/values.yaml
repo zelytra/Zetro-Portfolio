@@ -26,5 +26,5 @@ postgresql:
         memory: 512Mi
     persistence:
       enabled: true
-      storageClass: "standard"  # or whatever is used in your cluster
-      size: 50Mi
+      storageClass: ""
+      size: 100Mi
