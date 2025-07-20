@@ -24,23 +24,6 @@ service:
   port: 80
   targetPort: 8080
 
-postgresql:
-  enabled: true
-  auth:
-    existingSecret: "zetro-db-secret"
-  primary:
-    resources:
-      requests:
-        cpu: 250m
-        memory: 256Mi
-      limits:
-        cpu: 500m
-        memory: 512Mi
-    persistence:
-      enabled: true
-      storageClass: "standard"  # or whatever is used in your cluster
-      size: 50Mi
-
 ingress:
   prefix: ""
   suffix: ""

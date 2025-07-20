@@ -3,8 +3,3 @@ name: zetro-backend
 version: 0.0.0
 description: Backend for portfolio
 home: https://gitlab/monorepo-template/-/tree/master/app1/helm/charts/zetro-portfolio
-
-dependencies:
-  - name: postgresql
-    version: latest   # Use the latest supported version
-    repository: https://charts.bitnami.com/bitnami
