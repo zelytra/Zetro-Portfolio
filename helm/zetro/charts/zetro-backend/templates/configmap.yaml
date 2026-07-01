@@ -13,3 +13,7 @@ data:
   LOGGER_NAME: {{ $.Values.config.LOGGER_NAME | quote }}
 
   WIKI_REPO_URL: "ZeTro-dev/portfolio"
+
+  # Allow more time to establish the first DB connection during a cold JVM start
+  # (Agroal default is 5s, which the pod could not meet under the previous CPU limit).
+  QUARKUS_DATASOURCE_JDBC_ACQUISITION_TIMEOUT: "30"
