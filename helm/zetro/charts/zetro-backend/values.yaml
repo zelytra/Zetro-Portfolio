@@ -16,8 +16,9 @@ deployment:
     # Keep CPU/memory *requests* modest so the pod schedules on a busy node,
     # but allow the *limit* to burst to a full core so the Quarkus/Hibernate
     # JVM can boot quickly and establish its DB connection in time.
+    # Observed on zelytra.fr: ~2m CPU / ~200Mi RSS at idle.
     requests:
-      cpu: 100m
+      cpu: 50m
       memory: 256Mi
     limits:
       cpu: "1"
