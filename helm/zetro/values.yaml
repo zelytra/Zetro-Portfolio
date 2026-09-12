@@ -19,13 +19,14 @@ postgresql:
     database: ZetroPortfolio
     existingSecret: "zetro-db-secret"
   primary:
+    # Observed on zelytra.fr: ~4m CPU / ~32Mi for this tiny DB (100Mi volume).
     resources:
       requests:
-        cpu: 250m
-        memory: 256Mi
+        cpu: 50m
+        memory: 64Mi
       limits:
         cpu: 500m
-        memory: 512Mi
+        memory: 256Mi
     persistence:
       enabled: true
       storageClass: "local-path"
